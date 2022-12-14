@@ -47,10 +47,10 @@ const UserTickets = () => {
           field: 'description', headerName: 'Description', width: 300, editable: false,
         },
         {
-          field: 'createdAt', headerName: 'Created At', type: 'string', width: 200, editable: false,
+          field: 'createdAt', headerName: 'Created At', type: 'data', width: 200, editable: false,
         },
         {
-            field: 'updatedAt', headerName: 'Updated At', type: 'string', width: 200, editable: false,
+            field: 'updatedAt', headerName: 'Updated At', type: 'data', width: 200, editable: false,
         },
         {
             field: 'actions', type: 'actions', headerName: 'Delete', width: 80, getActions: (params) => [

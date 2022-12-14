@@ -5,11 +5,11 @@ import authHeader from "./authHeader";
 const API_URL = "https://resolved-api.herokuapp.com/api/tickets/";
 
 const getTickets = () => {
-    return axios.get(API_URL + "list", { headers: authHeader() });
+    return axios.get(API_URL + "all", { headers: authHeader() });
 };
 
 const getAllTickets = () => {
-    return axios.get(API_URL + "all", { headers: authHeader() });
+    return axios.get(API_URL + "list", { headers: authHeader() });
 };
 
 const getTicketData = () => {
