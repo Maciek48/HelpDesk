@@ -38,7 +38,6 @@ const AdminTickets = () => {
     const columns = [
         { field: 'id', headerName: 'ID', width: 150 },
         { field: 'title', headerName: 'Title', width: 250,editable: false },
-        { field: 'subject', headerName: 'Subject', width: 250, editable: false,},
         {field: 'description', headerName: 'Description', width: 300, editable: false,},
         {field: 'createdAt',headerName: 'Created At',type: 'date', width: 150, editable: false, },
         { field: 'updatedAt', headerName: 'Updated At', type: 'date', width: 150, editable: false, },
@@ -86,6 +85,17 @@ const AdminTickets = () => {
     );
   }, []);
   
+  
+
+  function generateRandom() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
 
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
@@ -97,6 +107,7 @@ const AdminTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
+      getRowId={(row) => generateRandom()}
     />
     </Box>
   );

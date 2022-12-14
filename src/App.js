@@ -117,7 +117,7 @@ const App = () => {
                 <div className="dashboard-container" onMouseEnter={collapseSidebar}>
                     <Routes>
                         
-                        <Route path="/user" element={<UserDashboard />} />
+                        <Route path="/user" element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
                         <Route path="/mod" element={<ModeratorDashboard />} />
                         <Route path="/admin" element={<AdminDashboard />} />
                         <Route path="/profile" element={<Profile />} />
