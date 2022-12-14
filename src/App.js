@@ -117,27 +117,28 @@ const App = () => {
                 <div className="dashboard-container" onMouseEnter={collapseSidebar}>
                     <Routes>
                         
-                        <Route path="/user" element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
-                        <Route path="/mod" element={<ModeratorDashboard />} />
-                        <Route path="/admin" element={<AdminDashboard />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/tickets" element={<UserTickets />} />
-                        <Route path="/*" element={<UserDashboard />} />
+                        {/*Sciezki dostepu dla kazdego uzytkownika, moderatora i admina*/}
+
+                        <Route path="/*" exact element={<Navigate replace to="/dashboard" />} />
+                        <Route path="/profile" exact element={<Profile />} />
+
+                        <Route path="/user" exact element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
+                        <Route path="/mod" exact element={<ModeratorDashboard />} />
+                        <Route path="/admin" exact element={<AdminDashboard />} />
                         
-                        
-                        
+                        {<Route path="/resetpasword" exact element={<ResetPassword />} /> }
+                        {<Route path="/resetemail" exact element={<ResetEmail />} /> }
+
+
                         {/*Sciezki dostepu usera*/}
+                        {showUserDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/user" />} /> }
                         {showUserDashboard && <Route path="/tickets" exact element={<UserTickets />} /> }
                         {showUserDashboard && <Route path="/tickets/details/:id" exact element={<TicketDetail />} /> }
-                        {showUserDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/user" />} /> }
-                        
 
                         {/*Sciezki dostepu admina*/}
-                        {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
-                        {showAdminDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
                         {showAdminDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/admin" />} /> }
-                        {showAdminDashboard && <Route path="/resetPasword" exact element={<ResetPassword />} /> }
-                        {showAdminDashboard && <Route path="/resetEmail" exact element={<ResetEmail />} /> }
+                        {showAdminDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
+                        {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
 
                         {/*Sciezki dostepu moderatora*/}
                         {showModeratorDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/mod" />} /> }
