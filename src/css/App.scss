@@ -1,0 +1,14 @@
+@import "./base/base";
+
+// Components
+
+@import "./components/navbar";
+@import "./components/sidebar";
+@import "./components/footer";
+@import "./components/newTicketPopup.scss";
+
+// Sections
+
+@import "./sections/home";
+@import "./sections/dashboard";
+@import "./sections/form";

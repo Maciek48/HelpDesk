@@ -1,0 +1,72 @@
+.form-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    width: 100%;
+    color: var(--accent-color1);
+
+    .title {
+        background: linear-gradient(101deg, var(--purple), var(--pink));
+        padding-bottom: 3rem;
+        font-size: 50px;
+        font-weight: bold;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .form-group {
+        padding-bottom: 3rem;   
+        width: 25vw;
+        font-size: 18px;
+    }
+
+    .form-control {
+        background: var(--white-color);
+        width: 100%;
+        padding: .5rem .8rem .5rem .8rem;
+        margin: .5vw 0 ;
+        border: solid 1px;
+        border-color: var(--accent-color2);
+        border-radius: 0.5rem;
+        font-size: 20px;
+        
+        :focus {
+            border-color: var(--purple);
+            box-shadow: none;
+        }
+    }
+
+    .form-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1vw 0 ;
+
+        button {
+            font-size: 18px;
+            color: var(--accent-color1);
+            background-color: var(--background);
+            font-weight: bold;
+            padding: 1rem 3rem;
+            border-radius: 1rem;
+            border: solid 3px transparent;
+            background-image: linear-gradient(
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0)
+              ),
+              linear-gradient(101deg, var(--purple), var(--pink));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 2px 1000px 1px var(--background) inset;
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
+            &:hover {
+              box-shadow: none;
+            }
+        }
+    }
+}

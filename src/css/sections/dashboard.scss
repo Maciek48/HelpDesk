@@ -1,0 +1,89 @@
+.container-with-sidebar {
+    background-color: var(--background);
+    min-height: 100%;
+}
+
+.dashboard-container {
+    font-size: 32px;
+    padding-left: 10rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: 100vh;
+}
+
+.search-container {
+    padding-top: 20vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        background: linear-gradient(101deg, var(--purple), var(--pink));
+        padding-bottom: 3rem;
+        font-size: 50px;
+        font-weight: bold;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    form {
+        position: relative;
+        width: 50rem;
+        background: var(--background);
+        border-radius: 5rad;
+      }
+      input, button {
+        height: var(--height);
+        font-family: var(--font-fam);
+        border: 0;
+        color: var(--accent-color2);
+        font-size: 1.8rem;
+      }
+      input[type="search"] {
+        outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+        height: 5rem;
+        width: 100%;
+        background: var(--accent-color4);
+        padding: 0 1.6rem;
+        border: solid 3px var(--grey-color);
+        border-radius: 5rem;
+        appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+        transition: all 0.5s;
+        transition-property: width, border-radius;
+        z-index: 1;
+        position: relative;
+      }
+      button {
+        display: none; // prevent being able to tab to it
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: var(--btn-width);
+        font-weight: bold;
+        background: var(--color-brand);
+        border-radius: 0 var(--rad) var(--rad) 0;
+      }
+      input:not(:placeholder-shown) {
+        border-radius: var(--rad) 0 0 var(--rad);
+        width: calc(100% - var(--btn-width));
+        + button {
+          display: block;
+        }
+      }
+      label {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+      }
+}
+
+.MuiDataGrid-cellContent, .MuiDataGrid-columnHeaderTitleContainer, .MuiSvgIcon-root, .MuiDataGrid-actionsCell, .MuiButtonBase-root, .tab-title {
+  color: var(--accent-color1);
+}

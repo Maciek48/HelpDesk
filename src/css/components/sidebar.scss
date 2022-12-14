@@ -1,0 +1,244 @@
+/* Sidebar Styling */
+
+.sidebar {
+    z-index: 9;
+    width: 23.2rem;
+    height: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 2.1rem 1.2rem;
+    background-color: var(--card-color);
+    position: fixed;
+    transition: all 0.4s ease;
+    top: 0;
+    border-radius: 0.5rem;
+    overflow-x: hidden;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+  }
+
+  .sidebar ul {
+    padding: 0;
+  }
+  
+  /* Sidebar Logo */
+  
+  .logo {
+    max-width: 4rem;
+    height: auto;
+    object-fit:contain;  
+  }
+  
+  .logo-name-wrapper {
+    position: relative;
+    margin-bottom: 2.1rem;
+    display: flex;
+    font-size: 1.2rem;
+  }
+  
+  .logo-name {
+    display: flex;
+    align-items: center;
+    transition: all 0.4s ease;
+    color: var(--accent-color1)
+  }
+  
+  .logo-name__name {
+    margin-left: 0.9rem;
+    white-space: nowrap;
+  }
+  .logo-name__button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 1.8rem;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .logo-name__icon {
+    font-size: 1.8rem;
+    color: var(--grey-color);
+  }
+  
+  /* Sidebar Button */
+  
+  .sidebar-button {
+    /* light pink light blue */
+    /*background: rgb(187,82,222);
+    background: linear-gradient(90deg, rgba(187,82,222,1) 0%, rgba(139,186,233,1) 100%);*/
+    background: rgb(108,51,255);
+    background: linear-gradient(90deg, rgba(108,51,255,1) 0%, rgba(234,62,255,1) 100%);
+    display: flex;
+    align-items: center;
+    padding: 1.55rem 0 1.55rem 1.2rem;
+    border-radius: 0.4rem;
+    margin-bottom: 3.6rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .sidebar-button:hover {
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s ease;
+  }
+  
+  .sidebar-button-icon {
+    font-size: 2rem;
+    transform: translateX(3rem);
+    transition: all 0.4s ease;
+  }
+  
+  .sidebar-button-text {
+    color:#ebebeb;
+    margin-left: 1.1rem;
+    font-size: 1.4rem;
+    white-space: nowrap;
+    transform: translateX(3rem);
+    transition: all 0.25s ease;
+  }
+
+  /* Sidebar Link React Component */
+
+  .sidebar-link {
+    text-decoration: none;
+    color: var(--accent-color1);
+    transition: 0.4s ease;
+  }
+
+  .sidebar-link:hover {
+    color: #6C33FF;
+    transition: 0.4s ease;
+  }
+  
+  /* Sidebar Options List */
+  
+  .sidebar-option-list {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #292932;
+    list-style: none;
+  }
+  .sidebar-option-link {
+    text-decoration: none;
+    color: var(--accent-color1);
+  }
+  
+  .sidebar-option-link:hover {
+    color: var(--white-color);
+    transition: 0.4s ease;
+  }
+  
+  /* Sidebar Option */
+  
+  .sidebar-option {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0.9rem;
+    margin-bottom: 1.1rem;
+    color: var(--accent-color1);
+    cursor: pointer;
+    transition: 0.4s ease;
+    text-decoration: none;
+  }
+  
+  .sidebar-option::before {
+    transition: 0.4s ease;
+    content: '';
+    position: absolute;
+    left: -1.2rem;
+    height: 100%;
+    border-left: 3px solid #bb52de;
+    border-radius: 2px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .sidebar-option:hover {
+    color: #bb52de;
+  }
+  
+  .sidebar-option:hover::before {
+    opacity: 1;
+    visibility: unset;
+  }
+  
+  .sidebar-option-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .sidebar-option-text {
+    color: var(--accent-color1);
+    margin-left: 1.2rem;
+    transition: opacity 0.4s ease;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  /* Tooltip */
+  
+  .tooltip {
+    position: absolute;
+    top: -2.1rem;
+    left: 6.4rem;
+    background-color: #ffffff;
+    color: #292932;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 1.4rem;
+    transition: 0s;
+    opacity: 0;
+    display: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Collapsed Sidebar CSS */
+  
+  .sidebar.collapsed {
+    width: 6.4rem;
+  }
+  
+  .sidebar.collapsed .sidebar-button:hover .tooltip,
+  .sidebar-option:hover .tooltip {
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.4s ease;
+    opacity: 1;
+  }
+  
+  .sidebar.collapsed .tooltip {
+    display: block;
+  }
+  
+  .sidebar.collapsed .logo-name,
+  .sidebar.collapsed .sidebar-option-text,
+  .sidebar.collapsed .sidebar-button-text {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .sidebar.collapsed .sidebar-button-text {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0);
+  }
+  .sidebar.collapsed .sidebar-button-icon {
+    transform: translateX(0);
+  }
+  .sidebar.collapsed .logo-name__button {
+    right: 0.5rem;
+  }
+  

@@ -1,0 +1,92 @@
+.home {
+    margin-top: 5rem;
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      font-size: 28px;
+      .content {
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+        .sub-title {
+          color: var(--purple);
+          text-transform: uppercase;
+          letter-spacing: 0.1rem;
+        }
+        .title {
+          color: var(--accent-color1);
+        }
+        .description {
+          color: var(--accent-color3);
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+
+            button {
+                font-size: 18px;
+                color: var(--accent-color1);
+                background-color: var(--background);
+                font-weight: bold;
+                padding: 1rem 3rem;
+                border-radius: 1rem;
+                box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+                border: solid 3px transparent;
+                background-image: linear-gradient(
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0)
+                  ),
+                  linear-gradient(101deg, var(--purple), var(--pink));
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+                box-shadow: 2px 1000px 1px var(--background) inset;
+                transition: 0.5s ease-in-out;
+                cursor: pointer;
+                &:hover {
+                  box-shadow: none;
+                }
+              }
+        }
+        
+      }
+      .image-container {
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        padding-left: 5rem;
+        .image {
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    .home {
+      padding: 1rem;
+      position: relative;
+      overflow-x: hidden;
+      margin-top: 1rem;
+      .container {
+        font-size: 16px;
+        grid-template-columns: 0.7fr;
+        .image-container {
+          position: absolute;
+          right: -10%;
+          top: 30%;
+          .image {
+            img {
+              height: 10rem;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+  
