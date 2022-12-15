@@ -88,13 +88,12 @@ const AdminTickets = () => {
   
 
   function generateRandom() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
+    var retVal = 39;
+    /*for (var i = 0; i <= 11;  ++i) {
+        retVal += i;
+    }*/
     return retVal;
+    console.log(retVal);
 }
 
   return (

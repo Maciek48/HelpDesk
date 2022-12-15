@@ -104,12 +104,12 @@ const AdminUsers = () => {
   function generateRandom() {
     var length = 8,
         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = 32;
-    for (var i = 0; i < retVal;  i++) {
-        retVal += i;
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
     }
     return retVal;
-  }
+}
 
   return (
     <Box sx={{ height: '95%', width: '100%' }}>

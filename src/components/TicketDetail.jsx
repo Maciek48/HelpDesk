@@ -49,14 +49,18 @@ function TicketDetail() {
         <div>
             <p>User information:</p>
             Email:  {ticketData?.email}<br/>
-            User id: {ticketData?.userId}<br/>
-
+            First name: {ticketData?.firstName}<br/>
+            Last name: {ticketData?.lastName}<br/>
+            User id: {ticketData?.ticket?.userId}<br/>
             <br/>
-            <p>Ticket information:</p>
-            Ticket id: {ticketData?.id}<br/>
-            Title: {ticketData?.title}<br/>
-            Description: {ticketData?.description}<br/>
 
+            Ticket information:<br/>
+            Created at: {ticketData?.ticket?.createdAt}<br/>
+            Updated at: {ticketData?.ticket?.updatedAt}<br/>
+            Title: Id: {ticketData?.ticket?.title}<br/>
+            Description: {ticketData?.ticket?.description}<br/>
+            Id: {ticketData?.ticket?.id}<br/>
+            Status: {ticketData?.ticket?.statusId}<br/>
         </div>
     )
 };
