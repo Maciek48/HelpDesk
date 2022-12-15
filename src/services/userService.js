@@ -32,12 +32,6 @@ const deleteUser = (id) => {
     return axios.delete(API_URL1 + "/:id" + id, { headers: authHeader()});
 }
 
-const chngeEmailorPassword = (email, password) => {
-    return axios.put(API_URL1 + "/:id", {
-        email,
-        password,
-      }, { headers: authHeader() });
-}
 
 const reset = () => {
     return axios.put(API_URL2 + "reset", { headers: authHeader() });
@@ -50,7 +44,6 @@ const UserService = {
     getAdminDashboard,
     getAllUsers,
     deleteUser,
-    chngeEmailorPassword,
     reset
 };
 
