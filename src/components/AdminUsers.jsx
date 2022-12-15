@@ -37,13 +37,13 @@ const UserTickets = () => {
           editable: false,
         },
         {
-          field: 'first_name',
+          field: 'firstName',
           headerName: 'First name',
           width: 150,
           editable: false,
         },
         {
-          field: 'last_name',
+          field: 'lastName',
           headerName: 'Last name',
           width: 150,
           editable: false,
