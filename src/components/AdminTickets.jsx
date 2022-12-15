@@ -31,7 +31,7 @@ const AdminTickets = () => {
 
     const navigateToTicketDetails = React.useCallback(
       (id) => () => {
-        navigate(`/tickets/details/${id}`);
+        navigate(`/tickets/${id}`);
       },[navigate],
     );
 

@@ -44,7 +44,7 @@ const ResetPassword = () => {
 
       if (checkBtn.current.context._errors.length === 0) {
         //axios.put(API_URL2 + "reset", password,{ headers: authHeader() });
-          UserService.reset(password).then(
+          UserService.resetPassword(password).then(
             () => {
               navigate("/dashboard");
               window.location.reload();

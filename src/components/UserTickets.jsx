@@ -96,18 +96,27 @@ const UserTickets = () => {
     );
   }, []);
 
+  function generateRandom() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+  }
+
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
       <h3 className="tab-title">Tickets</h3>
     <DataGrid
       rows={rows}
-      getRowId={(row) => row.id}
       columns={columns}
       pageSize={10}
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
-      
+      getRowId={(row) => generateRandom()}
     />
     </Box>
   );

@@ -8,7 +8,7 @@ import EventBus from "../utils/EventBus";
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
-const UserTickets = () => {
+const AdminUsers = () => {
 
   const user = JSON.parse(localStorage.getItem('user'));
   let navigate = useNavigate();
@@ -101,6 +101,16 @@ const UserTickets = () => {
     );
   }, []);
 
+  function generateRandom() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = 32;
+    for (var i = 0; i < retVal;  i++) {
+        retVal += i;
+    }
+    return retVal;
+  }
+
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
       <h3 className="tab-title">Users</h3>
@@ -112,9 +122,10 @@ const UserTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
+      getRowId={(row) => generateRandom()}
     />
     </Box>
   );
 };
 
-export default UserTickets;
+export default AdminUsers;

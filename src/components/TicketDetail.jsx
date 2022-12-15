@@ -8,7 +8,7 @@ import TicketService from "../services/ticketService";
 import axios from "axios";
 import authHeader from "../services/authHeader";
 
-const API_URL = "https://isupportapi.herokuapp.com/tickets/";
+const API_URL = "https://resolved.herokuapp.com/api/tickets/:id";
 
 
 function TicketDetail() {
@@ -21,7 +21,7 @@ function TicketDetail() {
 
     const fetchData = async () => {
         setError("")
-        const response = await fetch(`https://isupportapi.herokuapp.com/tickets/details/${id}`, { headers: authHeader() })
+        const response = await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
             .then(response => {
                 if(response.ok){
                     return response.json()

@@ -33,8 +33,17 @@ const deleteUser = (id) => {
 }
 
 
-const reset = (password) => {
-    return axios.put(API_URL2 + "reset", password,{ headers: authHeader() });
+const resetPassword = (password) => {
+    return axios.put(API_URL2 + "reset", 
+        password,
+        { headers: authHeader() })
+        .then((response) => {
+            if (response.data.accessToken) {
+                localStorage.removeItem("user");
+            }
+      
+            return response.data;
+          });
   }
 
 const UserService = {
@@ -44,7 +53,7 @@ const UserService = {
     getAdminDashboard,
     getAllUsers,
     deleteUser,
-    reset
+    resetPassword
 };
 
 export default UserService;
