@@ -133,13 +133,13 @@ const App = () => {
                         {/*Sciezki dostepu usera*/}
                         {showUserDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/user" />} /> }
                         {showUserDashboard && <Route path="/tickets" exact element={<UserTickets />} /> }
-                        {showUserDashboard && <Route path="/tickets/details/:id" exact element={<TicketDetail />} /> }
+                        {showUserDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
 
                         {/*Sciezki dostepu admina*/}
                         {showAdminDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/admin" />} /> }
                         {showAdminDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
                         {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
-                        {showAdminDashboard && <Route path="/tickets/details/:id" exact element={<TicketDetail />} /> }
+                        {showAdminDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
 
                         {/*Sciezki dostepu moderatora*/}
                         {showModeratorDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/mod" />} /> }

@@ -13,7 +13,7 @@ const getAllTickets = () => {
 };
 
 const getTicketData = () => {
-    return axios.get(API_URL + `/details/:id`, {headers: authHeader()});
+    return axios.get(API_URL + `/:id`, {headers: authHeader()});
 }
 
 const deleteTicket = (id) => {
