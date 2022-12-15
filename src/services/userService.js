@@ -33,8 +33,8 @@ const deleteUser = (id) => {
 }
 
 
-const reset = () => {
-    return axios.put(API_URL2 + "reset", { headers: authHeader() });
+const reset = (password) => {
+    return axios.put(API_URL2 + "reset", password,{ headers: authHeader() });
   }
 
 const UserService = {

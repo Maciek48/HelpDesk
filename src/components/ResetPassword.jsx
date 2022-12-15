@@ -64,7 +64,7 @@ const ResetPassword = () => {
         } else {
           setLoading(false);
         }
-      };
+  };
   
 
   return(
