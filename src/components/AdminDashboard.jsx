@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     UserService.getAdminDashboard().then(
       (response) => {
-        setContent(response.data);
+        setContent(response.data.message);
       },
       (error) => {
         const _content =
