@@ -6,11 +6,20 @@ import { Alert, CircularProgress } from '@mui/material';
 import Form from "react-validation/build/form";
 import UserService from "../services/userService";
 import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
 
 const required = (value) => {
     if (!value) {
       return (
         <Alert severity="warning" variant="outlined">You have to write new email!</Alert>
+      );
+    }
+  };
+
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <Alert severity="error" variant="outlined">This is not a valid email!</Alert>
       );
     }
   };
@@ -25,7 +34,7 @@ const ResetEmail = () => {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const onChangePassword = (e) => {
+    const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
       };
@@ -69,12 +78,12 @@ const ResetEmail = () => {
               <div className="form-group">
                 <label htmlFor="password">Email</label>
                 <Input
-                  type="password"
+                  type="text"
                   className="form-control"
-                  name="password"
+                  name="email"
                   value={email}
-                  onChange={onChangePassword}
-                  validations={[required]}
+                  onChange={onChangeEmail}
+                  validations={[required, validEmail]}
                 />
               </div>
 
