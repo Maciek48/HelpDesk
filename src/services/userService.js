@@ -5,6 +5,8 @@ const API_URL = "https://resolved-api.herokuapp.com/api/test/";
 
 const API_URL1 = "https://resolved-api.herokuapp.com/api/users/";
 
+const API_URL2 = "https://resolved-api.herokuapp.com/api/auth/";
+
 
 const getPublicContent = () => {
     return axios.get(API_URL + "all");
@@ -37,6 +39,10 @@ const chngeEmailorPassword = (email, password) => {
       }, { headers: authHeader() });
 }
 
+const reset = () => {
+    return axios.put(API_URL2 + "reset", { headers: authHeader() });
+  }
+
 const UserService = {
     getPublicContent,
     getUserDashboard,
@@ -44,7 +50,8 @@ const UserService = {
     getAdminDashboard,
     getAllUsers,
     deleteUser,
-    chngeEmailorPassword
+    chngeEmailorPassword,
+    reset
 };
 
 export default UserService;

@@ -38,7 +38,7 @@ const ResetPassword = () => {
         form.current.validateAll();
 
         if (checkBtn.current.context._errors.length === 0) {
-            UserService.chngeEmailorPassword(password).then(
+            UserService.reset(password).then(
               () => {
                 navigate("/dashboard");
                 window.location.reload();
