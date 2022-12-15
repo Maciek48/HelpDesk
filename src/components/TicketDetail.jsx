@@ -60,7 +60,7 @@ function TicketDetail() {
             Title: Id: {ticketData?.ticket?.title}<br/>
             Description: {ticketData?.ticket?.description}<br/>
             Id: {ticketData?.ticket?.id}<br/>
-            Status: {ticketData?.ticket?.statusId}<br/>
+            Status: {ticketData?.status}<br/>
         </div>
     )
 };
