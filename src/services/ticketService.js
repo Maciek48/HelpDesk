@@ -21,7 +21,7 @@ const deleteTicket = (id) => {
 };
 
 const createTicket = (title, description) => {
-    return axios.post(API_URL + "/create", {
+    return axios.post(API_URL + "create", {
         title,
         description,
       }, { headers: authHeader() });
