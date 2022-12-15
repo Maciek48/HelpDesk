@@ -31,7 +31,7 @@ const AdminDashboard = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <h3>Admin dashboard</h3>
       </header>
     </div>
   );

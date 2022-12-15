@@ -64,7 +64,7 @@ const AdminTickets = () => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    TicketService.getTickets().then(
+    TicketService.getAllTickets().then(
       (response) => {
         setRows(response.data);
       },
