@@ -62,42 +62,40 @@ const ResetPassword = () => {
 
     return(
         <div>
-            
-              
-              <div className="form-container">
-                  Reset Password
-                <Form onSubmit={handleChangePassword}>
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={password}
-                    onChange={onChangePassword}
-                    validations={[required]}
-                  />
-                </div>
+          <div className="form-container">
+              Reset Password
+            <Form onSubmit={handleChangePassword}>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={onChangePassword}
+                  validations={[required]}
+                />
               </div>
 
-                <div className="form-button-container">
-                  <button disabled={loading}>
-                    {loading && (
-                      <span><CircularProgress color="inherit"/></span>
-                    )}
-                    {!loading && (
-                      <span>Reset Password</span>
-                    )}
-                  </button>
+              <div className="form-button-container">
+                <button disabled={loading}>
+                  {loading && (
+                    <span><CircularProgress color="inherit"/></span>
+                  )}
+                  {!loading && (
+                    <span>Reset Password</span>
+                  )}
+                </button>
+              </div>
+              
+              {message && (
+                <div className="form-group">
+                    <Alert severity="error" variant="outlined">{message}</Alert>
                 </div>
-
-                {message && (
-                    <div className="form-group">
-                        <Alert severity="error" variant="outlined">{message}</Alert>
-                    </div>
-                )}
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
+              )}
+              <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
+          </div>
         </div>
     )
 };
