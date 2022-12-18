@@ -124,7 +124,7 @@ const App = () => {
 
                         <Route path="/user" exact element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
                         <Route path="/mod" exact element={<ModeratorDashboard />} />
-                        <Route path="/admin" exact element={<AdminDashboard />} />
+                        <Route path="/admin" exact element={<AdminDashboard showNewTicketPopup={showNewTicketPopup}/>} />
                         
                         {<Route path="/reset" exact element={<ResetPassword />} /> }
                         {<Route path="/resetemail" exact element={<ResetEmail />} /> }

@@ -57,7 +57,7 @@ const AdminTickets = () => {
               icon={<FiExternalLink />}
               onClick={navigateToTicketDetails(params.id)}
             />
-          ]
+          ] 
         }
     ];
 
@@ -107,7 +107,7 @@ const AdminTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
-      getRowId={(row) => generateRandom()}
+      //getRowId={(row) => generateRandom()}
     />
     </Box>
   );
