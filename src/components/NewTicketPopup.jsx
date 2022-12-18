@@ -19,20 +19,20 @@ const Popup = props => {
     const form = useRef();
     const checkBtn = useRef();
   
-    const [subject, setSubject] = useState("");
-    const [content, setContent] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
 
-    const onChangeSubject = (e) => {
-        const subject = e.target.value;
-        setSubject(subject);
+    const onChangeTitle = (e) => {
+        const title = e.target.value;
+        setTitle(title);
       };
     
-      const onChangeContent = (e) => {
-        const content = e.target.value;
-        setContent(content);
+      const onChangeDescription = (e) => {
+        const description = e.target.value;
+        setDescription(description);
       };
 
       const handleNewTicket = (e) => {
@@ -44,7 +44,7 @@ const Popup = props => {
         form.current.validateAll();
     
         if (checkBtn.current.context._errors.length === 0) {
-          TicketService.createTicket(subject, content).then(
+          TicketService.createTicket(title, description).then(
             (response) => {
                 setMessage(response.data.message);
                 setSuccessful(true);
@@ -83,9 +83,9 @@ const Popup = props => {
                         <Input
                             type="text"
                             className="form-control"
-                            name="subject"
-                            value={subject}
-                            onChange={onChangeSubject}
+                            name="title"
+                            value={title}
+                            onChange={onChangeTitle}
                             validations={[required]}
                         />
                     </div>
@@ -95,9 +95,9 @@ const Popup = props => {
                         <Textarea
                             type="textarea"
                             className="form-control"
-                            name="content"
-                            value={content}
-                            onChange={onChangeContent}
+                            name="description"
+                            value={description}
+                            onChange={onChangeDescription}
                             validations={[required]}
                         />
                     </div>

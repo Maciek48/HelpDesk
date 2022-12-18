@@ -116,7 +116,7 @@ const UserTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
-      getRowId={(row) => generateRandom()}
+      //getRowId={(row) => generateRandom()}
     />
     </Box>
   );
