@@ -29,21 +29,15 @@ const getAllUsers = () => {
 }
 
 const deleteUser = (id) => {
-    return axios.delete(API_URL1 + "/:id" + id, { headers: authHeader()});
+    return axios.delete(API_URL1 + `:id`, id, { headers: authHeader()});
 }
 
 
 const resetPassword = (password) => {
     return axios.put(API_URL2 + "reset", 
         password,
-        { headers: authHeader() })
-        .then((response) => {
-            if (response.data.accessToken) {
-                localStorage.removeItem("user");
-            }
-      
-            return response.data;
-          });
+        { headers: authHeader() });
+        
   }
 
 const UserService = {

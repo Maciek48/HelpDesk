@@ -44,7 +44,14 @@ const ResetPassword = () => {
 
       if (checkBtn.current.context._errors.length === 0) {
         //axios.put(API_URL2 + "reset", password,{ headers: authHeader() });
-          UserService.resetPassword(password).then(
+        
+          axios.put('https://resolved-api.herokuapp.com/api/auth/reset', {
+            password: JSON.stringify(password),
+            headers: authHeader()
+          }
+           )
+        /*
+        UserService.resetPassword(password).then(
             () => {
               navigate("/dashboard");
               window.location.reload();
@@ -63,7 +70,8 @@ const ResetPassword = () => {
           );
         } else {
           setLoading(false);
-        }
+        }*/
+      }
   };
   
 

@@ -92,8 +92,9 @@ const AdminTickets = () => {
     /*for (var i = 0; i <= 11;  ++i) {
         retVal += i;
     }*/
-    return retVal;
     console.log(retVal);
+    return retVal;
+    
 }
 
   return (

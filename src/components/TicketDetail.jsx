@@ -1,11 +1,11 @@
-import { Card } from "@mui/material";
+//import { Card } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 //import authHeader from "../services/authHeader";
-import EventBus from "../utils/EventBus";
+//import EventBus from "../utils/EventBus";
 
-import TicketService from "../services/ticketService";
-import axios from "axios";
+//import TicketService from "../services/ticketService";
+//import axios from "axios";
 import authHeader from "../services/authHeader";
 
 const API_URL = "https://resolved.herokuapp.com/api/tickets/:id";

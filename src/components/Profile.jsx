@@ -23,7 +23,7 @@ const Profile = () => {
 
   const resetPasswordHandle = React.useCallback(
     () => {
-      navigate('/resetPasword');
+      navigate('/reset');
     },[navigate]
   );
 

@@ -126,7 +126,7 @@ const App = () => {
                         <Route path="/mod" exact element={<ModeratorDashboard />} />
                         <Route path="/admin" exact element={<AdminDashboard />} />
                         
-                        {<Route path="/resetpasword" exact element={<ResetPassword />} /> }
+                        {<Route path="/reset" exact element={<ResetPassword />} /> }
                         {<Route path="/resetemail" exact element={<ResetEmail />} /> }
 
 
@@ -140,6 +140,7 @@ const App = () => {
                         {showAdminDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
                         {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
                         {showAdminDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
+                        {showAdminDashboard && <Route path="/reset" exact element={<ResetPassword />} /> }
 
                         {/*Sciezki dostepu moderatora*/}
                         {showModeratorDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/mod" />} /> }
