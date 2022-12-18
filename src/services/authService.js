@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./authHeader";
 
 const API_URL = "https://resolved-api.herokuapp.com/api/auth/";
 
@@ -33,12 +34,19 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+const chengeEmailOrPassword = (email, password) => {
+  return axios.put(API_URL + "reset", {
+    email, password
+  }, {headers: authHeader() });
+}
+
 
 const AuthService = {
   register,
   login,
   logout,
   getCurrentUser,
+  chengeEmailOrPassword
 };
 
 export default AuthService;

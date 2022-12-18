@@ -8,6 +8,8 @@ import UserService from "../services/userService";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
+import AuthService from "../services/authService";
+
 const required = (value) => {
     if (!value) {
       return (
@@ -48,7 +50,7 @@ const ResetEmail = () => {
         form.current.validateAll();
 
         if (checkBtn.current.context._errors.length === 0) {
-            UserService.chngeEmailorPassword(email).then(
+            AuthService.chengeEmailOrPassword(email).then(
               () => {
                 navigate("/dashboard");
                 window.location.reload();
