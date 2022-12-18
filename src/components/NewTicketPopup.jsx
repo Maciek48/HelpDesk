@@ -22,7 +22,9 @@ const Popup = props => {
   
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [file, setFile] = useState("");
+    const [file1, setFile1] = useState("");
+    const [file2, setFile2] = useState("");
+    const [file3, setFile3] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
@@ -37,9 +39,19 @@ const Popup = props => {
         setDescription(description);
       };
 
-      const onChangeFile = (e) => {
-        const file = e.target.value;
-        setFile(file);
+      const onChangeFile1 = (e) => {
+        const file1 = e.target.value;
+        setFile1(file1);
+      }
+
+      const onChangeFile2 = (e) => {
+        const file2 = e.target.value;
+        setFile2(file2);
+      }
+
+      const onChangeFile3 = (e) => {
+        const file3 = e.target.value;
+        setFile3(file3);
       }
 
       const handleNewTicket = (e) => {
@@ -51,8 +63,7 @@ const Popup = props => {
         form.current.validateAll();
     
         if (checkBtn.current.context._errors.length === 0) {
-          ImageService.sendFile(file)
-          TicketService.createTicket(title, description).then(
+          TicketService.createTicket(title, description, file1, file2, file3).then(
             (response) => {
                 setMessage(response.data.message);
                 setSuccessful(true);
@@ -114,12 +125,27 @@ const Popup = props => {
                         <label htmlFor="content">Sent a photo of problem</label>
                         <Input
                             type="file"
-                            multiple
                             accept="image/png, image/jpg"
                             className="form-control"
-                            name="file"
-                            value={file}
-                            onChange={onChangeFile}
+                            name="file1"
+                            value={file1}
+                            onChange={onChangeFile1}
+                        />
+                        <Input
+                            type="file"
+                            accept="image/png, image/jpg"
+                            className="form-control"
+                            name="file2"
+                            value={file2}
+                            onChange={onChangeFile2}
+                        />
+                        <Input
+                            type="file"
+                            accept="image/png, image/jpg"
+                            className="form-control"
+                            name="file3"
+                            value={file3}
+                            onChange={onChangeFile3}
                         />
                     </div>
 
