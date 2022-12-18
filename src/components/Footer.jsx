@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="lower">
-        <span>&copy; Copyright 2022 iSupport</span>
+        <span>&copy; Copyright 2022 Resolved</span>
       </div>
     </footer>
   );

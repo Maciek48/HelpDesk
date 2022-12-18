@@ -8,7 +8,7 @@ export default function Homepage() {
       <div className="container">
         <div className="content">
           <p className="sub-title">JOIN US</p>
-          <h1 className="title">Welcome to iSupport</h1>
+          <h1 className="title">Welcome to Resolved</h1>
           <p className="description">
             Recieve proffesional support for your Apple devices from skilled agents and easily manage issued tickets.
           </p>
