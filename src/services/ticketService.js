@@ -20,10 +20,13 @@ const deleteTicket = (id) => {
     return axios.delete(API_URL + id, { headers: authHeader() });
 };
 
-const createTicket = (title, description) => {
+const createTicket = (title, description, file1, file2, file3) => {
     return axios.post(API_URL + "create", {
         title,
         description,
+        file1,
+        file2,
+        file3
       }, { headers: authHeader() });
 }
 
