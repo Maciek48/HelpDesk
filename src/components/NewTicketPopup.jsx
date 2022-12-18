@@ -5,6 +5,7 @@ import Textarea from "react-validation/build/textarea"
 import CheckButton from "react-validation/build/button";
 import { Alert, CircularProgress } from '@mui/material';
 import TicketService from "../services/ticketService";
+import ImageService from "../services/imageService";
 
 const required = (value) => {
     if (!value) {
@@ -21,6 +22,7 @@ const Popup = props => {
   
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [file, setFile] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
@@ -35,6 +37,11 @@ const Popup = props => {
         setDescription(description);
       };
 
+      const onChangeFile = (e) => {
+        const file = e.target.value;
+        setFile(file);
+      }
+
       const handleNewTicket = (e) => {
         e.preventDefault();
     
@@ -44,6 +51,7 @@ const Popup = props => {
         form.current.validateAll();
     
         if (checkBtn.current.context._errors.length === 0) {
+          ImageService.sendFile(file)
           TicketService.createTicket(title, description).then(
             (response) => {
                 setMessage(response.data.message);
@@ -75,7 +83,7 @@ const Popup = props => {
             <div className="form-container">
                 <h1 className="title">Create new ticket.</h1>
                 
-                <Form onSubmit={handleNewTicket} ref={form}>
+                <Form onSubmit={handleNewTicket} ref={form} enctype="multipart/form-data">
                     {!successful && (
                     <div>
                     <div className="form-group">
@@ -101,6 +109,20 @@ const Popup = props => {
                             validations={[required]}
                         />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="content">Sent a photo of problem</label>
+                        <Input
+                            type="file"
+                            multiple
+                            accept="image/png, image/jpg"
+                            className="form-control"
+                            name="file"
+                            value={file}
+                            onChange={onChangeFile}
+                        />
+                    </div>
+
 
                     <div className="form-button-container">
                 <button>
