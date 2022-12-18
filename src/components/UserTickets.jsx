@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import TicketService from "../services/ticketService";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiTrash2, FiExternalLink } from "react-icons/fi"
+
 import EventBus from "../utils/EventBus";
 
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
-
 const UserTickets = () => {
 
   let navigate = useNavigate();
+/*
+  const refresh = () => {
+    TicketService.getTickets();
+    navigate("/tickets");
+
+  }*/
 
     const deleteTicket = React.useCallback(
         (id) => () => {
@@ -29,21 +35,12 @@ const UserTickets = () => {
       },[navigate],
     );
 
-
     const columns = [
         { field: 'id', headerName: 'ID', width: 150 },
-        {
-          field: 'title', headerName: 'Title', width: 250,editable: false,
-        },
-        {
-          field: 'description', headerName: 'Description', width: 300, editable: false,
-        },
-        {
-          field: 'createdAt', headerName: 'Created At', type: 'data', width: 200, editable: false,
-        },
-        {
-            field: 'updatedAt', headerName: 'Updated At', type: 'data', width: 200, editable: false,
-        },
+        { field: 'title', headerName: 'Title', width: 250,editable: false },
+        {field: 'description', headerName: 'Description', width: 300, editable: false,},
+        {field: 'createdAt',headerName: 'Created At',type: 'date', width: 150, editable: false, },
+        { field: 'updatedAt', headerName: 'Updated At', type: 'date', width: 150, editable: false, },
         {
             field: 'actions', type: 'actions', headerName: 'Delete', width: 80, getActions: (params) => [
               <GridActionsCellItem
@@ -60,7 +57,7 @@ const UserTickets = () => {
               icon={<FiExternalLink />}
               onClick={navigateToTicketDetails(params.id)}
             />
-          ]
+          ] 
         }
     ];
 
@@ -87,8 +84,18 @@ const UserTickets = () => {
       }
     );
   }, []);
-
   
+  
+
+  function generateRandom() {
+    var retVal = 39;
+    /*for (var i = 0; i <= 11;  ++i) {
+        retVal += i;
+    }*/
+    console.log(retVal);
+    return retVal;
+    
+}
 
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
@@ -100,6 +107,7 @@ const UserTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
+      //getRowId={(row) => generateRandom()}
     />
     </Box>
   );
