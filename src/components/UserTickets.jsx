@@ -3,11 +3,10 @@ import TicketService from "../services/ticketService";
 import {  useNavigate } from "react-router-dom";
 import { FiTrash2, FiExternalLink } from "react-icons/fi"
 import EventBus from "../utils/EventBus";
-//import { useParams } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-//import { Button } from "@mui/material";
+
 
 const UserTickets = () => {
 
@@ -23,13 +22,6 @@ const UserTickets = () => {
         },
         [navigate],
     );
-
-    
-    //const navigateToTicketDetails = () => {
-      
-      //history.push('tickets/details/?id=${props.id')
-      //navigate('/tickets/details/${params}')
-    //}
 
     const navigateToTicketDetails = React.useCallback(
       (id) => () => {
@@ -96,15 +88,7 @@ const UserTickets = () => {
     );
   }, []);
 
-  function generateRandom() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
+  
 
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
@@ -116,7 +100,6 @@ const UserTickets = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
-      //getRowId={(row) => generateRandom()}
     />
     </Box>
   );
