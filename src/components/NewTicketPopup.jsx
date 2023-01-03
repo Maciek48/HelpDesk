@@ -94,7 +94,7 @@ const Popup = props => {
             <div className="form-container">
                 <h1 className="title">Create new ticket.</h1>
                 
-                <Form onSubmit={handleNewTicket} ref={form} enctype="multipart/form-data">
+                <Form onSubmit={handleNewTicket} ref={form} encType="multipart/form-data">
                     {!successful && (
                     <div>
                     <div className="form-group">

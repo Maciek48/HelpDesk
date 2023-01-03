@@ -85,17 +85,6 @@ const AdminTickets = () => {
     );
   }, []);
   
-  
-
-  function generateRandom() {
-    var retVal = 39;
-    /*for (var i = 0; i <= 11;  ++i) {
-        retVal += i;
-    }*/
-    console.log(retVal);
-    return retVal;
-    
-}
 
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
