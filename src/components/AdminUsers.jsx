@@ -18,7 +18,7 @@ const AdminUsers = () => {
           console.log(id);
           setTimeout(() => {
             UserService.deleteUser(id)
-            if(id == user.id) {
+            if(id === user.id) {
               EventBus.dispatch("logout");
               window.location.reload();
             }
@@ -102,27 +102,6 @@ const AdminUsers = () => {
     );
   }, []);
   
-  function generateRandom1() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
-  /*
-  function generateRandom() {
-    var  retVal = 8;
-    
-    for(var  i = 0; i < 5 ; i++){
-      retVal = retVal + i;
-      return retVal;
-    }
-    console.log(retVal);
-    
-  }*/
-
   return (
     <Box sx={{ height: '95%', width: '100%' }}>
       <h3 className="tab-title">Users</h3>
@@ -134,7 +113,6 @@ const AdminUsers = () => {
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
-      getRowId={(row) => generateRandom1()}
     />
     </Box>
   );

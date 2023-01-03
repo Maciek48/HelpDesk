@@ -17,7 +17,7 @@ const getTicketData = (id) => {
 }
 
 const deleteTicket = (id) => {
-    return axios.delete(API_URL + id, { headers: authHeader() });
+    return axios.delete(API_URL + `${id}`, { headers: authHeader() });
 };
 
 const createTicket = (title, description, file1, file2, file3) => {

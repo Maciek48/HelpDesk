@@ -29,7 +29,7 @@ const getAllUsers = () => {
 }
 
 const deleteUser = (id) => {
-    return axios.delete(API_URL1 + `:id`, id, { headers: authHeader()});
+    return axios.delete(API_URL1 + `${id}`,{ headers: authHeader()});
 }
 
 
