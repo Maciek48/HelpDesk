@@ -18,7 +18,7 @@ const required = (value) => {
 const ResetPassword = () => {
 
   let navigate = useNavigate();
-  const form = useRef();
+
   const checkBtn = useRef();
 
   const [password, setPassword] = useState("");
@@ -36,10 +36,8 @@ const ResetPassword = () => {
     setMessage("");
     setLoading(true);
 
-    //form.current.validateAll();
-
     if (checkBtn.current.context._errors.length === 0) {
-      
+
       UserService.resetPassword(password).then(
         () => {
           navigate("/dashboard");
