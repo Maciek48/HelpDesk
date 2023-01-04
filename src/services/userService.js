@@ -25,20 +25,16 @@ const getAdminDashboard = () => {
 };
 
 const getAllUsers = () => {
-    return axios.get(API_URL1 + "all", { headers: authHeader()});
-}
+    return axios.get(API_URL1 + "all", { headers: authHeader() });
+};
 
 const deleteUser = (id) => {
-    return axios.delete(API_URL1 + `${id}`,{ headers: authHeader()});
-}
-
+    return axios.delete(API_URL1 + `${id}`, { headers: authHeader() });
+};
 
 const resetPassword = (password) => {
-    return axios.put(API_URL2 + "reset", 
-        password,
-        { headers: authHeader() });
-        
-  }
+    return axios.put(API_URL2 + "reset", { password }, { headers: authHeader() });
+};
 
 const UserService = {
     getPublicContent,
