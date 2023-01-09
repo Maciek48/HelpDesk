@@ -11,6 +11,16 @@ const register = (firstName, lastName, email, password) => {
   });
 };
 
+const registerMod = (firstName, lastName, email, password, roles) => {
+  return axios.post(API_URL + "signup", {
+    firstName,
+    lastName,
+    email,
+    password,
+    roles,
+  });
+};
+
 const login = (email, password) => {
   return axios.post(API_URL + "signin", {
     email,
@@ -39,7 +49,8 @@ const AuthService = {
   register,
   login,
   logout,
-  getCurrentUser
+  getCurrentUser,
+  registerMod
 };
 
 export default AuthService;

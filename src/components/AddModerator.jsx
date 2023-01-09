@@ -51,6 +51,7 @@ const validPassword = (value) => {
 const AddModerator = () => {
   const form = useRef();
   const checkBtn = useRef();
+  const roles = ["moderator"];
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -91,7 +92,7 @@ const AddModerator = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(firstName, lastName, email, password).then(
+      AuthService.registerMod(firstName, lastName, email, password, roles).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -104,7 +105,7 @@ const AddModerator = () => {
               error.response.data.message) ||
             error.message ||
             error.toString();
-          
+
           setMessage(resMessage);
           setSuccessful(false);
           setLoading(false);
@@ -119,78 +120,78 @@ const AddModerator = () => {
   return (
     <div className="form-container">
       <h1 className="title">Create new moderator account.</h1>
-        <Form onSubmit={handleRegister} ref={form}>
-          
-          {!successful && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="firstName">First name</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="firstName"
-                  value={firstName}
-                  onChange={onChangeFirstName}
-                  validations={[required, validFirstName]}
-                />
-              </div>
+      <Form onSubmit={handleRegister} ref={form}>
 
-              <div className="form-group">
-                <label htmlFor="lastName">Last name</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="lastName"
-                  value={lastName}
-                  onChange={onChangeLastName}
-                  validations={[required, validLastName]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                  validations={[required, validEmail]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, validPassword]}
-                />
-              </div>
-
-              <div className="form-button-container">
-                <button>
-                  {loading && (
-                    <span><CircularProgress color="inherit"/></span>
-                  )}
-                  {!loading && (
-                    <span>Create account</span>
-                  )}
-                </button>
-              </div>
-            </div>
-          )}
-
-          {message && (
+        {!successful && (
+          <div>
             <div className="form-group">
-                <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
+              <label htmlFor="firstName">First name</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="firstName"
+                value={firstName}
+                onChange={onChangeFirstName}
+                validations={[required, validFirstName]}
+              />
             </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+
+            <div className="form-group">
+              <label htmlFor="lastName">Last name</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="lastName"
+                value={lastName}
+                onChange={onChangeLastName}
+                validations={[required, validLastName]}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="email"
+                value={email}
+                onChange={onChangeEmail}
+                validations={[required, validEmail]}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Input
+                type="password"
+                className="form-control"
+                name="password"
+                value={password}
+                onChange={onChangePassword}
+                validations={[required, validPassword]}
+              />
+            </div>
+
+            <div className="form-button-container">
+              <button>
+                {loading && (
+                  <span><CircularProgress color="inherit" /></span>
+                )}
+                {!loading && (
+                  <span>Create account</span>
+                )}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {message && (
+          <div className="form-group">
+            <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
+          </div>
+        )}
+        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+      </Form>
     </div>
   );
 };
