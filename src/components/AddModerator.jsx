@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import {Box, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from '@mui/material';
 
 import { Alert, CircularProgress } from '@mui/material';
 
@@ -51,16 +52,20 @@ const validPassword = (value) => {
 const AddModerator = () => {
   const form = useRef();
   const checkBtn = useRef();
-  const roles = ["moderator"];
+  //const roles = ["moderator"];
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [roles, setRoles] = useState("")
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const onChangeRoles = (e) => {
+    setRoles([e.target.value]);
+  }
 
   const onChangeFirstName = (e) => {
     const firstName = e.target.value;
@@ -170,6 +175,24 @@ const AddModerator = () => {
                 onChange={onChangePassword}
                 validations={[required, validPassword]}
               />
+            </div>
+
+
+            <div className="form-group">
+              <Box>
+                <FormLabel id="roles-label">
+                  Choose the role of the user
+                </FormLabel>
+                <RadioGroup 
+                  name="roles-group" 
+                  aria-labelledby="roles-group-label"
+                  value={roles}
+                  onChange={onChangeRoles}
+                >
+                  <FormControlLabel control={<Radio />} label='Admin' value='admin'/>
+                  <FormControlLabel control={<Radio />} label='Moderator' value='moderator'/>
+                </RadioGroup>
+              </Box>
             </div>
 
             <div className="form-button-container">
