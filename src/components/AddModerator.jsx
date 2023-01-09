@@ -118,7 +118,7 @@ const AddModerator = () => {
 
   return (
     <div className="form-container">
-      <h1 className="title">Create new account.</h1>
+      <h1 className="title">Create new moderator account.</h1>
         <Form onSubmit={handleRegister} ref={form}>
           
           {!successful && (
