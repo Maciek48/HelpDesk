@@ -29,12 +29,14 @@ import TicketDetail from "./components/TicketDetail";
 //import OnlyLoggedIn from "./components/OnlyLoggedIn";
 import ResetPassword from "./components/ResetPassword";
 import ResetEmail from "./components/ResetEmail";
+import AddModerator from "./components/AddModerator";
 
 
 // Utilities
 
 import EventBus from "./utils/EventBus";
 import { useSessionStorage } from './utils/UseSessionStorage';
+//import { AddModerator } from "@mui/icons-material";
 
 
 const App = () => {
@@ -141,6 +143,7 @@ const App = () => {
                         {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
                         {showAdminDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
                         {showAdminDashboard && <Route path="/reset" exact element={<ResetPassword />} /> }
+                        {showAdminDashboard && <Route path="/addModerator" exact element={<AddModerator />} /> }
 
                         {/*Sciezki dostepu moderatora*/}
                         {showModeratorDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/mod" />} /> }
