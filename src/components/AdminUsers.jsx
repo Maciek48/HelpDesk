@@ -109,7 +109,7 @@ const AdminUsers = () => {
       className="tabs"
       rows={rows}
       columns={columns}
-      pageSize={10}
+      pageSize={14}
       rowsPerPageOptions={[10]}
       checkboxSelection
       disableSelectionOnClick
