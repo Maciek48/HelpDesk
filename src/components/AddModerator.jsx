@@ -58,7 +58,7 @@ const AddModerator = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [roles, setRoles] = useState("")
+  const [roles, setRoles] = useState('')
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -188,6 +188,7 @@ const AddModerator = () => {
                   aria-labelledby="roles-group-label"
                   value={roles}
                   onChange={onChangeRoles}
+                  defaultValue="admin"
                 >
                   <FormControlLabel control={<Radio />} label='Admin' value='admin'/>
                   <FormControlLabel control={<Radio />} label='Moderator' value='moderator'/>
