@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import authHeader from "../services/authHeader";
 
+import '../css/components/ticketDetail.css'
 function TicketDetail() {
-
+   
     const [ticketData, setTicketData] = useState([]);
     const [error, setError] = useState("")
 
@@ -37,21 +38,41 @@ function TicketDetail() {
     
 
     return (
-        <div>
-            <p>User information:</p>
-            Email:  {ticketData?.email}<br/>
-            First name: {ticketData?.firstName}<br/>
-            Last name: {ticketData?.lastName}<br/>
-            User id: {ticketData?.ticket?.userId}<br/>
-            <br/>
-
-            Ticket information:<br/>
-            Created at: {ticketData?.ticket?.createdAt}<br/>
-            Updated at: {ticketData?.ticket?.updatedAt}<br/>
-            Title: Id: {ticketData?.ticket?.title}<br/>
-            Description: {ticketData?.ticket?.description}<br/>
-            Id: {ticketData?.ticket?.id}<br/>
-            Status: {ticketData?.status}<br/>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th><strong>User information</strong></th>
+                        <th><strong>Ticket information</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Email:  {ticketData?.email}</td>
+                        <td>Title: {ticketData?.ticket?.title}</td>
+                    </tr>
+                    <tr>
+                        <td>First name: {ticketData?.firstName}</td>
+                        <td>Description: {ticketData?.ticket?.description}</td>
+                    </tr>
+                    <tr>
+                        <td>Last name: {ticketData?.lastName}</td>
+                        <td>Status: {ticketData?.status}</td>
+                    </tr>
+                    <tr>
+                        <td>User id: {ticketData?.ticket?.userId}</td>
+                        <td>Ticket id: {ticketData?.ticket?.id}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Created at: {ticketData?.ticket?.createdAt}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Updated at: {ticketData?.ticket?.updatedAt}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     )
 };
