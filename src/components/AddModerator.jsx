@@ -3,7 +3,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import {Box, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from '@mui/material';
+import { Box, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import Select from 'react-select'
 
 import { Alert, CircularProgress } from '@mui/material';
 
@@ -58,10 +59,17 @@ const AddModerator = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [roles, setRoles] = useState("")
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const options = [
+    { value: 'user', label: 'User' },
+    { value: 'admin', label: 'Admin' },
+    { value: 'moderator', label: 'Moderator' }
+  ]
+
+  const [roles, setRoles] = useState("user")
 
   const onChangeRoles = (e) => {
     setRoles([e.target.value]);
@@ -124,7 +132,7 @@ const AddModerator = () => {
 
   return (
     <div className="form-container">
-      <h1 className="title">Create new moderator account.</h1>
+      <h1 className="title">Create new account.</h1>
       <Form onSubmit={handleRegister} ref={form}>
 
         {!successful && (
@@ -177,23 +185,30 @@ const AddModerator = () => {
               />
             </div>
 
+            <div class="form-group">
+            <label htmlFor="password">Choos the user role type</label>
+            <br />
+              
+              <input
+                type="radio"
+                checked = {roles === "user"}
+                value="user"
+                onChange={onChangeRoles}
+              />
+              <label> User  </label>
 
-            <div className="form-group">
-              <Box>
-                <FormLabel id="roles-label">
-                  Choose the role of the user
-                </FormLabel>
-                <RadioGroup 
-                  name="roles-group" 
-                  aria-labelledby="roles-group-label"
-                  value={roles}
-                  onChange={onChangeRoles}
-                >
-                  <FormControlLabel control={<Radio />} label='Admin' value='admin'/>
-                  <FormControlLabel control={<Radio />} label='Moderator' value='moderator'/>
-                </RadioGroup>
-              </Box>
+              <input
+                type="radio"
+                checked = {roles === "admin"}
+                value="admin"
+                onChange={onChangeRoles}
+              />
+              <label> Admin</label>
+
             </div>
+
+
+
 
             <div className="form-button-container">
               <button>

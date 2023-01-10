@@ -64,7 +64,7 @@ const Sidebar = props => {
                 {props.showAdminDashboard && (
                     <Link to={"/addModerator"} className="sidebar-option">
                         <i><FiUserPlus className="sidebar-option-icon" /></i>
-                        <span className="sidebar-option-text">Add Mod</span>
+                        <span className="sidebar-option-text">Add User</span>
                         <span className="tooltip">Add Mod</span>
                     </Link>
                 )}
