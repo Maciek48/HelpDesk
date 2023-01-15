@@ -17,6 +17,56 @@ h2{
     padding: 30px 0;
 }
 
+.comment-flexbox {
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+
+/* Textarea style */
+.input-box {
+    padding:20px;
+    margin: 0;
+    border-radius:15px;
+    border:0;
+    /*box-shadow:4px 4px 10px rgba(0,0,0,0.06);*/
+    font-size: 20px;
+    width:900px;
+    height: 200px; 
+    resize: none;
+    background-color: #ebebeb;
+  }
+
+.form-button button {
+    /* light pink light blue */
+    /*background: rgb(187,82,222);
+    background: linear-gradient(90deg, rgba(187,82,222,1) 0%, rgba(139,186,233,1) 100%);*/
+    background: rgb(108,51,255);
+    background: linear-gradient(90deg, rgba(108,51,255,1) 0%, rgba(234,62,255,1) 100%);
+    padding: 1.55rem 0 1.55rem 1.2rem;
+    border: none;
+    color: #ffffff;
+    border-radius: 0.4rem;
+    margin-bottom: 3.6rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease;
+    width: 20%;
+}
+
+.form-button button:hover {
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s ease;
+}
+
 /* Table Styles */
 
 .table-wrapper{

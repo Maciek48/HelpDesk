@@ -5,6 +5,15 @@ import UserService from "../services/userService";
 import EventBus from "../utils/EventBus";
 
 import { Grid } from "@mui/material";
+import plus_button from "../assets/plus_button.png";
+import AddIcon from '@mui/icons-material/Add';
+import '../css/components/userDashboard.css'
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 const UserDashboard = () => {
 
@@ -32,26 +41,37 @@ const UserDashboard = () => {
     );
   }, []);
 
-  return (
-      <Grid container spacing={2}> 
-      <Grid item xs={12}>
-      <h3 className="tab-title">Dashboard</h3>
-      </Grid>
-        <Grid item xs={12}>
-          <div className="search-container">
-            <h1 className="title">Search if your problem has been resolved.</h1>
-            <form onSubmit="event.preventDefault();" role="search">
-              <label htmlFor="search">Search for stuff</label>
-              <input id="search" type="search" placeholder="Search..." autoFocus required />
-              <button type="submit">Go</button>    
-            </form>
-          </div>
-        </Grid>
 
-        <Grid item xs={4}>
-            <h3>{}</h3>
-        </Grid>
+
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <h3 className="tab-title">Dashboard</h3>
       </Grid>
+      <Grid item xs={12}>
+        <div className="search-container">
+          <h1 className="title">Search if your problem has been resolved.</h1>
+          <form onSubmit="event.preventDefault();" role="search">
+            <label htmlFor="search">Search for stuff</label>
+            <input id="search" type="search" placeholder="Search..." autoFocus required />
+            <button type="submit">Go</button>
+          </form>
+        </div>
+      </Grid>
+      
+      <Grid item xs={2}>
+        <div className="button-continer">
+          <button className="button-display">
+            <AddIcon sx={{ fontSize: 80 }}></AddIcon>
+          </button>
+          <label className="label-for-add-button">Add Device</label>
+        </div> 
+        
+      </Grid>
+      <Grid item xs={4}>
+        <h3>{ }</h3>
+      </Grid>
+    </Grid>
   );
 };
 
