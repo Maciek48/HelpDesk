@@ -22,7 +22,7 @@ const Popup = props => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [file1, setFile1] = useState("");
+  const [files, setFiles] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
@@ -37,9 +37,9 @@ const Popup = props => {
     setDescription(description);
   };
 
-  const onChangeFile1 = (e) => {
-    const file1 = e.target.value;
-    setFile1(file1);
+  const onChangeFiles = (e) => {
+    const files = e.target.value;
+    setFile1(files);
   }
 
   const handleNewTicket = (e) => {
@@ -51,7 +51,7 @@ const Popup = props => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      TicketService.createTicket(title, description, file1, file2, file3).then(
+      TicketService.createTicket(title, description, files).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -116,9 +116,9 @@ const Popup = props => {
                       type="file"
                       accept="image/png, image/jpg"
                       className="form-control"
-                      name="file1"
-                      value={file1}
-                      onChange={onChangeFile1}
+                      name="files"
+                      value={files}
+                      onChange={onChangeFiles}
                     />
                   </div>
 
