@@ -44,16 +44,6 @@ const Popup = props => {
     setFile1(file1);
   }
 
-  const onChangeFile2 = (e) => {
-    const file2 = e.target.value;
-    setFile2(file2);
-  }
-
-  const onChangeFile3 = (e) => {
-    const file3 = e.target.value;
-    setFile3(file3);
-  }
-
   const handleNewTicket = (e) => {
     e.preventDefault();
 
@@ -131,22 +121,6 @@ const Popup = props => {
                       name="file1"
                       value={file1}
                       onChange={onChangeFile1}
-                    />
-                    <Input
-                      type="file"
-                      accept="image/png, image/jpg"
-                      className="form-control"
-                      name="file2"
-                      value={file2}
-                      onChange={onChangeFile2}
-                    />
-                    <Input
-                      type="file"
-                      accept="image/png, image/jpg"
-                      className="form-control"
-                      name="file3"
-                      value={file3}
-                      onChange={onChangeFile3}
                     />
                   </div>
 

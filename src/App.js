@@ -24,6 +24,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import UserTickets from "./components/UserTickets";
 import AdminTickets from "./components/AdminTickets";
 import NewTicketPopup from "./components/NewTicketPopup";
+import AddNewDeviceToUserAccountPopup from "./components/AddDeviceToUserAccountPopup"
 import AdminUsers from "./components/AdminUsers";
 import TicketDetail from "./components/TicketDetail";
 //import OnlyLoggedIn from "./components/OnlyLoggedIn";
@@ -49,6 +50,7 @@ const App = () => {
     const [theme, setTheme] = useSessionStorage('theme', "light");
     const [expandedSidebar, setExpandedSidebar] = useState(false);
     const [showNewTicketPopup, setShowNewTicketPopup] = useState(false);
+    const [showAddNewDeviceToUserAccountPopup, setShowAddNewDeviceToUserAccountPopup] = useState(false);
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
@@ -94,7 +96,9 @@ const App = () => {
         setShowNewTicketPopup(!showNewTicketPopup);
     }
 
-
+    const handleShowAddNewDeviceToUserAccountPopup = () => {
+        setShowAddNewDeviceToUserAccountPopup(!showAddNewDeviceToUserAccountPopup);
+    }
 
     // If user is logged in show sidebar menu
     if(currentUser) {
@@ -102,6 +106,7 @@ const App = () => {
             <div data-theme={theme} className="container-with-sidebar">
 
                 {showNewTicketPopup && <NewTicketPopup handleClose={handleShowNewTicketPopup}/> }
+                {showAddNewDeviceToUserAccountPopup && <AddNewDeviceToUserAccountPopup handleClose={handleShowAddNewDeviceToUserAccountPopup}/> }
 
                 <Sidebar 
                     isOpen={expandedSidebar}
@@ -114,6 +119,7 @@ const App = () => {
                     changeTheme={changeTheme}
                     currentTheme={theme}
                     showNewTicketPopup={handleShowNewTicketPopup}
+                    showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
                 />
                 
                 <div className="dashboard-container" onMouseEnter={collapseSidebar}>
@@ -125,6 +131,7 @@ const App = () => {
                         <Route path="/profile" exact element={<Profile />} />
 
                         <Route path="/user" exact element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
+                        <Route path="/user" exact element={<UserDashboard  showAddNewDeviceToUserAccountPopup={showAddNewDeviceToUserAccountPopup}/>} />
                         <Route path="/mod" exact element={<ModeratorDashboard />} />
                         <Route path="/admin" exact element={<AdminDashboard showNewTicketPopup={showNewTicketPopup}/>} />
                         

@@ -55,19 +55,10 @@ const UserDashboard = () => {
       </Grid>
 
       <Grid item xs={4}>
-        <div className="button-continer">
-
-          <button onClick={() => setOpenModal(true)} className="button-display">
-            <AddIcon sx={{ fontSize: 80 }}></AddIcon>
-          </button>
-          <Modal
-            open={openModal}
-            onClose={() => setOpenModal(false)} />
-
-          <label className="label-for-add-button">Add Device</label>
-
-
-
+        <div className="sidebar-button" onClick={props.showAddNewDeviceToUserAccountPopup}>
+                <i><AddIcon sx={{ fontSize: 80 }}></AddIcon></i>
+                <span className="sidebar-button-text">Add device</span>
+                <span className="tooltip">Add new device to your account.</span>
         </div>
 
       </Grid>
