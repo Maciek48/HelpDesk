@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Input from "react-validation/build/input";
 
 import UserService from "../services/userService";
 import EventBus from "../utils/EventBus";
-
 import { Grid } from "@mui/material";
-import plus_button from "../assets/plus_button.png";
-import AddIcon from '@mui/icons-material/Add';
+
 import '../css/components/userDashboard.css'
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import Modal from '../components/Modal';
+import AddIcon from '@mui/icons-material/Add';
 
 const UserDashboard = () => {
 
   const [content, setContent] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     UserService.getUserDashboard().then(
@@ -58,15 +53,23 @@ const UserDashboard = () => {
           </form>
         </div>
       </Grid>
-      
-      <Grid item xs={2}>
+
+      <Grid item xs={4}>
         <div className="button-continer">
-          <button className="button-display">
+
+          <button onClick={() => setOpenModal(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>
+          <Modal
+            open={openModal}
+            onClose={() => setOpenModal(false)} />
+
           <label className="label-for-add-button">Add Device</label>
-        </div> 
-        
+
+
+
+        </div>
+
       </Grid>
       <Grid item xs={4}>
         <h3>{ }</h3>
