@@ -8,7 +8,6 @@ import '../css/components/userDashboard.css'
 
 import Modal from '../components/Modal';
 import AddIcon from '@mui/icons-material/Add';
-import productsImg from '../assets/products.png';
 
 const UserDashboard = () => {
 
@@ -57,7 +56,6 @@ const UserDashboard = () => {
 
       <Grid item xs={4}>
         <div className="button-continer">
-          <img src={productsImg} alt="" />
 
           <button onClick={() => setOpenModal(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
