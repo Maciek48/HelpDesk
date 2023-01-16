@@ -57,15 +57,6 @@ const UserDashboard = () => {
       </Grid>
 
       <Grid item xs={4}>
-        <Popup trigger={
-          <div className="sidebar-button">
-            <i><AddIcon sx={{ fontSize: 80 }}></AddIcon></i>
-            <span className="sidebar-button-text">Add device</span>
-            <span className="tooltip">Add new device to your account.</span>
-          </div>} position="right center">
-            <AddDeviceToUserAccountPopup/>
-        </Popup>
-
 
       </Grid>
       <Grid item xs={4}>
