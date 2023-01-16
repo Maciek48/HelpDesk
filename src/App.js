@@ -119,7 +119,6 @@ const App = () => {
                     changeTheme={changeTheme}
                     currentTheme={theme}
                     showNewTicketPopup={handleShowNewTicketPopup}
-                    showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
                 />
                 
                 <div className="dashboard-container" onMouseEnter={collapseSidebar}>
@@ -143,6 +142,10 @@ const App = () => {
                         {showUserDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/user" />} /> }
                         {showUserDashboard && <Route path="/tickets" exact element={<UserTickets />} /> }
                         {showUserDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
+
+                        <UserDashboard 
+                            showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
+                        />
 
                         {/*Sciezki dostepu admina*/}
                         {showAdminDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/admin" />} /> }
