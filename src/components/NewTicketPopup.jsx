@@ -39,7 +39,7 @@ const Popup = props => {
 
   const onChangeFiles = (e) => {
     const files = e.target.value;
-    setFile1(files);
+    setFiles(files);
   }
 
   const handleNewTicket = (e) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Popup from 'reactjs-popup';
 
 import UserService from "../services/userService";
 import EventBus from "../utils/EventBus";
@@ -6,13 +7,14 @@ import { Grid } from "@mui/material";
 
 import '../css/components/userDashboard.css'
 
-import Modal from '../components/Modal';
 import AddIcon from '@mui/icons-material/Add';
+import AddDeviceToUserAccountPopup from "./AddDeviceToUserAccountPopup"
+import { Add } from "@mui/icons-material";
 
 const UserDashboard = () => {
 
   const [content, setContent] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     UserService.getUserDashboard().then(
@@ -55,11 +57,15 @@ const UserDashboard = () => {
       </Grid>
 
       <Grid item xs={4}>
-        <div className="sidebar-button" onClick={props.showAddNewDeviceToUserAccountPopup}>
-                <i><AddIcon sx={{ fontSize: 80 }}></AddIcon></i>
-                <span className="sidebar-button-text">Add device</span>
-                <span className="tooltip">Add new device to your account.</span>
-        </div>
+        <Popup trigger={
+          <div className="sidebar-button">
+            <i><AddIcon sx={{ fontSize: 80 }}></AddIcon></i>
+            <span className="sidebar-button-text">Add device</span>
+            <span className="tooltip">Add new device to your account.</span>
+          </div>} position="right center">
+            <AddDeviceToUserAccountPopup/>
+        </Popup>
+
 
       </Grid>
       <Grid item xs={4}>

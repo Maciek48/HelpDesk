@@ -20,7 +20,7 @@ const required = (value) => {
     }
 };
 
-const Popup = props => {
+const NewDevicePopup = props => {
 
     const form = useRef();
     const checkBtn = useRef();
@@ -233,4 +233,4 @@ const Popup = props => {
     );
 };
 
-export default Popup;
+export default NewDevicePopup;
