@@ -23,8 +23,6 @@ const Popup = props => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file1, setFile1] = useState("");
-  const [file2, setFile2] = useState("");
-  const [file3, setFile3] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);

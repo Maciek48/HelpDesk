@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import Textarea from "react-validation/build/textarea"
 import CheckButton from "react-validation/build/button";
 
 import { Alert, CircularProgress } from '@mui/material';
@@ -110,6 +108,7 @@ const Popup = props => {
                                     value={model}
                                     label="Model *"
                                     onChange={handleModelChange}
+                                    validations={[required]}
                                 >
                                     <MenuItem value="">
                                         <em>None</em>
