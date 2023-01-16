@@ -62,9 +62,8 @@
   .btnContainer {
     display: flex;
     padding: 1rem 1rem;
-    max-width: 500px;
+    max-width: 800px;
     width: 100%;
-    border: solid black;
   }
 
   /*
@@ -97,24 +96,23 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    max-width: 550px;
+    width: 100%;
+    margin: 1rem 1rem;
   }
 
   .form-button button{ 
-    /* light pink light blue */
-    /*background: rgb(187,82,222);
-    background: linear-gradient(90deg, rgba(187,82,222,1) 0%, rgba(139,186,233,1) 100%);*/
     background: rgb(108,51,255);
     background: linear-gradient(90deg, rgba(108,51,255,1) 0%, rgba(234,62,255,1) 100%);
-    padding: 1.55rem 0 1.55rem 1.2rem;
-    /*border: none;*/
+    padding: 1.55rem 1.55rem 1.55rem 1.55rem;
     color: #ffffff;
     border-radius: 0.4rem;
-    margin-bottom: 3.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     cursor: pointer;
-    position: relative;
+    position: absolute;
     transition: all 0.4s ease;
-    width: 450px;
-    border:  2px solid black;
+    width: 100%;
   }
 
 

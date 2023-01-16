@@ -7,6 +7,7 @@
 .button-display {
     justify-content: center;
     position: relative;
+    cursor: pointer;
 }
 
 .button-display:hover {
@@ -26,4 +27,16 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.button-continer img {
+    display: flex;
+    justify-content: center;
+    padding: .5rem .5rem;
+    max-width: 450px;
+    width: 100%;
+    object-fit: contain;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin: .5rem .5rem;
 }
