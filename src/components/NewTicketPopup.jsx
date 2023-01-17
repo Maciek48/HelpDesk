@@ -76,8 +76,14 @@ const Popup = props => {
       TicketService.createTicket(formData).then(
         (response) => {
           setMessage(response.message);
-          setSuccessful(true);
+          if(response.message === "Error. Too many files selected!"){
+            setSuccessful(false);
+            setLoading(false);
+          } else {
+            setSuccessful(true);
           setLoading(false);
+          }
+          
         },
         (error) => {
           const resMessage =

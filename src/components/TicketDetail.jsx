@@ -59,24 +59,25 @@ function TicketDetail() {
                         <tr>
                             <th><strong>User information</strong></th>
                             <th><strong>Ticket information</strong></th>
+                            <th><strong>Images informations</strong></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Email:  {ticketData?.email}</td>
+                        <td>First name: {ticketData?.ticket?.createdBy?.firstName}</td>
                             <td>Title: {ticketData?.ticket?.title}</td>
                         </tr>
                         <tr>
-                            <td>First name: {ticketData?.firstName}</td>
+                            <td>Last name: {ticketData?.ticket?.createdBy?.lastName}</td>
                             <td>Description: {ticketData?.ticket?.description}</td>
                         </tr>
                         <tr>
-                            <td>Last name: {ticketData?.lastName}</td>
-                            <td>Status: {ticketData?.status}</td>
+                            <td>User id: {ticketData?.ticket?.createdBy?.userId}</td>
+                            <td>Status: {ticketData?.ticket?.status?.name}</td>
                         </tr>
                         <tr>
-                            <td>User id: {ticketData?.ticket?.userId}</td>
-                            <td>Ticket id: {ticketData?.ticket?.id}</td>
+                            <td></td>
+                            <td>Ticket id: {ticketData?.ticket?.ticketId}</td>
                         </tr>
                         <tr>
                             <td></td>
