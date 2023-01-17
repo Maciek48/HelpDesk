@@ -5,7 +5,6 @@ import Textarea from "react-validation/build/textarea"
 import CheckButton from "react-validation/build/button";
 import { Alert, CircularProgress } from '@mui/material';
 import TicketService from "../services/ticketService";
-import ImageService from "../services/imageService";
 
 const required = (value) => {
   if (!value) {
@@ -22,7 +21,7 @@ const Popup = props => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [files, setFiles] = useState("");
+  const [files, setFiles] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
@@ -42,16 +41,21 @@ const Popup = props => {
     setFiles(files);
   }
 
+  const formData = new FormData();
+
   const handleNewTicket = (e) => {
     e.preventDefault();
 
     setMessage("");
     setLoading(true);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('files', files);
 
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      TicketService.createTicket(title, description, files).then(
+      TicketService.createTicket(formData).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -111,7 +115,7 @@ const Popup = props => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="content">Sent a photo of problem</label>
+                    <label htmlFor="content">Sent a photo of problem, max 5 photos</label>
                     <Input
                       type="file"
                       accept="image/png, image/jpg"
@@ -119,6 +123,7 @@ const Popup = props => {
                       name="files"
                       value={files}
                       onChange={onChangeFiles}
+                      multiple
                     />
                   </div>
 

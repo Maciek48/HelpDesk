@@ -8,13 +8,13 @@ import { Grid } from "@mui/material";
 import '../css/components/userDashboard.css'
 
 import AddIcon from '@mui/icons-material/Add';
-import AddDeviceToUserAccountPopup from "./AddDeviceToUserAccountPopup"
+import Modal from "./Modal";
 import { Add } from "@mui/icons-material";
 
 const UserDashboard = () => {
 
   const [content, setContent] = useState("");
-  // const [openModal, setOpenModal] = useState(false);
+   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     UserService.getUserDashboard().then(
@@ -57,6 +57,20 @@ const UserDashboard = () => {
       </Grid>
 
       <Grid item xs={4}>
+        <div className="button-continer">
+
+          <button onClick={() => setOpenModal(true)} className="button-display">
+            <AddIcon sx={{ fontSize: 80 }}></AddIcon>
+          </button>
+          <Modal
+            open={openModal}
+            onClose={() => setOpenModal(false)} />
+
+          <label className="label-for-add-button">Add Device</label>
+
+
+
+        </div>
 
       </Grid>
       <Grid item xs={4}>
