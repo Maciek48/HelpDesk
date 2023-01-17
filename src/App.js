@@ -143,9 +143,9 @@ const App = () => {
                         {showUserDashboard && <Route path="/tickets" exact element={<UserTickets />} /> }
                         {showUserDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
 
-                        <UserDashboard 
+                        {/*<UserDashboard 
                             showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
-                        />
+        />*/}
 
                         {/*Sciezki dostepu admina*/}
                         {showAdminDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/admin" />} /> }

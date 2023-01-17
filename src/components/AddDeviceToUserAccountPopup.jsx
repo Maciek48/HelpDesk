@@ -2,8 +2,12 @@ import React, { useState, useRef } from "react";
 
 import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
+import Input from "react-validation/build/input";
 
 import { Alert, CircularProgress } from '@mui/material';
+import home from '../assets/home.png'
+import '../css/components/Modal.css';
+
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -20,22 +24,22 @@ const required = (value) => {
     }
 };
 
-const NewDevicePopup = props => {
+const NewDevicePopup = ({ open, onClose }) => {
 
     const form = useRef();
     const checkBtn = useRef();
 
     const [type, setType] = React.useState('');
-    const [model, setModel] = React.useState('');
+    const [name, setName] = React.useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
 
-    const handleTypeChange = (event) => {
+    const onChangeType = (event) => {
         setType(event.target.value);
     };
-    const handleModelChange = (event) => {
-        setModel(event.target.value);
+    const onChangeName = (event) => {
+        setName(event.target.value);
     };
 
     const handleDevice = (e) => {
@@ -47,7 +51,7 @@ const NewDevicePopup = props => {
         form.current.validateAll();
 
         if (checkBtn.current.context._errors.length === 0) {
-            DeviceService.addDevice(type, model).then(
+            DeviceService.addDevice(type, name).then(
                 (response) => {
                     setMessage(response.data.message);
                     setSuccessful(true);
@@ -69,164 +73,75 @@ const NewDevicePopup = props => {
             setLoading(false);
         }
     };
-
+    if (!open) return null;
     return (
-        <div className="popup-box">
-            <div className="box">
-                <span className="close-icon" onClick={props.handleClose}>x</span>
+        <div onClick={onClose} className='overlay'>
+            <div
+                onClick={(e) => {
+                    e.stopPropagation();
+                }}
+                className='modalContainer'
+            >
+                <img src={home} alt='devices photos' />
+                <div className='modalRight'>
+                    <p className='closeBtn' onClick={onClose}>
+                        X
+                    </p>
+                    <div className='content'>
+                        <h1>Add new device</h1>
 
-                <div className="form-container">
-                    <h1 className="title">Add device to your account.</h1>
+                        <Form onSubmit={handleDevice} ref={form}>
 
-                    <Form onSubmit={handleDevice} ref={form}>
-                        <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                            <InputLabel id="demo-simple-select-required-label">Type</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-required-label"
-                                id="demo-simple-select-required"
-                                value={type}
-                                label="Type *"
-                                onChange={handleTypeChange}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={"Mac"}>Mac</MenuItem>
-                                <MenuItem value={"iPad"}>iPad</MenuItem>
-                                <MenuItem value={"iPhone"}>iPhone</MenuItem>
-                                <MenuItem value={"Watch"}>Watch</MenuItem>
-                                <MenuItem value={"AirPods"}>AirPods</MenuItem>
-                            </Select>
-                            <FormHelperText>Required</FormHelperText>
-                        </FormControl>
-                        {type === "Mac" && (
-                            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-required-label">Model</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    value={model}
-                                    label="Model *"
-                                    onChange={handleModelChange}
-                                    validations={[required]}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"Macbook Pro"}>Macbook Pro</MenuItem>
-                                    <MenuItem value={"Macbook Air"}>Macbook Air</MenuItem>
-                                    <MenuItem value={"iMac"}>iMac</MenuItem>
-                                    <MenuItem value={"Mac mini"}>iMac</MenuItem>
-                                    <MenuItem value={"Mac Studio"}>Mac Studio</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        )}
-                        {type === "iPad" && (
-                            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-required-label">Model</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    value={model}
-                                    label="Model *"
-                                    onChange={handleModelChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"iPad Pro"}>iPad Pro</MenuItem>
-                                    <MenuItem value={"iPad Air"}>iPad Air</MenuItem>
-                                    <MenuItem value={"iPad"}>iPad</MenuItem>
-                                    <MenuItem value={"iPad Mini"}>iPad Mini</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        )}
-                        {type === "iPhone" && (
-                            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-required-label">Model</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    value={model}
-                                    label="Model *"
-                                    onChange={handleModelChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"iPhone 14 Pro"}>iPhone 14 Pro</MenuItem>
-                                    <MenuItem value={"iPhone 14"}>iPhone 14</MenuItem>
-                                    <MenuItem value={"iPhone 13"}>iPhone 13</MenuItem>
-                                    <MenuItem value={"iPhone SE"}>iPhone SE</MenuItem>
-                                    <MenuItem value={"iPhone 12 Pro"}>iPhone 12 Pro</MenuItem>
-                                    <MenuItem value={"iPhone 12"}>iPhone 12</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        )}
-                        {type === "Watch" && (
-                            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-required-label">Model</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    value={model}
-                                    label="Model *"
-                                    onChange={handleModelChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"Apple Watch Ultra"}>Apple Watch Ultra</MenuItem>
-                                    <MenuItem value={"Apple Watch Series 8"}>Apple Watch Series 8</MenuItem>
-                                    <MenuItem value={"Apple Watch SE"}>Apple Watch Series SE</MenuItem>
-                                    <MenuItem value={"Apple Watch Series 7"}>Apple Watch Series 7</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        )}
-                        {type === "AirPods" && (
-                            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-required-label">Model</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    value={model}
-                                    label="Model *"
-                                    onChange={handleModelChange}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"AirPods 2nd Generation"}>AirPods 2nd generation</MenuItem>
-                                    <MenuItem value={"AirPods 3rd Generation"}>AirPods 3rd generation</MenuItem>
-                                    <MenuItem value={"AirPods Pro 2nd Generation"}>AirPods Pro 2nd Generation</MenuItem>
-                                    <MenuItem value={"AirPods Pro 1st Generation"}>AirPods Pro 1st Generation</MenuItem>
-                                    <MenuItem value={"AirPods Max"}>AirPods Max</MenuItem>
-                                </Select>
-                                <FormHelperText>Required</FormHelperText>
-                            </FormControl>
-                        )}
+                            {!successful && (
+                                <div>
+                                    <div className="form-group">
+                                        <label htmlFor="firstName">Type</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            label="Type*"
+                                            name="type"
+                                            value={type}
+                                            onChange={onChangeType}
+                                            validations={[required]}
+                                        />
+                                    </div>
 
-                        <div className="form-button-container">
-                            <button>
-                                {loading && (
-                                    <span><CircularProgress color="inherit" /></span>
-                                )}
-                                {!loading && (
-                                    <span>Add device</span>
-                                )}
-                            </button>
-                        </div>
-                        {message && (
-                            <div className="form-group">
-                                <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
-                            </div>
-                        )}
-                        <CheckButton style={{ display: "none" }} ref={checkBtn} />
-                    </Form>
+                                    <div className="form-group">
+                                        <label htmlFor="lastName">Name</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="Name"
+                                            value={name}
+                                            onChange={onChangeName}
+                                            validations={[required]}
+                                        />
+                                    </div>
+
+
+
+                                    <div className="form-button-container">
+                                        <button>
+                                            {loading && (
+                                                <span><CircularProgress color="inherit" /></span>
+                                            )}
+                                            {!loading && (
+                                                <span>Add device</span>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                            {message && (
+                                <div className="form-group">
+                                    <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
+                                </div>
+                            )}
+                            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                        </Form>
+                    </div>
+
                 </div>
             </div>
         </div>
