@@ -21,10 +21,25 @@ const deleteTicket = (id) => {
 };
 
 const createTicket = (data) => {
-    return axios.post(API_URL + "create", {
+/*    console.log(data);
+    return fetch.post(API_URL + "create", {
         data
-      }, { headers: authHeader() });
+      }, { headers: 
+            authHeader(), 
+            'Content-Type' : "multipart/form-date"
+        
+       });*/
+       const requestOptions = {
+        method: 'POST',
+        headers:  authHeader() ,'Content-Type': 'multipart/form-date' ,
+        body: data
+    };
+
+    return fetch('https://resolved-api.herokuapp.com/api/tickets/create', requestOptions).then(response => response.json())
+    
+        
 }
+
 
 const TicketService = {
     getTickets,

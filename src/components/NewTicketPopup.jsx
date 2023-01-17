@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,ChangeEvent } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import Textarea from "react-validation/build/textarea"
@@ -21,10 +21,15 @@ const Popup = props => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [files, setFiles] = useState('');
+  const [fileList, setFiles] = useState([]);
+  //const [fileList, setFileList] = useState<FileList | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
+
+  const files = fileList ? [...fileList] : [];
+
+  
 
   const onChangeTitle = (e) => {
     const title = e.target.value;
@@ -37,35 +42,48 @@ const Popup = props => {
   };
 
   const onChangeFiles = (e) => {
-    const files = e.target.value;
+    const files = e.target.files;
     setFiles(files);
+    console.log(files);
   }
+  
 
-  const formData = new FormData();
+
+  
 
   const handleNewTicket = (e) => {
     e.preventDefault();
+    console.log(form);
+
+    const formData = new FormData();
+    console.log(files);
+    files.forEach((file, i) => {
+      formData.append(`file-${i}`, file,file.name);
+    });
 
     setMessage("");
     setLoading(true);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('files', files);
+    //const formTest = new FormData([form]);
+    formData.append(`title`, title);
+    formData.append(`description`, description);
+    //formData.append('files', files);
 
+    for(const [k,v] of formData) {console.log(k,v)}
+    //console.log(formData);
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
       TicketService.createTicket(formData).then(
         (response) => {
-          setMessage(response.data.message);
+          setMessage(response.message);
           setSuccessful(true);
           setLoading(false);
         },
         (error) => {
           const resMessage =
             (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
+              error.response &&
+              error.response.message) ||
             error.message ||
             error.toString();
 
@@ -87,7 +105,7 @@ const Popup = props => {
           <h1 className="title">Create new ticket.</h1>
 
           <form encType="multipart/form-data">
-            <Form onSubmit={handleNewTicket} ref={form} >
+            <Form ref={form} >
               {!successful && (
                 <div>
                   <div className="form-group">
@@ -121,7 +139,7 @@ const Popup = props => {
                       accept="image/png, image/jpg"
                       className="form-control"
                       name="files"
-                      value={files}
+                      //value={files}
                       onChange={onChangeFiles}
                       multiple
                     />
@@ -129,7 +147,7 @@ const Popup = props => {
 
 
                   <div className="form-button-container">
-                    <button>
+                    <button onClick={handleNewTicket}>
                       {loading && (
                         <span><CircularProgress color="inherit" /></span>
                       )}
