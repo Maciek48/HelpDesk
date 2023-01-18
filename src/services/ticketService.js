@@ -4,6 +4,8 @@ import authHeader from "./authHeader";
 
 const API_URL = "https://resolved-api.herokuapp.com/api/tickets/";
 
+const API_URL1 = "https://resolved-api.herokuapp.com/api/ticket/";
+
 const getTickets = () => {
     return axios.get(API_URL, { headers: authHeader() });
 };
@@ -21,14 +23,6 @@ const deleteTicket = (id) => {
 };
 
 const createTicket = (data) => {
-/*    console.log(data);
-    return fetch.post(API_URL + "create", {
-        data
-      }, { headers: 
-            authHeader(), 
-            'Content-Type' : "multipart/form-date"
-        
-       });*/
        const requestOptions = {
         method: 'POST',
         headers:  authHeader() ,'Content-Type': 'multipart/form-date' ,
@@ -37,7 +31,12 @@ const createTicket = (data) => {
 
     return fetch('https://resolved-api.herokuapp.com/api/tickets/create', requestOptions).then(response => response.json())
     
-        
+}
+
+const ticketReply = (content, id) => {
+    return axios.post(API_URL + id + "/reply",
+    {content},
+    {headers: authHeader()})
 }
 
 
@@ -46,7 +45,8 @@ const TicketService = {
     getAllTickets,
     deleteTicket,
     createTicket,
-    getTicketData
+    getTicketData,
+    ticketReply
 };
 
 export default TicketService;
