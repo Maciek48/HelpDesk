@@ -149,36 +149,7 @@ function TicketDetail() {
                     </tbody>
                 </table>
             </div>
-{/*}
-            <div className="main-container">
 
-                <div className="comment-flexbox">
-                    <h3 className="comment-text">Comments</h3>
-                    <textarea
-                        placeholder="Write a comment to the Ticket"
-                        value={comment}
-                        onChange={onChangeHandler}
-                        className="input-box"
-                    />
-
-                    <br />
-
-                    <div className="form1-button">
-                        <button disabled={loading} >
-                            {loading && (
-                                <span><CircularProgress color="inherit" /></span>
-                            )}
-                            {!loading && (
-                                <span>Comment</span>
-                            )}
-                        </button>
-                    </div>
-
-
-
-
-                </div>
-                            </div>{*/}
             <div className="main-container">
                 <Form ref={form}>
 
