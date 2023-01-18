@@ -109,7 +109,7 @@ function TicketDetail() {
             </div>
             <div class="parent">
                 <div class="gora">
-                    <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId}
+                    <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId} <br />
                     <strong>Ticket id:</strong> {ticketData?.ticket?.ticketId} <br />
                     <strong>Status:</strong> {ticketData?.ticket?.status?.name}
                 </div>
