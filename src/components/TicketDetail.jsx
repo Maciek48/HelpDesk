@@ -12,11 +12,11 @@ import Form from "react-validation/build/form";
 
 const required = (value) => {
     if (!value) {
-      return (
-        <Alert severity="warning" variant="outlined">This field is required!</Alert>
-      );
+        return (
+            <Alert severity="warning" variant="outlined">This field is required!</Alert>
+        );
     }
-  };
+};
 
 function TicketDetail() {
 
@@ -47,7 +47,7 @@ function TicketDetail() {
             })
             .then(data => {
                 setTicketData(data);
-                console.log(data)
+                
             })
             .catch(error => {
                 setError(error.message)
@@ -76,18 +76,18 @@ function TicketDetail() {
                 },
                 (error) => {
                     const resMessage =
-                      (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                      error.message ||
-                      error.toString();
-                    
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
                     setMessage(resMessage);
-                    
+
                     setLoading(false);
-          
-                  }
-                );
+
+                }
+            );
         } else {
             setLoading(false);
         }
@@ -103,52 +103,90 @@ function TicketDetail() {
     console.log(result)*/
 
     return (
-        <div>
-            <div className="table-wrapper">
+        <div className="container-with-sidebar">
 
-                <table className="fl-table">
-                    <thead>
-                        <tr>
-                            <th><strong>User information</strong></th>
-                            <th><strong>Ticket information</strong></th>
-                            <th><strong>Attachments</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                        <tr>
-                            <td>First name: {ticketData?.ticket?.createdBy?.firstName}</td>
-                            <td>Title: {ticketData?.ticket?.title}</td>
-                            {ticketData?.ticket?.attachments?.map((value, index) => {
-                                return (
-                                    <><td>Image id: {value.id}, File name: {value.filename}</td></>
-                                )
-                            })}
-                        </tr>
-                        <tr>
-                            <td>Last name: {ticketData?.ticket?.createdBy?.lastName}</td>
-                            <td>Description: {ticketData?.ticket?.description}</td>
-                        </tr>
-                        <tr>
-                            <td>User id: {ticketData?.ticket?.createdBy?.userId}</td>
-                            <td>Status: {ticketData?.ticket?.status?.name}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Ticket id: {ticketData?.ticket?.ticketId}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Created at: {ticketData?.ticket?.createdAt}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Updated at: {ticketData?.ticket?.updatedAt}</td>
-                        </tr>
+            <div className="container">
+                <header className="jumbotron">
+                    <h3>
+                        <strong>About user </strong>
+                    </h3>
+                </header>
+                <p>
+                    <strong>First name:</strong> {ticketData?.ticket?.createdBy?.firstName}
+                </p>
+                <p>
+                    <strong>Last name:</strong> {ticketData?.ticket?.createdBy?.lastName}
+                </p>
+                <p>
+                    <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId}
+                </p>
 
-                    </tbody>
-                </table>
             </div>
+
+            <div class="parent">
+                <div class="gora">
+                    <strong>Ticket id:</strong> {ticketData?.ticket?.ticketId} <br />
+                    <strong>Status:</strong> {ticketData?.ticket?.status?.name}
+                </div>
+                <div class="srodek">
+                    <strong>Title:</strong> {ticketData?.ticket?.title} <br />
+                    <strong>Description:</strong> {ticketData?.ticket?.description}
+                </div>
+                <div class="dol">
+                    <strong>Created by:</strong> {ticketData?.ticket?.createdBy?.firstName} {ticketData?.ticket?.createdBy?.lastName} <br />
+                    <strong>Attachments: </strong>
+                    {ticketData?.ticket?.attachments?.map((value, index) => {
+                        return (
+                            <li>
+                                <ul>Image id: {value.id}, File name: {value.filename}</ul>
+                            </li>
+                        )
+                    })}
+                </div>
+            </div>
+            <table className="fl-table">
+                <thead>
+                    <tr>
+                        <th><strong>Ticket information</strong></th>
+                        <th><strong>Attachments</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td>Status: {ticketData?.ticket?.status?.name}</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td>Created at: {ticketData?.ticket?.createdAt}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td>Updated at: {ticketData?.ticket?.updatedAt}</td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
 
             <div className="main-container">
                 <Form ref={form}>
@@ -189,6 +227,17 @@ function TicketDetail() {
                     )}
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
+            </div>
+            <div className="main-container">
+                <h1>AAAAAAAAAAAAA</h1>
+                {ticketData?.ticket?.replies?.map((aaa, index) => {
+                    return (
+                        <div>
+
+                            <section className="comment-author" >Created at: {aaa.content} </section>
+                        </div>
+                    )
+                })}
             </div>
 
 

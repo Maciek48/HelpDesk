@@ -137,6 +137,10 @@ h2{
     background: #F8F8F8;
 }
 
+.comment-author{
+    color: white;;
+}
+
 /* Responsive */
 
 @media (max-width: 767px) {
@@ -201,4 +205,90 @@ h2{
         display: block;
         text-align: center;
     }
+}
+
+.ticket-container {
+    display: flex;
+    max-width: 1650px;
+    width: 100%;
+    border: 1px solid black;
+    margin: 1rem 1rem;
+    padding: 0 .5rem;
+}
+
+.ticket-container-left-up {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.ticket-container-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.ticket-container-right-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border: 1px solid black;
+}
+    
+.srodek { 
+    /*margin: 0 .5rem;*/
+    margin: 0 0;
+    padding: .5rem .5rem;
+    grid-area: 2 / 2 / 5 / 5; 
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(158, 27, 27);
+    align-content: center;
+    overflow-wrap: break-word;
+    max-height: 450px;
+    height: 100%;
+    overflow: auto;
+}
+.gora { 
+    margin: 0 .5rem;
+    padding: .5rem .5rem;
+    grid-area: 1 / 1 / 2 / 4; 
+    border: 1px solid rgb(91, 76, 175);
+    text-align: start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-wrap: break-word;
+    max-height: 200px;
+    height: 100%;
+}
+
+.dol { 
+    margin: 0 .5rem;
+    padding: .5rem .5rem;
+    grid-area: 5 / 2 / 6 / 6; 
+    text-align: end;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border: 1px solid rgb(25, 136, 80);
+    overflow-wrap: break-word;
+    max-height: fit-content;
+    
 }
