@@ -6,7 +6,8 @@
 body{
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
-    background: rgba( 71, 147, 227, 1);
+    background: rgb(255, 255, 255);
+    width: 100%;
 }
 h2{
     text-align: center;
@@ -37,16 +38,24 @@ h2{
     height: 200px; 
     resize: none;
     background-color: #ebebeb;
-  }
-  .form1-button {
+    -webkit-box-shadow: 8px 7px 31px -3px rgba(139, 131, 218, 1);
+    -moz-box-shadow: 8px 7px 31px -3px rgba(139, 131, 218, 1);
+    box-shadow: 8px 7px 31px -3px rgba(139, 131, 218, 1);
+}
+
+.input-box:hover {
+    border: none;
+}
+
+.form1-button {
     margin: 0 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-   height: 100%;
+    eight: 100%;
     width: 100%;
     padding: 2rem 1rem;
-  }
+}
 
 .form1-button button {
     /* light pink light blue */
@@ -84,129 +93,6 @@ h2{
     transition: all 0.4s ease;
 }
 
-/* Table Styles */
-
-.table-wrapper{
-    margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-   
-    display: table;
-}
-
-.fl-table table{
-    width: 500px;
-    /*max-width: 600px;
-    width: 100%;*/
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    /*max-width: 100%;*/
-    white-space: nowrap;
-    background-color: white;
-    
-}
-
-.fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
-    font-size: 20px;
-}
-
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 20px;
-    word-wrap: break-word;
-    
-}
-
-.fl-table thead th {
-    color: #ffffff;
-    background: linear-gradient(90deg, rgba(108,51,255,1) 0%, rgba(234,62,255,1) 100%);
-}
-
-
-.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #383737;
-}
-
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
-}
-
-.comment-author{
-    color: white;;
-}
-
-/* Responsive */
-
-@media (max-width: 767px) {
-    .fl-table {
-        display: block;
-        width: 100%;
-    }
-    .table-wrapper:before{
-        content: "Scroll horizontally >";
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
-    }
-    .fl-table thead th:last-child{
-        border-bottom: none;
-    }
-    .fl-table thead {
-        float: left;
-    }
-    .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-    .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-        display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-        background: none;
-    }
-    .fl-table tr:nth-child(even) {
-        background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-        background: #F8F8F8;
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tr td:nth-child(even) {
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tbody td {
-        display: block;
-        text-align: center;
-    }
-}
-
 .ticket-container {
     display: flex;
     max-width: 1650px;
@@ -216,62 +102,48 @@ h2{
     padding: 0 .5rem;
 }
 
-.ticket-container-left-up {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /*grid-template-rows: repeat(5, 1fr);*/
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    -webkit-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
+    -moz-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
+    box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
 }
 
-.ticket-container-center {
+.srodek-tekst{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
 }
 
-.ticket-container-right-bottom {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
-}
-
-.parent {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    border: 1px solid black;
-}
-    
 .srodek { 
     /*margin: 0 .5rem;*/
-    margin: 0 0;
+    margin: 2rem 1rem;
     padding: .5rem .5rem;
     grid-area: 2 / 2 / 5 / 5; 
     text-align: center;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(158, 27, 27);
     align-content: center;
     overflow-wrap: break-word;
     max-height: 450px;
     height: 100%;
     overflow: auto;
 }
+
 .gora { 
-    margin: 0 .5rem;
+    margin: 1rem 1rem;
     padding: .5rem .5rem;
     grid-area: 1 / 1 / 2 / 4; 
-    border: 1px solid rgb(91, 76, 175);
     text-align: start;
     justify-content: flex-start;
     align-items: flex-start;
@@ -281,14 +153,26 @@ h2{
 }
 
 .dol { 
-    margin: 0 .5rem;
+    margin: 3rem 1rem;
     padding: .5rem .5rem;
     grid-area: 5 / 2 / 6 / 6; 
     text-align: end;
     justify-content: flex-end;
     align-items: flex-end;
-    border: 1px solid rgb(25, 136, 80);
     overflow-wrap: break-word;
     max-height: fit-content;
-    
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    /*-webkit-box-shadow: 0px 0px 21px -3px rgba(44, 97, 243, 0.59);
+    -moz-box-shadow: 0px 0px 21px -3px rgba(44, 97, 243, 0.59);
+    box-shadow: 0px 0px 21px -3px rgba(44, 97, 243, 0.59);*/
 }

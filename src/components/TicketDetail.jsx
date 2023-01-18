@@ -47,7 +47,7 @@ function TicketDetail() {
             })
             .then(data => {
                 setTicketData(data);
-                
+
             })
             .catch(error => {
                 setError(error.message)
@@ -104,28 +104,12 @@ function TicketDetail() {
 
     return (
         <div className="container-with-sidebar">
-
-
-            <div className="container">
-                <header className="jumbotron">
-                    <h3>
-                        <strong>About user </strong>
-                    </h3>
-                </header>
-                <p>
-                    <strong>First name:</strong> {ticketData?.ticket?.createdBy?.firstName}
-                </p>
-                <p>
-                    <strong>Last name:</strong> {ticketData?.ticket?.createdBy?.lastName}
-                </p>
-                <p>
-                    <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId}
-                </p>
-
+            <div class="srodek-tekst">
+                Ticket information
             </div>
-
             <div class="parent">
                 <div class="gora">
+                    <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId}
                     <strong>Ticket id:</strong> {ticketData?.ticket?.ticketId} <br />
                     <strong>Status:</strong> {ticketData?.ticket?.status?.name}
                 </div>
@@ -135,57 +119,16 @@ function TicketDetail() {
                 </div>
                 <div class="dol">
                     <strong>Created by:</strong> {ticketData?.ticket?.createdBy?.firstName} {ticketData?.ticket?.createdBy?.lastName} <br />
+                    <strong>Created at:</strong> {ticketData?.ticket?.createdAt} <br />
+                    <strong>Updated at:</strong> {ticketData?.ticket?.updatedAt} <br />
                     <strong>Attachments: </strong>
-                    {ticketData?.ticket?.attachments?.map((value, index) => {
-                        return (
-                            <li>
-                                <ul>Image id: {value.id}, File name: {value.filename}</ul>
-                            </li>
+                        {ticketData?.ticket?.attachments?.map((value, index) => {
+                            return (
+                                <ul key={index}><h5>Image id: { value.id }, File name: {value.filename}</h5></ul>
                         )
                     })}
                 </div>
             </div>
-            <table className="fl-table">
-                <thead>
-                    <tr>
-                        <th><strong>Ticket information</strong></th>
-                        <th><strong>Attachments</strong></th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td></td>
-
-                    </tr>
-                    <tr>
-
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-
-                        <td>Status: {ticketData?.ticket?.status?.name}</td>
-                        <td> </td>
-                    </tr>
-                    <tr>
-
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-
-                        <td>Created at: {ticketData?.ticket?.createdAt}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-
-                        <td>Updated at: {ticketData?.ticket?.updatedAt}</td>
-                        <td></td>
-                    </tr>
-
-                </tbody>
-            </table>
 
 
             <div className="main-container">
@@ -228,6 +171,7 @@ function TicketDetail() {
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
             </div>
+            {/*}
             <div className="main-container">
                 <h1>AAAAAAAAAAAAA</h1>
                 {ticketData?.ticket?.replies?.map((aaa, index) => {
@@ -238,7 +182,7 @@ function TicketDetail() {
                         </div>
                     )
                 })}
-            </div>
+            </div>*/}
 
 
         </div>
