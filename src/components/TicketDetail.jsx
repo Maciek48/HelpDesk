@@ -9,7 +9,8 @@ import CheckButton from "react-validation/build/button";
 import '../css/components/ticketDetail.css'
 import TicketService from "../services/ticketService";
 import Form from "react-validation/build/form";
-
+import Input from "react-validation/build/input";
+import Textarea from "react-validation/build/textarea"
 
 const required = (value) => {
     if (!value) {
@@ -27,6 +28,8 @@ function TicketDetail() {
     const [comment, setComment] = useState("");
     const [files, setFiles] = useState([]);
     const [images, setImages] = useState([]);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
     const [loading, setLoading] = useState(false);
     const [fileLoading, setFileLoading] = useState(true);
@@ -34,10 +37,21 @@ function TicketDetail() {
     const [successful, setSuccessful] = useState(false);
     const [ticketData, setTicketData] = useState([]);
     const [error, setError] = useState("")
+    const [formVisible, setFormVisible] = useState(false);
     const { id } = useParams();
 
     const onChangeHandler = (e) => {
         setComment(e.target.value);
+    };
+
+    const onChangeTitle = (e) => {
+        const title = e.target.value;
+        setTitle(title);
+    };
+
+    const onChangeDescription = (e) => {
+        const description = e.target.value;
+        setDescription(description);
     };
 
     //function to get data from database
@@ -94,7 +108,11 @@ function TicketDetail() {
                 (response) => {
                     setMessage(response.data.message);
                     setLoading(false);
-                    navigate("/tickets");
+                    setSuccessful(true);
+                    setTimeout(() => {
+                        navigate("/tickets");
+                    }, 3000);
+                    //navigate("/tickets");
                 },
                 (error) => {
                     const resMessage =
@@ -105,7 +123,7 @@ function TicketDetail() {
                         error.toString();
 
                     setMessage(resMessage);
-
+                    setSuccessful(false);
                     setLoading(false);
 
                 }
@@ -115,21 +133,103 @@ function TicketDetail() {
         }
     };
 
-    function saveAttachment(e) {
-        setFiles(current => [...current, e])
-
+    function handleSubmit(event) {
+        event.preventDefault();
+        // code to handle the form submission goes here
     }
 
+    const handleEditTicket = (e) => {
+        e.preventDefault();
 
+        setMessage("");
+        setSuccessful(false);
+        setLoading(true);
 
-    /*const result = [];
-    ticketData.ticket.forEach(attachments => {
-        result.push([attachments.id, attachments.filename, attachments.mimetype].join(', '));
-    });
-    console.log(result)*/
+        form.current.validateAll();
+
+        if (checkBtn.current.context._errors.length === 0) {
+            TicketService.editTicket(id, title, description).then(
+                (response) => {
+                    setMessage(response.data.message);
+                    setSuccessful(true);
+                    setLoading(false);
+                    setTimeout(() => {
+                        navigate("/tickets");
+                    }, 6000);
+                },
+                (error) => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
+                    setMessage(resMessage);
+                    setSuccessful(false);
+                    setLoading(false);
+
+                }
+            );
+        } else {
+            setLoading(false);
+        }
+    };
+
 
     return (
         <div className="container-with-sidebar">
+            <button className="btn" onClick={() => setFormVisible(!formVisible)}>Edit Ticket</button>
+
+            <form onSubmit={handleSubmit} style={{ display: formVisible ? "block" : "none" }}>
+                <div className="form-container">
+                    <Form ref={form} >
+                        {!successful && (
+                            <div>
+                                <div className="form-group">
+                                    <label htmlFor="subject">Title</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="title"
+                                        value={title}
+                                        onChange={onChangeTitle}
+                                        validations={[required]}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="content">Description</label>
+                                    <Textarea
+                                        type="textarea"
+                                        className="form-control"
+                                        name="description"
+                                        value={description}
+                                        onChange={onChangeDescription}
+                                        validations={[required]}
+                                        maxlength="255"
+                                    />
+                                </div>
+                                <div className="form-button-container">
+                                    <button onClick={handleEditTicket}>
+                                        {loading && (
+                                            <span><CircularProgress color="inherit" /></span>
+                                        )}
+                                        {!loading && (
+                                            <span>Edit ticket</span>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {message && (
+                            <div className="form-group">
+                                <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert> 
+                            </div>
+                        )}
+                        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    </Form>
+                </div>
+            </form>
             <div className="srodek-tekst">
                 Ticket information
             </div>
