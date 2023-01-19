@@ -33,7 +33,6 @@ const UserTickets = () => {
     { field: 'id', headerName: 'ID', width: 150 },
     { field: 'title', headerName: 'Title', width: 250, editable: false },
     { field: 'description', headerName: 'Description', width: 300, editable: false, },
-
     { field: 'createdAt', headerName: 'Created At', type: 'date', width: 150, editable: false, },
     { field: 'updatedAt', headerName: 'Updated At', type: 'date', width: 150, editable: false, },
     {
@@ -61,7 +60,9 @@ const UserTickets = () => {
   useEffect(() => {
     TicketService.getTickets().then(
       (response) => {
-        setRows(response.data);
+        const data = response.data.map((row, index) => ({...row, id: row.id}))
+        setRows(data);
+        /*setRows(response.data);*/
       },
       (error) => {
         const _rows =
@@ -90,7 +91,6 @@ const UserTickets = () => {
         rowsPerPageOptions={[10]}
         checkboxSelection
         disableSelectionOnClick
-        
       />
     </Box>
   );

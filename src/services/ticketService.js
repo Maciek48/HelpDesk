@@ -4,7 +4,6 @@ import authHeader from "./authHeader";
 
 const API_URL = "https://resolved-api.herokuapp.com/api/tickets/";
 
-const API_URL1 = "https://resolved-api.herokuapp.com/api/ticket/";
 
 const getTickets = () => {
     return axios.get(API_URL, { headers: authHeader() });

@@ -62,7 +62,7 @@ function TicketDetail() {
 
         setMessage("");
         setLoading(true);
-        console.log(comment)
+        
 
         if (checkBtn.current.context._errors.length === 0) {
             console.log(comment, id)
@@ -128,7 +128,7 @@ function TicketDetail() {
                     })}
                 </div>
             </div>
-            {console.log(files)}
+            
 
 
             <div className="main-container">
