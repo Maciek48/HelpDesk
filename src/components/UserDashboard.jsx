@@ -64,14 +64,17 @@ const UserDashboard = () => {
           </button>
           <Modal
             open={openModal}
-            onClose={() => setOpenModal(false)} />
-
+            onClose={() => setOpenModal(false)}
+          />
           <label className="label-for-add-button">Add Device</label>
-
-
-
         </div>
 
+      </Grid>
+      <Grid item xs={4}>
+        <div className="button-container">
+          Your devices:
+          
+        </div>
       </Grid>
       <Grid item xs={4}>
         <h3>{ }</h3>

@@ -9,7 +9,7 @@ import CheckButton from "react-validation/build/button";
 import '../css/components/ticketDetail.css'
 import TicketService from "../services/ticketService";
 import Form from "react-validation/build/form";
-import LoadingScreen from './LoadingScreen';
+
 
 const required = (value) => {
     if (!value) {
@@ -26,6 +26,7 @@ function TicketDetail() {
     const form = useRef();
     const [comment, setComment] = useState("");
     const [files, setFiles] = useState([]);
+    const [images, setImages] = useState([]);
 
     const [loading, setLoading] = useState(false);
     const [fileLoading, setFileLoading] = useState(true);
@@ -42,32 +43,50 @@ function TicketDetail() {
     //function to get data from database
     const fetchData = async () => {
         setError("")
-        
-        try {await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setTicketData(data);
-            })}
-        
-        catch(error) {
+
+        try {
+            await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    setTicketData(data)
+                    return data;
+                }).then(async data => {
+                    console.log(data);
+                    const fileNames = data.ticket.attachments.map(attachment => attachment.filename);
+                    const imagesBlobs = [];
+                    fileNames.forEach(async fileName => {
+                        const blob = await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}/attachment/${fileName}`, { headers: authHeader() })
+                            .then(response => response.blob());
+                        const reader = new FileReader();
+                        reader.onloadend = function () {
+                            imagesBlobs.push(reader.result);
+                        }
+                        reader.readAsDataURL(blob);
+                    })
+                    return imagesBlobs;
+                }).then(imageBlobs => {
+                    setImages(imageBlobs);
+                })
+        }
+
+        catch (error) {
             setError(error.message)
         }
-        
+
     }
 
     useEffect(() => {
         fetchData()
-    }, [id])
+    }, [])
+
 
     //function to save replay to database
     const handleReplay = (e) => {
         e.preventDefault();
-
         setMessage("");
         setLoading(true);
-        
 
         if (checkBtn.current.context._errors.length === 0) {
             console.log(comment, id)
@@ -96,6 +115,10 @@ function TicketDetail() {
         }
     };
 
+    function saveAttachment(e) {
+        setFiles(current => [...current, e])
+
+    }
 
 
 
@@ -106,14 +129,11 @@ function TicketDetail() {
     console.log(result)*/
 
     return (
-        
-        
         <div className="container-with-sidebar">
             <div className="srodek-tekst">
                 Ticket information
             </div>
-            
-                <div className="parent">
+            <div className="parent">
                 <div className="gora">
                     <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId} <br />
                     <strong>Ticket id:</strong> {ticketData?.ticket?.ticketId} <br />
@@ -128,19 +148,35 @@ function TicketDetail() {
                     <strong>Created at:</strong> {ticketData?.ticket?.createdAt} <br />
                     <strong>Updated at:</strong> {ticketData?.ticket?.updatedAt} <br />
                     <strong>Attachments: </strong>
-                        {ticketData?.ticket?.attachments?.map((value, index) => {
-                            setFiles(current => [...current, value.filename])
-                            return (
-                                <ul key={index}><h5>Image id: { value.id }, File name: {value.filename}</h5></ul>
+                    {ticketData?.ticket?.attachments?.map((value, index) => {
+                        //saveAttachment(value.filename)
+                        return (
+                            <ul key={index}><h5>Image id: {value.id}, File name: {value.filename}</h5></ul>
                         )
                     })}
                 </div>
             </div>
-            
-            
+            <div className="main-container">
+                Images: <br />
+                {images ? images.map((image, index) => {
+                    console.log(image)
+                    //saveAttachment(value.filename)
+                    
+                    return (
+                        <div key={index} >
+                            <img src={image} />
+                        </div>
+
+                        /*<ul key={index}><h5>Image id: { value.id }, File name: {value.filename}  </h5></ul>*/
+                    )
+                }): <p>Loading</p>}
+
+               
+
+
+            </div>
             <div className="main-container">
                 <Form onSubmit={handleReplay} ref={form}>
-
                     {!successful && (
                         <div>
                             <div className="comment-flexbox">
@@ -154,9 +190,6 @@ function TicketDetail() {
                                     required
                                 />
                             </div>
-
-
-
                             <div className="form1-button">
                                 <button>
                                     {loading && (
@@ -169,7 +202,6 @@ function TicketDetail() {
                             </div>
                         </div>
                     )}
-
                     {message && (
                         <div className="form-group">
                             <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
@@ -178,23 +210,29 @@ function TicketDetail() {
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
             </div>
-            {/*}
-            <div className="main-container">
-                <h1>AAAAAAAAAAAAA</h1>
-                {ticketData?.ticket?.replies?.map((aaa, index) => {
-                    return (
-                        <div>
 
-                            <section className="comment-author" >Created at: {aaa.content} </section>
-                        </div>
-                    )
-                })}
-            </div>*/}
+            {ticketData?.ticket?.replies?.map((reply, index) =>
 
+                <div className="parent1" key={index}>
+                    <div className="gora">
+                        <strong>Author: {reply.user.firstName} {reply.user.lastName}</strong> <br />
+                        {reply.user.roles.map((role, index) => {
+                            return (
+                                <strong >Role: {role.name}</strong>
+                            )
+                        }
+                        )}
+
+                        <strong>Ticket Id: {reply.id}</strong>  <br />
+                        <strong>Created at: {reply.createdAt}</strong>
+                    </div>
+                    <div className="srodek">
+                        <strong>Content: {reply.content}</strong>
+                    </div>
+                </div>
+            )}
 
         </div>
-
-
     )
 };
 

@@ -111,6 +111,19 @@ h2{
     -webkit-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
     -moz-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
     box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
+    
+}
+
+.parent1 {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /*grid-template-rows: repeat(5, 1fr);*/
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    -webkit-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
+    -moz-box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
+    box-shadow: 8px 7px 31px -3px rgba(145, 131, 183, 1);
 }
 
 .srodek-tekst{

@@ -38,6 +38,10 @@ const ticketReply = (content, id) => {
     {headers: authHeader()})
 }
 
+const getImage = (id, filename) => {
+    return axios.get(API_URL + id + "/attachment/" + filename, {headers: authHeader()});
+}
+
 
 const TicketService = {
     getTickets,
@@ -45,7 +49,8 @@ const TicketService = {
     deleteTicket,
     createTicket,
     getTicketData,
-    ticketReply
+    ticketReply,
+    getImage
 };
 
 export default TicketService;
