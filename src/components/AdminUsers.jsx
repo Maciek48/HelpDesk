@@ -103,7 +103,7 @@ const AdminUsers = () => {
   }, []);
 
   return (
-    <Box sx={{ height: '95%', width: '100%' }}>
+    <Box>
       <h3 className="tab-title">Users</h3>
       <DataGrid
         className="tabs"

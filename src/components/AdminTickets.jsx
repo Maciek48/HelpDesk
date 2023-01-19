@@ -87,7 +87,7 @@ const AdminTickets = () => {
 
 
   return (
-    <Box sx={{ height: '95%', width: '100%' }}>
+    <Box>
       <h3 className="tab-title">All Tickets</h3>
       <DataGrid
         rows={rows}

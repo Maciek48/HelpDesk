@@ -156,22 +156,25 @@ function TicketDetail() {
                     })}
                 </div>
             </div>
-            <div className="main-container">
-                Images: <br />
-                {images ? images.map((image, index) => {
-                    console.log(image)
-                    //saveAttachment(value.filename)
-                    
-                    return (
-                        <div key={index} >
-                            <img src={image} />
-                        </div>
+            <div className="parent2">
+                <h3>Images: </h3>
+                <div className="srodek">
+                    {images ? images.map((image, index) => {
+                        console.log(image)
+                        //saveAttachment(value.filename)
 
-                        /*<ul key={index}><h5>Image id: { value.id }, File name: {value.filename}  </h5></ul>*/
-                    )
-                }): <p>Loading</p>}
+                        return (
+                            <div key={index} className="srodek">
+                                <img src={image} alt="photo from database" className="photo" />
+                            </div>
 
-               
+                            /*<ul key={index}><h5>Image id: { value.id }, File name: {value.filename}  </h5></ul>*/
+                        )
+                    }) : <p>Loading</p>}
+                </div>
+
+
+
 
 
             </div>
@@ -222,7 +225,7 @@ function TicketDetail() {
                             )
                         }
                         )}
-
+                        <br />
                         <strong>Ticket Id: {reply.id}</strong>  <br />
                         <strong>Created at: {reply.createdAt}</strong>
                     </div>
