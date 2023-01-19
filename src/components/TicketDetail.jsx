@@ -27,6 +27,7 @@ function TicketDetail() {
     const [files, setFiles] = useState([]);
 
     const [loading, setLoading] = useState(false);
+    const [fileLoading, setFileLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
     const [ticketData, setTicketData] = useState([]);
@@ -40,16 +41,19 @@ function TicketDetail() {
     //function to get data from database
     const fetchData = async () => {
         setError("")
-        await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
+        setFileLoading(true);
+        try {await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
             .then(response => {
                 return response.json()
             })
             .then(data => {
                 setTicketData(data);
-            })
-            .catch(error => {
-                setError(error.message)
-            })
+            })}
+        
+        catch(error) {
+            setError(error.message)
+        }
+        setFileLoading(false);
     }
 
     useEffect(() => {
@@ -101,6 +105,8 @@ function TicketDetail() {
     console.log(result)*/
 
     return (
+        
+        
         <div className="container-with-sidebar">
             <div class="srodek-tekst">
                 Ticket information

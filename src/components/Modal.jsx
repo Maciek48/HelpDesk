@@ -140,7 +140,7 @@ const Modal = ({ open, onClose }) => {
                         <h1>Add new device</h1>
                         
 
-                        <Form ref={form}>
+                        <Form onSubmit={handleDevice} ref={form}>
                             <FormControl required sx={{ m: 1, minWidth: 120 }}>
                                 {/*<InputLabel id="demo-simple-select-required-label">Avible devices</InputLabel>*/}
                                 <FormControl>
@@ -162,7 +162,7 @@ const Modal = ({ open, onClose }) => {
                                 
 
                             <div className='form-button'>
-                                <button onClick={handleDevice}>
+                                <button >
                                     {loading && (
                                         <span><CircularProgress color="inherit" /></span>
                                     )}
