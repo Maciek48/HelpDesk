@@ -13,18 +13,23 @@ import Form from "react-validation/build/form";
 import { CircularProgress,Alert } from '@mui/material';
 import CheckButton from "react-validation/build/button";
 import DeviceService from '../services/deviceService';
-
+import { useEffect } from 'react';
+import EventBus from "../utils/EventBus";
+import authHeader from "../services/authHeader";
 
 const Modal = ({ open, onClose }) => {
 
     const form = useRef();
     const checkBtn = useRef();
 
-    const [type, setType] = React.useState('');
-    const [model, setModel] = React.useState('');
+    const [type, setType] = useState('');
+    const [types, setTypes]= useState([]);
+    const [model, setModel] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
+    const [content, setContent] = useState("");
+    const [error, setError] = useState("")
 
 
     const handleChange = (event) => {
@@ -33,6 +38,54 @@ const Modal = ({ open, onClose }) => {
     const handleModelChange = (event) => {
         setModel(event.target.value);
     };
+
+    const fetchData = async () => {
+        setError("")
+        await fetch(`https://resolved-api.herokuapp.com/api/devices/all`, { headers: authHeader() })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setTypes(data);
+                console.log(types)
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+/*
+    useEffect(() => {
+        DeviceService.getDevices().then(
+            (response) => {
+                return response.json()
+            })
+            .then(
+            (response) => {
+                setTypes(response.data);
+                console.log(types);
+            },
+            (error) => {
+                const _content =
+                  (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                  error.message ||
+                  error.toString();
+        
+                setContent(_content);
+        
+                if (error.response && error.response.status === 401) {
+                  EventBus.dispatch("logout");
+                }
+              }
+        );
+    }, []);*/
+    
+    
 
     const handleDevice = (e) => {
         e.preventDefault();
@@ -83,6 +136,14 @@ const Modal = ({ open, onClose }) => {
                     </p>
                     <div className='content'>
                         <h1>Add new device</h1>
+                        {types.map((type1, index) => {
+                            <li key={index}>
+                                <ul>{type1.id}</ul>
+                                <ul>{type1.type}</ul>
+                                <ul>{type1.name}</ul>
+
+                            </li>
+                        })}
 
                         <Form onSubmit={handleDevice} ref={form}>
                             <FormControl required sx={{ m: 1, minWidth: 120 }}>

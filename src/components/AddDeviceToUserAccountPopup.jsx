@@ -82,7 +82,7 @@ const NewDevicePopup = ({ open, onClose }) => {
                 }}
                 className='modalContainer'
             >
-                <img src={home} alt='devices photos' />
+                <img src={home} alt='devices photos' class="popup-img"/>
                 <div className='modalRight'>
                     <p className='closeBtn' onClick={onClose}>
                         X

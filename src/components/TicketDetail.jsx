@@ -24,6 +24,7 @@ function TicketDetail() {
     const checkBtn = useRef();
     const form = useRef();
     const [comment, setComment] = useState("");
+    const [files, setFiles] = useState([]);
 
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -41,13 +42,10 @@ function TicketDetail() {
         setError("")
         await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
             .then(response => {
-
                 return response.json()
-
             })
             .then(data => {
                 setTicketData(data);
-
             })
             .catch(error => {
                 setError(error.message)
@@ -123,12 +121,14 @@ function TicketDetail() {
                     <strong>Updated at:</strong> {ticketData?.ticket?.updatedAt} <br />
                     <strong>Attachments: </strong>
                         {ticketData?.ticket?.attachments?.map((value, index) => {
+                            setFiles(current => [...current, value.filename])
                             return (
                                 <ul key={index}><h5>Image id: { value.id }, File name: {value.filename}</h5></ul>
                         )
                     })}
                 </div>
             </div>
+            {console.log(files)}
 
 
             <div className="main-container">

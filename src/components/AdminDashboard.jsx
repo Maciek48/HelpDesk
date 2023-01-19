@@ -5,10 +5,11 @@ import EventBus from "../utils/EventBus";
 import { Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import AddDeviceToUserAccountPopup from './AddDeviceToUserAccountPopup';
+import Products from '../assets/Products.png';
 
 const AdminDashboard = () => {
   const [content, setContent] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
     UserService.getAdminDashboard().then(
@@ -43,15 +44,16 @@ const AdminDashboard = () => {
       </Grid>
       <Grid item xs={4}>
         <div className="button-continer">
-
-          <button onClick={() => setOpenModal(true)} className="button-display">
+        
+          <img src={Products} alt="Apple Products" />
+          <button onClick={() => setOpenPopup(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>
           <AddDeviceToUserAccountPopup
-            open={openModal}
-            onClose={() => setOpenModal(false)} />
+            open={openPopup}
+            onClose={() => setOpenPopup(false)} />
 
-          <label className="label-for-add-button">Add Device</label>
+          <label className="label-for-add-button">Add  new device to database</label>
 
 
 

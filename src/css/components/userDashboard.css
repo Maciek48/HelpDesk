@@ -21,7 +21,7 @@
     transition: all 0.4s ease;
 }
 .button-continer {
-    border: solid black;
+    /*border: solid black;*/
     padding: 4rem 1rem;
     margin: 1rem 1rem;
     display: flex;
