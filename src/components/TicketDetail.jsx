@@ -183,6 +183,7 @@ function TicketDetail() {
 
             <form onSubmit={handleSubmit} style={{ display: formVisible ? "block" : "none" }}>
                 <div className="form-container">
+                <h1 className="title">Here you can edit your ticket datas.</h1>
                     <Form ref={form} >
                         {!successful && (
                             <div>
