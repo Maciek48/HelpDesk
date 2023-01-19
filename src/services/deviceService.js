@@ -20,7 +20,7 @@ const getUserDevices = () => {
 
 // Add device to account
 const addDeviceToAccount = (deviceId) => {
-    return axios.post(API_URL + "list/add" + deviceId, {headers: authHeader()});
+    return axios.post(API_URL + "list/add", {deviceId}, {headers: authHeader()});
 }
 
 // Remove device from account

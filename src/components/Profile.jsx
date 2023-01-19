@@ -54,9 +54,6 @@ const Profile = () => {
       <div className="container">
       <Stack direction="row" spacing={2}>
         <br/>
-        <Button variant="outlined" startIcon={<AlternateEmailIcon />} onClick={resetEmailHandle}>
-          Reset Email
-        </Button>
         <Button variant="outlined" startIcon={<SendIcon />} onClick={resetPasswordHandle}>
           Reset Password
         </Button>
