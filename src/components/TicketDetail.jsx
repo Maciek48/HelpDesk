@@ -9,6 +9,7 @@ import CheckButton from "react-validation/build/button";
 import '../css/components/ticketDetail.css'
 import TicketService from "../services/ticketService";
 import Form from "react-validation/build/form";
+import LoadingScreen from './LoadingScreen';
 
 const required = (value) => {
     if (!value) {
@@ -27,7 +28,7 @@ function TicketDetail() {
     const [files, setFiles] = useState([]);
 
     const [loading, setLoading] = useState(false);
-    const [fileLoading, setFileLoading] = useState(false);
+    const [fileLoading, setFileLoading] = useState(true);
     const [message, setMessage] = useState("");
     const [successful, setSuccessful] = useState(false);
     const [ticketData, setTicketData] = useState([]);
@@ -41,7 +42,7 @@ function TicketDetail() {
     //function to get data from database
     const fetchData = async () => {
         setError("")
-        setFileLoading(true);
+        
         try {await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
             .then(response => {
                 return response.json()
@@ -53,12 +54,12 @@ function TicketDetail() {
         catch(error) {
             setError(error.message)
         }
-        setFileLoading(false);
+        
     }
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [id])
 
     //function to save replay to database
     const handleReplay = (e) => {
@@ -108,20 +109,21 @@ function TicketDetail() {
         
         
         <div className="container-with-sidebar">
-            <div class="srodek-tekst">
+            <div className="srodek-tekst">
                 Ticket information
             </div>
-            <div class="parent">
-                <div class="gora">
+            
+                <div className="parent">
+                <div className="gora">
                     <strong>User id:</strong> {ticketData?.ticket?.createdBy?.userId} <br />
                     <strong>Ticket id:</strong> {ticketData?.ticket?.ticketId} <br />
                     <strong>Status:</strong> {ticketData?.ticket?.status?.name}
                 </div>
-                <div class="srodek">
+                <div className="srodek">
                     <strong>Title:</strong> {ticketData?.ticket?.title} <br />
                     <strong>Description:</strong> {ticketData?.ticket?.description}
                 </div>
-                <div class="dol">
+                <div className="dol">
                     <strong>Created by:</strong> {ticketData?.ticket?.createdBy?.firstName} {ticketData?.ticket?.createdBy?.lastName} <br />
                     <strong>Created at:</strong> {ticketData?.ticket?.createdAt} <br />
                     <strong>Updated at:</strong> {ticketData?.ticket?.updatedAt} <br />
@@ -135,10 +137,9 @@ function TicketDetail() {
                 </div>
             </div>
             
-
-
+            
             <div className="main-container">
-                <Form ref={form}>
+                <Form onSubmit={handleReplay} ref={form}>
 
                     {!successful && (
                         <div>
@@ -157,7 +158,7 @@ function TicketDetail() {
 
 
                             <div className="form1-button">
-                                <button onClick={handleReplay}>
+                                <button>
                                     {loading && (
                                         <span><CircularProgress color="inherit" /></span>
                                     )}
