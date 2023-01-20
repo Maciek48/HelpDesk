@@ -22,36 +22,34 @@ const required = (value) => {
 
 function TicketDetail() {
 
-    let navigate = useNavigate();
-    const checkBtn = useRef();
-    const form = useRef();
-    const [comment, setComment] = useState("");
-    const [files, setFiles] = useState([]);
-    const [images, setImages] = useState([]);
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    let navigate = useNavigate()
+    const checkBtn = useRef()
+    const form = useRef()
+    const [comment, setComment] = useState("")
+    const [images, setImages] = useState([])
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
 
-    const [loading, setLoading] = useState(false);
-    const [fileLoading, setFileLoading] = useState(true);
-    const [message, setMessage] = useState("");
-    const [successful, setSuccessful] = useState(false);
-    const [ticketData, setTicketData] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState("")
+    const [successful, setSuccessful] = useState(false)
+    const [ticketData, setTicketData] = useState([])
     const [error, setError] = useState("")
-    const [formVisible, setFormVisible] = useState(false);
+    const [formVisible, setFormVisible] = useState(false)
     const { id } = useParams();
 
     const onChangeHandler = (e) => {
-        setComment(e.target.value);
+        setComment(e.target.value)
     };
 
     const onChangeTitle = (e) => {
         const title = e.target.value;
-        setTitle(title);
+        setTitle(title)
     };
 
     const onChangeDescription = (e) => {
         const description = e.target.value;
-        setDescription(description);
+        setDescription(description)
     };
 
     //function to get data from database
@@ -65,23 +63,23 @@ function TicketDetail() {
                 })
                 .then(data => {
                     setTicketData(data)
-                    return data;
+                    return data
                 }).then(async data => {
-                    console.log(data);
-                    const fileNames = data.ticket.attachments.map(attachment => attachment.filename);
-                    const imagesBlobs = [];
+                    //console.log(data);
+                    const fileNames = data.ticket.attachments.map(attachment => attachment.filename)
+                    const imagesBlobs = []
                     fileNames.forEach(async fileName => {
                         const blob = await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}/attachment/${fileName}`, { headers: authHeader() })
-                            .then(response => response.blob());
-                        const reader = new FileReader();
+                            .then(response => response.blob())
+                        const reader = new FileReader()
                         reader.onloadend = function () {
-                            imagesBlobs.push(reader.result);
+                            imagesBlobs.push(reader.result)
                         }
-                        reader.readAsDataURL(blob);
+                        reader.readAsDataURL(blob)
                     })
-                    return imagesBlobs;
+                    return imagesBlobs
                 }).then(imageBlobs => {
-                    setImages(imageBlobs);
+                    setImages(imageBlobs)
                 })
         }
 
@@ -98,17 +96,17 @@ function TicketDetail() {
 
     //function to save replay to database
     const handleReplay = (e) => {
-        e.preventDefault();
-        setMessage("");
-        setLoading(true);
+        e.preventDefault()
+        setMessage("")
+        setLoading(true)
 
         if (checkBtn.current.context._errors.length === 0) {
             console.log(comment, id)
             TicketService.ticketReply(comment, id).then(
                 (response) => {
                     setMessage(response.data.message);
-                    setLoading(false);
-                    setSuccessful(true);
+                    setLoading(false)
+                    setSuccessful(true)
                     setTimeout(() => {
                         navigate("/tickets");
                     }, 3000);
@@ -120,30 +118,30 @@ function TicketDetail() {
                             error.response.data &&
                             error.response.data.message) ||
                         error.message ||
-                        error.toString();
+                        error.toString()
 
-                    setMessage(resMessage);
-                    setSuccessful(false);
-                    setLoading(false);
-
+                    setMessage(resMessage)
+                    setSuccessful(false)
+                    setLoading(false)
                 }
-            );
+            )
         } else {
-            setLoading(false);
+            setLoading(false)
         }
     };
 
+    //function to handle the form is visible
     function handleSubmit(event) {
-        event.preventDefault();
-        // code to handle the form submission goes here
+        event.preventDefault()
     }
 
+    //function to edit ticket data
     const handleEditTicket = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        setMessage("");
-        setSuccessful(false);
-        setLoading(true);
+        setMessage("")
+        setSuccessful(false)
+        setLoading(true)
 
         form.current.validateAll();
 
@@ -151,11 +149,11 @@ function TicketDetail() {
             TicketService.editTicket(id, title, description).then(
                 (response) => {
                     setMessage(response.data.message);
-                    setSuccessful(true);
-                    setLoading(false);
+                    setSuccessful(true)
+                    setLoading(false)
                     setTimeout(() => {
                         navigate("/tickets");
-                    }, 6000);
+                    }, 6000)
                 },
                 (error) => {
                     const resMessage =
@@ -163,27 +161,28 @@ function TicketDetail() {
                             error.response.data &&
                             error.response.data.message) ||
                         error.message ||
-                        error.toString();
+                        error.toString()
 
-                    setMessage(resMessage);
-                    setSuccessful(false);
-                    setLoading(false);
+                    setMessage(resMessage)
+                    setSuccessful(false)
+                    setLoading(false)
 
                 }
             );
         } else {
-            setLoading(false);
+            setLoading(false)
         }
     };
 
 
     return (
         <div className="container-with-sidebar">
-            <button className="btn" onClick={() => setFormVisible(!formVisible)}>Edit Ticket</button>
-
+            <button className="btn" onClick={() => setFormVisible(!formVisible)}>
+                Edit Ticket
+            </button>
             <form onSubmit={handleSubmit} style={{ display: formVisible ? "block" : "none" }}>
                 <div className="form-container">
-                <h1 className="title">Here you can edit your ticket datas.</h1>
+                    <h1 className="title">Here you can edit your ticket datas.</h1>
                     <Form ref={form} >
                         {!successful && (
                             <div>
@@ -224,7 +223,7 @@ function TicketDetail() {
                         )}
                         {message && (
                             <div className="form-group">
-                                <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert> 
+                                <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>
                             </div>
                         )}
                         <CheckButton style={{ display: "none" }} ref={checkBtn} />
@@ -250,41 +249,35 @@ function TicketDetail() {
                     <strong>Updated at:</strong> {ticketData?.ticket?.updatedAt} <br />
                     <strong>Attachments: </strong>
                     {ticketData?.ticket?.attachments?.map((value, index) => {
-                        //saveAttachment(value.filename)
                         return (
-                            <ul key={index}><h5>Image id: {value.id}, File name: {value.filename}</h5></ul>
+                            <ul key={index}>
+                                <h5>Image id: {value.id}, File name: {value.filename}</h5>
+                            </ul>
                         )
                     })}
                 </div>
             </div>
             <div className="parent2">
                 <h3>Images: </h3>
+                {console.log(images)}
                 <div className="srodek">
                     {images ? images.map((image, index) => {
-                        console.log(image)
-                        //saveAttachment(value.filename)
-
+                        //console.log(image)
                         return (
                             <div key={index} className="srodek">
-                                <img src={image} alt="photo from database" className="photo" />
+                                <img src={image} alt="From user account" className="photo" />
                             </div>
-
                             /*<ul key={index}><h5>Image id: { value.id }, File name: {value.filename}  </h5></ul>*/
                         )
                     }) : <p>Loading</p>}
                 </div>
-
-
-
-
-
             </div>
             <div className="main-container">
                 <Form onSubmit={handleReplay} ref={form}>
                     {!successful && (
-                        <div>
+                        <div className="parent3">
                             <div className="comment-flexbox">
-                                <h3 className="comment-text">Comments</h3>
+                                <h3 className="comment-text">Write a comment</h3>
                                 <textarea
                                     placeholder="Write a comment to the Ticket"
                                     value={comment}
@@ -314,9 +307,7 @@ function TicketDetail() {
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
             </div>
-
             {ticketData?.ticket?.replies?.map((reply, index) =>
-
                 <div className="parent1" key={index}>
                     <div className="gora">
                         <strong>Author: {reply.user.firstName} {reply.user.lastName}</strong> <br />
@@ -324,8 +315,7 @@ function TicketDetail() {
                             return (
                                 <strong >Role: {role.name}</strong>
                             )
-                        }
-                        )}
+                        })}
                         <br />
                         <strong>Ticket Id: {reply.id}</strong>  <br />
                         <strong>Created at: {reply.createdAt}</strong>
