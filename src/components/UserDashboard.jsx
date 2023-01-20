@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import authHeader from "../services/authHeader";
 import UserService from "../services/userService";
+import ArticleService from "../services/articleService";
 import EventBus from "../utils/EventBus";
 import { Grid } from "@mui/material";
 
@@ -13,8 +14,11 @@ import Products from '../assets/Products.png';
 
 const UserDashboard = () => {
 
-  const [content, setContent] = useState("");
-   const [openModal, setOpenModal] = useState(false);
+  const [content, setContent] = useState("")
+  const [openModal, setOpenModal] = useState(false)
+  const [articlesData, setArticlesData] = useState([])
+  const [images, setImages] = useState([])
+  const [error, setError] = useState("")
 
   useEffect(() => {
     UserService.getUserDashboard().then(
@@ -38,6 +42,73 @@ const UserDashboard = () => {
     );
   }, []);
 
+  useEffect(() => {
+    ArticleService.get5LatestArticle().then(
+      (response) => {
+        setArticlesData(response.data);
+        console.log(articlesData)
+      },
+      (error) => {
+        const _content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setArticlesData(_content);
+
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
+    console.log(articlesData)
+  }, []);
+
+  //function to get 5 latest articles datas from database
+  const fetchData = async () => {
+    setError("")
+
+    try {
+      await fetch(`https://resolved-api.herokuapp.com/api/articles/recent`, { headers: authHeader() })
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setArticlesData(data)
+          return data
+        }).then(async data => {
+          console.log(data);
+          const articleIds = articlesData.map(article => article.id)
+          const imagesBlobs = []
+          articleIds.forEach(async articleId => {
+            const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${articleId}/image`, { headers: authHeader() })
+              .then(response => response.blob())
+            const reader = new FileReader()
+            reader.onloadend = function () {
+              imagesBlobs.push(reader.result)
+            }
+            reader.readAsDataURL(blob)
+          })
+          return imagesBlobs
+          console.log(imagesBlobs)
+        }).then(imageBlobs => {
+          setImages(imageBlobs)
+          console.log(images)
+        })
+    }
+    catch (error) {
+      setError(error.message)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+
+
 
 
   return (
@@ -58,7 +129,7 @@ const UserDashboard = () => {
 
       <Grid item xs={4}>
         <div className="button-continer">
-        <img src={Products} alt="Apple Products" />
+          <img src={Products} alt="Apple Products" />
           <button onClick={() => setOpenModal(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>
@@ -73,11 +144,29 @@ const UserDashboard = () => {
       <Grid item xs={4}>
         <div className="button-container">
           Your devices:
-          
+
         </div>
       </Grid>
       <Grid item xs={12}>
-        
+        <div className="parent2">
+          <div className="srodek">
+            <h1>5 Lates Articles datas </h1>
+            {images.map((image, index) => {
+              return (
+                <div key={index}>
+                  <button>
+                    <img src={image} className="photo" alt="Article" />
+                    {articlesData.map((article, index) => {
+                      return (
+                        <ul key={index}>{article.headline}</ul>
+                      )
+                    })}
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </Grid>
       <Grid item xs={4}>
         <h3>{ }</h3>
