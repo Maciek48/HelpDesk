@@ -128,6 +128,7 @@ function TicketDetail() {
         } else {
             setLoading(false)
         }
+        clearTimeout()
     };
 
     //function to handle the form is visible
@@ -172,6 +173,7 @@ function TicketDetail() {
         } else {
             setLoading(false)
         }
+        clearTimeout()
     };
 
 
@@ -206,7 +208,7 @@ function TicketDetail() {
                                         value={description}
                                         onChange={onChangeDescription}
                                         validations={[required]}
-                                        maxlength="255"
+                                        maxLength="255"
                                     />
                                 </div>
                                 <div className="form-button-container">
@@ -259,7 +261,6 @@ function TicketDetail() {
             </div>
             <div className="parent2">
                 <h3>Images: </h3>
-                {console.log(images)}
                 <div className="srodek">
                     {images ? images.map((image, index) => {
                         //console.log(image)
@@ -267,7 +268,6 @@ function TicketDetail() {
                             <div key={index} className="srodek">
                                 <img src={image} alt="From user account" className="photo" />
                             </div>
-                            /*<ul key={index}><h5>Image id: { value.id }, File name: {value.filename}  </h5></ul>*/
                         )
                     }) : <p>Loading</p>}
                 </div>
@@ -275,7 +275,7 @@ function TicketDetail() {
             <div className="main-container">
                 <Form onSubmit={handleReplay} ref={form}>
                     {!successful && (
-                        <div className="parent3">
+                        <div>
                             <div className="comment-flexbox">
                                 <h3 className="comment-text">Write a comment</h3>
                                 <textarea
