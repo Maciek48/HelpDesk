@@ -46,7 +46,7 @@ const UserDashboard = () => {
     ArticleService.get5LatestArticle().then(
       (response) => {
         setArticlesData(response.data);
-        console.log(articlesData)
+        //console.log(articlesData)
       },
       (error) => {
         const _content =
@@ -63,7 +63,8 @@ const UserDashboard = () => {
         }
       }
     );
-    console.log(articlesData)
+    //console.log(articlesData)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //function to get 5 latest articles datas from database
@@ -92,7 +93,7 @@ const UserDashboard = () => {
             reader.readAsDataURL(blob)
           })
           return imagesBlobs
-          console.log(imagesBlobs)
+          //console.log(imagesBlobs)
         }).then(imageBlobs => {
           setImages(imageBlobs)
           console.log(images)
@@ -105,6 +106,7 @@ const UserDashboard = () => {
 
   useEffect(() => {
     fetchData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
