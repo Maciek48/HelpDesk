@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import Popup from 'reactjs-popup';
 
 import UserService from "../services/userService";
 import EventBus from "../utils/EventBus";
@@ -9,7 +8,8 @@ import '../css/components/userDashboard.css'
 
 import AddIcon from '@mui/icons-material/Add';
 import Modal from "./Modal";
-import { Add } from "@mui/icons-material";
+import Products from '../assets/Products.png';
+
 
 const UserDashboard = () => {
 
@@ -58,7 +58,7 @@ const UserDashboard = () => {
 
       <Grid item xs={4}>
         <div className="button-continer">
-
+        <img src={Products} alt="Apple Products" />
           <button onClick={() => setOpenModal(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>
@@ -75,6 +75,9 @@ const UserDashboard = () => {
           Your devices:
           
         </div>
+      </Grid>
+      <Grid item xs={12}>
+        
       </Grid>
       <Grid item xs={4}>
         <h3>{ }</h3>
