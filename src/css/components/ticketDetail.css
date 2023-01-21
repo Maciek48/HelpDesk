@@ -107,6 +107,10 @@ h2{
     width: 100%;
     
 }
+
+.article-btn {
+    cursor: pointer;
+}
 .form1-button span{
     font-size: 1rem;
 }
@@ -258,9 +262,18 @@ h2{
     box-shadow: 0px 0px 21px -3px rgba(44, 97, 243, 0.59);*/
 }
 
+.article-container{
+    margin: 1rem 0;
+}
 .photo {
     max-width: 100%;
     max-height: 100%;
+}
+
+.photo1 {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 1rem 0;
 }
 
 .photo-container {

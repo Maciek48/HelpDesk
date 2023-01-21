@@ -10,6 +10,8 @@ import '../css/components/userDashboard.css'
 import AddIcon from '@mui/icons-material/Add';
 import Modal from "./Modal";
 import Products from '../assets/Products.png';
+import { ImageSharp } from "@mui/icons-material";
+import TicketService from "../services/ticketService";
 
 
 const UserDashboard = () => {
@@ -92,11 +94,10 @@ const UserDashboard = () => {
             }
             reader.readAsDataURL(blob)
           })
+          console.log(imagesBlobs)
           return imagesBlobs
-          //console.log(imagesBlobs)
         }).then(imageBlobs => {
           setImages(imageBlobs)
-          console.log(images)
         })
     }
     catch (error) {
@@ -106,8 +107,15 @@ const UserDashboard = () => {
 
   useEffect(() => {
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handlArticleDetail = (e) => {
+    e.preventDefault()
+
+    ArticleService.getArticleDetail()
+
+
+  }
 
 
 
@@ -151,23 +159,21 @@ const UserDashboard = () => {
       </Grid>
       <Grid item xs={12}>
         <div className="parent2">
+          
           <div className="srodek">
-            <h1>5 Lates Articles datas </h1>
-            {images.map((image, index) => {
+            <h1>5 Latest Articles</h1>
+            {images && articlesData ? images.map((image, index) => {
               return (
-                <div key={index}>
-                  <button>
-                    <img src={image} className="photo" alt="Article" />
-                    {articlesData.map((article, index) => {
-                      return (
-                        <ul key={index}>{article.headline}</ul>
-                      )
-                    })}
+                <div className="article-container" key={index}>
+                  <button className="article-btn" onClick={handlArticleDetail}>
+                    <img src={image} className="photo1" alt="Article" />
+                    <h3>{articlesData[index].headline}</h3>
+                    <h3>{articlesData[index].id}</h3>
                   </button>
                 </div>
               )
-            })}
-
+            }) : <p>Loading</p>}
+            
           </div>
         </div>
       </Grid>

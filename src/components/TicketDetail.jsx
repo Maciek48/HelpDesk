@@ -74,11 +74,15 @@ function TicketDetail() {
                         const reader = new FileReader()
                         reader.onloadend = function () {
                             imagesBlobs.push(reader.result)
+                           
                         }
+                        
                         reader.readAsDataURL(blob)
                     })
+                    
                     return imagesBlobs
                 }).then(imageBlobs => {
+                    
                     setImages(imageBlobs)
                 })
         }
