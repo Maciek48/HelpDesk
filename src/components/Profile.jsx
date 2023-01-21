@@ -13,21 +13,11 @@ const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
   let navigate = useNavigate();
 
-  
-
-  const resetEmailHandle = React.useCallback(
-    () => {
-      navigate('/resetEmail');
-    },[navigate]
-  );
-
   const resetPasswordHandle = React.useCallback(
     () => {
       navigate('/reset');
     },[navigate]
   );
-
-  
 
   return (
     <div className="container">
@@ -39,6 +29,9 @@ const Profile = () => {
       <p>
         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+      </p>
+      <p>
+        <strong>Name: </strong> {currentUser.firstName} {currentUser.lastName}
       </p>
       <p>
         <strong>Id:</strong> {currentUser.id}
