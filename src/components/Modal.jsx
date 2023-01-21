@@ -34,13 +34,6 @@ const Modal = ({ open, onClose }) => {
     const [typeArr, setTypeArr] = useState([]);
 
 
-    /*const handleChange = (event) => {
-        setType(event.target.value);
-    };
-    const handleModelChange = (event) => {
-        setModel(event.target.value);
-    };*/
-
     const fetchData = async () => {
         setError("")
         await fetch(`https://resolved-api.herokuapp.com/api/devices/all`, { headers: authHeader() })
@@ -59,35 +52,6 @@ const Modal = ({ open, onClose }) => {
     useEffect(() => {
         fetchData()
     }, [])
-    /*
-        useEffect(() => {
-            DeviceService.getDevices().then(
-                (response) => {
-                    return response.json()
-                })
-                .then(
-                (response) => {
-                    setTypes(response.data);
-                    console.log(types);
-                },
-                (error) => {
-                    const _content =
-                      (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                      error.message ||
-                      error.toString();
-            
-                    setContent(_content);
-            
-                    if (error.response && error.response.status === 401) {
-                      EventBus.dispatch("logout");
-                    }
-                  }
-            );
-        }, []);*/
-
-
 
     const handleDevice = (e) => {
         e.preventDefault();
@@ -150,6 +114,7 @@ const Modal = ({ open, onClose }) => {
                                         id="type"
                                         value={type}
                                         onChange={(e) => setType(e.target.value)}
+                                        required
                                     >
                                         {types.map((item, index) => (
                                             <MenuItem key={index} value={item.id}>
@@ -161,8 +126,8 @@ const Modal = ({ open, onClose }) => {
                             </FormControl>
                                 
 
-                            <div className='form-button'>
-                                <button >
+                            <div className='srodek_v1'>
+                                <button className="btn">
                                     {loading && (
                                         <span><CircularProgress color="inherit" /></span>
                                     )}

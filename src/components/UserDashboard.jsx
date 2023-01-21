@@ -64,7 +64,7 @@ const UserDashboard = () => {
       }
     );
     //console.log(articlesData)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //function to get 5 latest articles datas from database
@@ -106,7 +106,7 @@ const UserDashboard = () => {
 
   useEffect(() => {
     fetchData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -167,6 +167,7 @@ const UserDashboard = () => {
                 </div>
               )
             })}
+
           </div>
         </div>
       </Grid>
