@@ -62,7 +62,7 @@ const UserArticles = () => {
 
   return (
     <Box>
-      <h3 className="tab-title">Tickets</h3>
+      <h3 className="tab-title">Articles</h3>
       <DataGrid
         rows={rows}
         columns={columns}

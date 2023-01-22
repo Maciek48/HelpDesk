@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FiEdit3, FiHome, FiUser, FiArchive, FiHelpCircle, FiLogOut, FiUserPlus, FiPlus } from "react-icons/fi";
+import { FiEdit3, FiHome, FiUser, FiArchive, FiHelpCircle, FiLogOut, FiUserPlus, FiPlus, FiTrello} from "react-icons/fi";
 import { ImSun } from "react-icons/im";
 import { BsFillMoonFill } from "react-icons/bs";
+
 
 const Sidebar = props => {
 
@@ -39,7 +40,7 @@ const Sidebar = props => {
 
                 {props.showUserDashboard && (
                     <Link to={"/articles"} className="sidebar-option">
-                        <i><FiArchive className="sidebar-option-icon" /></i>
+                        <i><FiTrello className="sidebar-option-icon" /></i>
                         <span className="sidebar-option-text">Articles</span>
                         <span className="tooltip">Articles</span>
                     </Link>
@@ -85,6 +86,14 @@ const Sidebar = props => {
                     </Link>
                 )}
 
+                {props.showAdminDashboard && (
+                    <Link to={"/articles"} className="sidebar-option">
+                        <i><FiTrello className="sidebar-option-icon" /></i>
+                        <span className="sidebar-option-text">Articles</span>
+                        <span className="tooltip">Articles</span>
+                    </Link>
+                )}      
+
 
                 <Link to={"/profile"} className="sidebar-option">
                     <i><FiUser className="sidebar-option-icon" /></i>
@@ -96,12 +105,6 @@ const Sidebar = props => {
                     <i><FiArchive className="sidebar-option-icon" /></i>
                     <span className="sidebar-option-text">Tickets</span>
                     <span className="tooltip">Tickets</span>
-                </Link>
-
-                <Link to={"/articles"} className="sidebar-option">
-                    <i><FiArchive className="sidebar-option-icon" /></i>
-                    <span className="sidebar-option-text">Articles</span>
-                    <span className="tooltip">Articles</span>
                 </Link>
 
                 <li className="sidebar-option">

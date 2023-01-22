@@ -29,9 +29,16 @@ const addArticleImage = (id) => {
 };
 
 // Add new article
-const addArticle = () => {
-    return axios.post(API_URL + "upload", { headers: authHeader() });
-};
+const createArtcile = (data) => {
+    const requestOptions = {
+     method: 'POST',
+     headers:  authHeader() ,'Content-Type': 'multipart/form-date' ,
+     body: data
+ };
+
+ return fetch('https://resolved-api.herokuapp.com/api/articles/create', requestOptions).then(response => response.json())
+ 
+}
 
 // Remove article
 const removeArticle = (id) => {
@@ -44,7 +51,7 @@ const ArticleService = {
     getArticleDetail,
     getArticleImage,
     addArticleImage,
-    addArticle,
+    createArtcile,
     removeArticle
 };
   

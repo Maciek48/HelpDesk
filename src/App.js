@@ -34,6 +34,7 @@ import AddModerator from "./components/AddModerator";
 import UserArticles from "./components/UserArticles";
 import ArticleDetail from "./components/ArticleDetail";
 import AdminArticles from "./components/AdminArticles";
+import AddArticle from "./components/AddArticle";
 
 
 // Utilities
@@ -156,7 +157,7 @@ const App = () => {
                         {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
                         {showAdminDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
                         {showAdminDashboard && <Route path="/articles" exact element={<AdminArticles />} /> }
-                        
+                        {showAdminDashboard && <Route path="/addArticle" exact element={<AddArticle />} /> }
                         {showAdminDashboard && <Route path="/articles/:id" exact element={<ArticleDetail />} /> }
                         {showAdminDashboard && <Route path="/reset" exact element={<ResetPassword />} /> }
                         {showAdminDashboard && <Route path="/addModerator" exact element={<AddModerator />} /> }
