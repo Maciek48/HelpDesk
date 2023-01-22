@@ -10,7 +10,7 @@ const get5LatestArticle = () => {
 
 // Get all articles
 const getAllArticles = () => {
-    return axios.get(API_URL + "all", { headers: authHeader() });
+    return axios.get(API_URL, { headers: authHeader() });
 };
 
 // Get article details

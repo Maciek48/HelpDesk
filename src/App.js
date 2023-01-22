@@ -31,6 +31,9 @@ import TicketDetail from "./components/TicketDetail";
 import ResetPassword from "./components/ResetPassword";
 import ResetEmail from "./components/ResetEmail";
 import AddModerator from "./components/AddModerator";
+import UserArticles from "./components/UserArticles";
+import ArticleDetail from "./components/ArticleDetail";
+import AdminArticles from "./components/AdminArticles";
 
 
 // Utilities
@@ -137,12 +140,12 @@ const App = () => {
                         {<Route path="/reset" exact element={<ResetPassword />} /> }
                         {<Route path="/resetemail" exact element={<ResetEmail />} /> }
 
-
                         {/*Sciezki dostepu usera*/}
                         {showUserDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/user" />} /> }
                         {showUserDashboard && <Route path="/tickets" exact element={<UserTickets />} /> }
                         {showUserDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
-
+                        {showUserDashboard && <Route path="/articles/:id" exact element={<ArticleDetail />} /> }
+                        {showUserDashboard && <Route path="/articles" exact element={<UserArticles />} /> }
                         {/*<UserDashboard 
                             showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
         />*/}
@@ -152,6 +155,9 @@ const App = () => {
                         {showAdminDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
                         {showAdminDashboard && <Route path="/users" exact element={<AdminUsers />} /> }
                         {showAdminDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
+                        {showAdminDashboard && <Route path="/articles" exact element={<AdminArticles />} /> }
+                        
+                        {showAdminDashboard && <Route path="/articles/:id" exact element={<ArticleDetail />} /> }
                         {showAdminDashboard && <Route path="/reset" exact element={<ResetPassword />} /> }
                         {showAdminDashboard && <Route path="/addModerator" exact element={<AddModerator />} /> }
 
