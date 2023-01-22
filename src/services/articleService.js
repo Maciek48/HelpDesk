@@ -29,7 +29,7 @@ const addArticleImage = (id) => {
 };
 
 // Add new article
-const createArtcile = (data) => {
+const createArticle = (data) => {
     const requestOptions = {
      method: 'POST',
      headers:  authHeader() ,'Content-Type': 'multipart/form-date' ,
@@ -51,7 +51,7 @@ const ArticleService = {
     getArticleDetail,
     getArticleImage,
     addArticleImage,
-    createArtcile,
+    createArticle,
     removeArticle
 };
   
