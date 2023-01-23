@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FiEdit3, FiHome, FiUser, FiArchive, FiHelpCircle, FiLogOut, FiUserPlus, FiPlus, FiTrello} from "react-icons/fi";
+import { FiEdit3, FiHome, FiUser, FiArchive, FiHelpCircle, FiLogOut, FiUserPlus, FiPlus, FiTrello } from "react-icons/fi";
 import { ImSun } from "react-icons/im";
 import { BsFillMoonFill } from "react-icons/bs";
 
@@ -55,6 +55,22 @@ const Sidebar = props => {
                     </Link>
                 )}
 
+                {props.showModeratorDashboard && (
+                    <Link to={"/articles"} className="sidebar-option">
+                        <i><FiTrello className="sidebar-option-icon" /></i>
+                        <span className="sidebar-option-text">Articles</span>
+                        <span className="tooltip">Articles</span>
+                    </Link>
+                )}
+
+                {props.showModeratorDashboard && (
+                    <Link to={"/addArticle"} className="sidebar-option">
+                        <i><FiPlus className="sidebar-option-icon" /></i>
+                        <span className="sidebar-option-text">Add Article</span>
+                        <span className="tooltip">Add Article</span>
+                    </Link>
+                )}
+
                 {props.showAdminDashboard && (
                     <Link to={"/admin"} className="sidebar-option">
                         <i><FiHome className="sidebar-option-icon" /></i>
@@ -92,7 +108,7 @@ const Sidebar = props => {
                         <span className="sidebar-option-text">Articles</span>
                         <span className="tooltip">Articles</span>
                     </Link>
-                )}      
+                )}
 
 
                 <Link to={"/profile"} className="sidebar-option">

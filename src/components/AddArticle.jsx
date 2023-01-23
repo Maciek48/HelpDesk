@@ -51,12 +51,12 @@ const AddArticle = props => {
   
   const handleNewArticle = (e) => {
     e.preventDefault();
-    console.log(form);
+    //console.log(form);
 
     const formData = new FormData();
     console.log(fileList);
     files.forEach((file, i) => {
-      formData.append(`file-${0}`, file,file.name);
+      formData.append(`file`, file,file.name);
     });
 
     setMessage("");

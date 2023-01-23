@@ -177,9 +177,8 @@ const AddModerator = () => {
               />
             </div>
 
-
             <div className="form-group">
-              <Box>
+              
                 <FormLabel id="roles-label">
                   Choose the role of the user
                 </FormLabel>
@@ -194,7 +193,7 @@ const AddModerator = () => {
                   <FormControlLabel control={<Radio />} label='Moderator' value='moderator'/>
                   <FormControlLabel control={<Radio />} label='User' value='user'/>
                 </RadioGroup>
-              </Box>
+              
             </div>
 
             <div className="form-button-container">

@@ -31,10 +31,10 @@ const addArticleImage = (id) => {
 // Add new article
 const createArticle = (data) => {
     const requestOptions = {
-     method: 'POST',
-     headers:  authHeader() ,'Content-Type': `multipart/form-date` ,
-     body: data
- };
+        method: 'POST',
+        headers:  authHeader() ,
+        body: data
+    };
 
  return fetch('https://resolved-api.herokuapp.com/api/articles/create', requestOptions).then(response => response.json());
  

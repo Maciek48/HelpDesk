@@ -164,6 +164,12 @@ const App = () => {
 
                         {/*Sciezki dostepu moderatora*/}
                         {showModeratorDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/mod" />} /> }
+                        {showModeratorDashboard && <Route path="/tickets" exact element={<AdminTickets />} /> }
+                        {showModeratorDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
+                        {showModeratorDashboard && <Route path="/articles" exact element={<AdminArticles />} /> }
+                        {showModeratorDashboard && <Route path="/addArticle" exact element={<AddArticle />} /> }
+                        {showModeratorDashboard && <Route path="/articles/:id" exact element={<ArticleDetail />} /> }
+                        {showModeratorDashboard && <Route path="/reset" exact element={<ResetPassword />} /> }
                         
                     </Routes>
                 </div>
