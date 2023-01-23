@@ -32,13 +32,28 @@ const addArticleImage = (id) => {
 const createArticle = (data) => {
     const requestOptions = {
      method: 'POST',
-     headers:  authHeader() ,'Content-Type': 'multipart/form-date' ,
+     headers:  authHeader() ,'Content-Type': `multipart/form-date` ,
      body: data
  };
 
- return fetch('https://resolved-api.herokuapp.com/api/articles/create', requestOptions).then(response => response.json())
+ return fetch('https://resolved-api.herokuapp.com/api/articles/create', requestOptions).then(response => response.json());
  
 }
+
+/*const createArticle = (data) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return axios.post(API_URL + "create", 
+    {
+        data
+    },
+    {
+        headers:{
+            'Content-Type': 'multipart/form-date',
+            'x-access-token': user.accessToken
+        }
+        
+    });
+};*/
 
 // Remove article
 const removeArticle = (id) => {

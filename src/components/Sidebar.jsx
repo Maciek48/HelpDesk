@@ -12,9 +12,9 @@ const Sidebar = props => {
     return (
         <div className={sidebarClass} onMouseEnter={props.showSidebar}>
             <div className="logo-name-wrapper">
-                <img src="logo.png" className="logo" alt="logo app" srcSet="" />
+                <img src="Re.png" className="logo" alt="logo app" srcSet="" />
                 <div className="logo-name">
-                    <span className="logo-name__name">iSupport</span>
+                    <span className="logo-name__name">Resolved</span>
                 </div>
                 <button className="logo-name__button">
                     <i className="bx bx-arrow-from-right logo-name__icon" id="logo-name__icon"></i>

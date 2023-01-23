@@ -46,10 +46,6 @@ const Popup = props => {
     setFiles(files);
     console.log(files);
   }
-  
-
-
-  
 
   const handleNewTicket = (e) => {
     e.preventDefault();

@@ -9,7 +9,7 @@ import '../css/components/userDashboard.css'
 
 import AddIcon from '@mui/icons-material/Add';
 import Modal from "./Modal";
-import Products from '../assets/Products.png';
+import home from '../assets/home.png';
 import { ImageSharp } from "@mui/icons-material";
 import TicketService from "../services/ticketService";
 
@@ -139,7 +139,7 @@ const UserDashboard = () => {
 
       <Grid item xs={4}>
         <div className="button-continer">
-          <img src={Products} alt="Apple Products" />
+          <img src={home} alt="Apple Products" />
           <button onClick={() => setOpenModal(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>

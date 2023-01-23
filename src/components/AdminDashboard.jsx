@@ -5,7 +5,7 @@ import EventBus from "../utils/EventBus";
 import { Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import AddDeviceToUserAccountPopup from './AddDeviceToUserAccountPopup';
-import Products from '../assets/Products.png';
+import home from '../assets/home.png';
 
 const AdminDashboard = () => {
   const [content, setContent] = useState("");
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
       <Grid item xs={4}>
         <div className="button-continer">
         
-          <img src={Products} alt="Apple Products" />
+          <img src={home} alt="Apple Products" />
           <button onClick={() => setOpenPopup(true)} className="button-display">
             <AddIcon sx={{ fontSize: 80 }}></AddIcon>
           </button>

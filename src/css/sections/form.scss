@@ -10,7 +10,8 @@
     color: var(--accent-color1);
 
     .title {
-        background: linear-gradient(101deg, var(--purple), var(--pink));
+        background: #77aaff;
+        background: linear-gradient(90deg, #77aaff 0%, #00a3ee 100%);
         padding-bottom: 3rem;
         font-size: 50px;
         font-weight: bold;
@@ -59,7 +60,8 @@
                 rgba(255, 255, 255, 0),
                 rgba(255, 255, 255, 0)
               ),
-              linear-gradient(101deg, var(--purple), var(--pink));
+              linear-gradient(101deg, #77aaff 0%, #00a3ee 100%);
+              
             background-origin: border-box;
             background-clip: content-box, border-box;
             box-shadow: 2px 1000px 1px var(--background) inset;

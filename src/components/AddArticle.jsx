@@ -51,19 +51,22 @@ const AddArticle = props => {
   
   const handleNewArticle = (e) => {
     e.preventDefault();
-    //console.log(form);
+    console.log(form);
 
     const formData = new FormData();
     console.log(fileList);
-
-    formData.append(`headline`, headline);
-    formData.append(`content`, content);
     files.forEach((file, i) => {
       formData.append(`file-${0}`, file,file.name);
     });
 
     setMessage("");
     setLoading(true);
+
+    formData.append(`headline`, headline);
+    formData.append(`content`, content);
+    
+
+    
     //const formTest = new FormData([form]);
     
     //formData.append('files', files);
