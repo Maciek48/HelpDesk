@@ -129,15 +129,12 @@ const App = () => {
                     <Routes>
                         
                         {/*Sciezki dostepu dla kazdego uzytkownika, moderatora i admina*/}
-
                         <Route path="/*" exact element={<Navigate replace to="/dashboard" />} />
                         <Route path="/profile" exact element={<Profile />} />
-
                         <Route path="/user" exact element={<UserDashboard  showNewTicketPopup={showNewTicketPopup}/>} />
                         <Route path="/user" exact element={<UserDashboard  showAddNewDeviceToUserAccountPopup={showAddNewDeviceToUserAccountPopup}/>} />
                         <Route path="/mod" exact element={<ModeratorDashboard />} />
                         <Route path="/admin" exact element={<AdminDashboard showNewTicketPopup={showNewTicketPopup}/>} />
-                        
                         {<Route path="/reset" exact element={<ResetPassword />} /> }
                         {<Route path="/resetemail" exact element={<ResetEmail />} /> }
 
@@ -147,9 +144,6 @@ const App = () => {
                         {showUserDashboard && <Route path="/tickets/:id" exact element={<TicketDetail />} /> }
                         {showUserDashboard && <Route path="/articles/:id" exact element={<ArticleDetail />} /> }
                         {showUserDashboard && <Route path="/articles" exact element={<UserArticles />} /> }
-                        {/*<UserDashboard 
-                            showAddNewDeviceToUserAccountPopup={handleShowAddNewDeviceToUserAccountPopup}
-        />*/}
 
                         {/*Sciezki dostepu admina*/}
                         {showAdminDashboard && <Route path="/dashboard" exact element={<Navigate replace to="/admin" />} /> }

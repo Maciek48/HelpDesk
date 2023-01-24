@@ -138,17 +138,7 @@ const Sidebar = props => {
                 </li>
             </ul>
 
-            <ul className="sidebar-options-list">
-                <li className="sidebar-option" onClick={props.changeTheme}>
-                    <i>{props.currentTheme === "dark" ? (
-                        <ImSun className="light sidebar-option-icon" />
-                    ) : (
-                        <BsFillMoonFill className="dark sidebar-option-icon" />
-                    )}</i>
-                    <span className="sidebar-option-text">Change theme</span>
-                    <span className="tooltip">Change theme</span>
-                </li>
-            </ul>
+            
         </div>
     );
 };
