@@ -52,6 +52,20 @@ function TicketDetail() {
         setDescription(description)
     };
 
+    const fetchImages = async (data) => {
+        console.log(data)
+        const imagesBlobs = []
+        const fileNames = data.ticket.attachments.map(attachment => attachment.filename)
+        fileNames.forEach(async fileName => {
+            const blob = await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}/attachment/${fileName}`, { headers: authHeader() })
+                .then(response => response.blob())
+            var objectURL = URL.createObjectURL(blob);
+            images.push([objectURL])
+            console.log(blob)
+            console.log(images)
+        })
+    }
+
     //function to get data from database
     const fetchData = async () => {
         setError("")
@@ -65,25 +79,7 @@ function TicketDetail() {
                     setTicketData(data)
                     return data
                 }).then(async data => {
-                    //console.log(data);
-                    const fileNames = data.ticket.attachments.map(attachment => attachment.filename)
-                    const imagesBlobs = []
-                    fileNames.forEach(async fileName => {
-                        const blob = await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}/attachment/${fileName}`, { headers: authHeader() })
-                            .then(response => response.blob())
-                        const reader = new FileReader()
-                        reader.onloadend = function () {
-                            imagesBlobs.push(reader.result)
-                           
-                        }
-                        
-                        reader.readAsDataURL(blob)
-                    })
-                    
-                    return imagesBlobs
-                }).then(imageBlobs => {
-                    
-                    setImages(imageBlobs)
+                    fetchImages(data)
                 })
         }
 
@@ -266,8 +262,9 @@ function TicketDetail() {
             <div className="parent2">
                 <h3>Images: </h3>
                 <div className="srodek">
+                    {console.log(images)}
                     {images ? images.map((image, index) => {
-                        //console.log(image)
+                        console.log(image)
                         return (
                             <div key={index} className="srodek">
                                 <img src={image} alt="From user account" className="photo" />

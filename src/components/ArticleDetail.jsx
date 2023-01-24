@@ -52,6 +52,16 @@ function TicketDetail() {
         setDescription(description)
     };
 
+    const fetchImages = async (data) => {
+        console.log(data);
+        const imageBlobs = []
+        const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${id}/image`, { headers: authHeader() })
+            .then(response => response.blob())
+        var objectURL = URL.createObjectURL(blob);
+        setImages([objectURL])
+        console.log(blob)
+    }
+
     //function to get data from database
     const fetchData = async () => {
         setError("")
@@ -65,25 +75,7 @@ function TicketDetail() {
                     setArticleData(data)
                     return data
                 }).then(async data => {
-                    console.log(data);
-                    //const fileNames = data.ticket.attachments.map(attachment => attachment.filename)
-                    const imageBlobs = []
-
-                    const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${id}/image`, { headers: authHeader() })
-                        .then(response => response.blob())
-                    const reader = new FileReader()
-                    reader.onloadend = function () {
-                        imageBlobs.push(reader.result)
-                       
-                    }
-
-                    reader.readAsDataURL(blob)
-
-                    console.log(imageBlobs)
-                    return imageBlobs
-                }).then(imageBlobs => {
-
-                    setImages(imageBlobs)
+                    fetchImages(data)
                 })
         }
 

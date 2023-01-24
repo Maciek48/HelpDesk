@@ -14,11 +14,11 @@ import home from '../assets/home.png';
 
 const ModeratorDashboard = () => {
   const [content, setContent] = useState("");
-  
+
   const [articlesData, setArticlesData] = useState([])
   const [images, setImages] = useState([])
   const [openModal, setOpenModal] = useState(false)
-  
+
   const [error, setError] = useState("")
 
   useEffect(() => {
@@ -68,8 +68,8 @@ const ModeratorDashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-   //function to get 5 latest articles datas from database
-   const fetchData = async () => {
+  //function to get 5 latest articles datas from database
+  const fetchData = async () => {
     setError("")
 
     try {
@@ -103,6 +103,10 @@ const ModeratorDashboard = () => {
       setError(error.message)
     }
   }
+
+  useEffect(() => {
+    fetchData()
+}, [])
 
   return (
     <Grid container spacing={2}>
@@ -152,10 +156,10 @@ const ModeratorDashboard = () => {
             {images && articlesData ? images.map((image, index) => {
               return (
                 <div className="article-container" key={index}>
-    
-                    {<img src={image} className="photo1" alt="Article" />}
-                    <h3>{articlesData[index].headline}</h3>
-                    <h3>{articlesData[index].id}</h3>
+
+                  {<img src={image} className="photo1" alt="Article" />}
+                  <h3>{articlesData[index].headline}</h3>
+                  <h3>{articlesData[index].id}</h3>
 
                 </div>
               )
@@ -166,9 +170,9 @@ const ModeratorDashboard = () => {
                 <div className="article-container" key={index}>
                   <h3>Article id: {article.id}</h3>
                   <h3>{article.headline}</h3>
-              </div>
+                </div>
               )
-              
+
             })}
 
           </div>
