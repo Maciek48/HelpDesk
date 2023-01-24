@@ -31,38 +31,11 @@ const AdminUsers = () => {
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 150 },
-    {
-      field: 'email',
-      headerName: 'Email',
-      width: 250,
-      editable: false,
-    },
-    {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      type: 'string',
-      width: 200,
-      editable: false,
-    },
-    {
-      field: 'updatedAt',
-      headerName: 'Updated At',
-      type: 'string',
-      width: 200,
-      editable: false,
-    },
+    {field: 'email', headerName: 'Email',width: 250,editable: false, },
+    {field: 'firstName',headerName: 'First name',width: 150,editable: false, },
+    { field: 'lastName',headerName: 'Last name',width: 150,editable: false, },
+    {field: 'createdAt', headerName: 'Created At',type: 'string',width: 200,editable: false,},
+    {field: 'updatedAt',headerName: 'Updated At',type: 'string',width: 200,editable: false,},
     {
       field: 'actions',
       type: 'actions',

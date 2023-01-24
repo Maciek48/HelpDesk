@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import TicketService from "../services/ticketService";
 import { useNavigate } from "react-router-dom";
 import { FiTrash2, FiExternalLink } from "react-icons/fi"
-
 import EventBus from "../utils/EventBus";
-
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
@@ -62,7 +60,6 @@ const UserTickets = () => {
       (response) => {
         const data = response.data.map((row, index) => ({...row, id: row.id}))
         setRows(data);
-        /*setRows(response.data);*/
       },
       (error) => {
         const _rows =

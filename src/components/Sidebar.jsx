@@ -1,14 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiEdit3, FiHome, FiUser, FiArchive, FiHelpCircle, FiLogOut, FiUserPlus, FiPlus, FiTrello } from "react-icons/fi";
-import { ImSun } from "react-icons/im";
-import { BsFillMoonFill } from "react-icons/bs";
-
 
 const Sidebar = props => {
 
     const sidebarClass = props.isOpen ? "sidebar" : "sidebar collapsed";
-
     return (
         <div className={sidebarClass} onMouseEnter={props.showSidebar}>
             <div className="logo-name-wrapper">
@@ -20,15 +16,12 @@ const Sidebar = props => {
                     <i className="bx bx-arrow-from-right logo-name__icon" id="logo-name__icon"></i>
                 </button>
             </div>
-
             <div className="sidebar-button" onClick={props.showNewTicketPopup}>
                 <i><FiEdit3 className="sidebar-option-icon" /></i>
                 <span className="sidebar-button-text">New Ticket</span>
                 <span className="tooltip">New Ticket</span>
             </div>
-
             <ul className="sidebar-option-list">
-
                 {/*przekierowanie gdy uzytkownik zalogowany i nacisniecie przycisku Home*/}
                 {props.showUserDashboard && (
                     <Link to={"/user"} className="sidebar-option">
@@ -37,7 +30,6 @@ const Sidebar = props => {
                         <span className="tooltip">Home</span>
                     </Link>
                 )}
-
                 {props.showUserDashboard && (
                     <Link to={"/articles"} className="sidebar-option">
                         <i><FiTrello className="sidebar-option-icon" /></i>
@@ -45,8 +37,6 @@ const Sidebar = props => {
                         <span className="tooltip">Articles</span>
                     </Link>
                 )}
-
-
                 {props.showModeratorDashboard && (
                     <Link to={"/mod"} className="sidebar-option">
                         <i><FiHome className="sidebar-option-icon" /></i>
@@ -54,7 +44,6 @@ const Sidebar = props => {
                         <span className="tooltip">Home</span>
                     </Link>
                 )}
-
                 {props.showModeratorDashboard && (
                     <Link to={"/articles"} className="sidebar-option">
                         <i><FiTrello className="sidebar-option-icon" /></i>
@@ -62,7 +51,6 @@ const Sidebar = props => {
                         <span className="tooltip">Articles</span>
                     </Link>
                 )}
-
                 {props.showModeratorDashboard && (
                     <Link to={"/addArticle"} className="sidebar-option">
                         <i><FiPlus className="sidebar-option-icon" /></i>
@@ -70,7 +58,6 @@ const Sidebar = props => {
                         <span className="tooltip">Add Article</span>
                     </Link>
                 )}
-
                 {props.showAdminDashboard && (
                     <Link to={"/admin"} className="sidebar-option">
                         <i><FiHome className="sidebar-option-icon" /></i>
@@ -78,7 +65,6 @@ const Sidebar = props => {
                         <span className="tooltip">Home</span>
                     </Link>
                 )}
-
                 {props.showAdminDashboard && (
                     <Link to={"/users"} className="sidebar-option">
                         <i><FiUser className="sidebar-option-icon" /></i>
@@ -93,7 +79,6 @@ const Sidebar = props => {
                         <span className="tooltip">Add Mod</span>
                     </Link>
                 )}
-
                 {props.showAdminDashboard && (
                     <Link to={"/addArticle"} className="sidebar-option">
                         <i><FiPlus className="sidebar-option-icon" /></i>
@@ -101,7 +86,6 @@ const Sidebar = props => {
                         <span className="tooltip">Add Article</span>
                     </Link>
                 )}
-
                 {props.showAdminDashboard && (
                     <Link to={"/articles"} className="sidebar-option">
                         <i><FiTrello className="sidebar-option-icon" /></i>
@@ -109,8 +93,6 @@ const Sidebar = props => {
                         <span className="tooltip">Articles</span>
                     </Link>
                 )}
-
-
                 <Link to={"/profile"} className="sidebar-option">
                     <i><FiUser className="sidebar-option-icon" /></i>
                     <span className="sidebar-option-text">Profile</span>
@@ -122,14 +104,12 @@ const Sidebar = props => {
                     <span className="sidebar-option-text">Tickets</span>
                     <span className="tooltip">Tickets</span>
                 </Link>
-
                 <li className="sidebar-option">
                     <i><FiHelpCircle className="sidebar-option-icon" /></i>
                     <span className="sidebar-option-text">Help</span>
                     <span className="tooltip">Help</span>
                 </li>
             </ul>
-
             <ul className="sidebar-options-list">
                 <li className="sidebar-option" onClick={props.logOut}>
                     <i><FiLogOut className="sidebar-option-icon" /></i>
@@ -137,8 +117,6 @@ const Sidebar = props => {
                     <span className="tooltip">Logout</span>
                 </li>
             </ul>
-
-            
         </div>
     );
 };

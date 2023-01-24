@@ -1,4 +1,4 @@
-import React, { useState, useRef,ChangeEvent } from "react";
+import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import Textarea from "react-validation/build/textarea"
@@ -22,14 +22,11 @@ const Popup = props => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fileList, setFiles] = useState([]);
-  //const [fileList, setFileList] = useState<FileList | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
 
   const files = fileList ? [...fileList] : [];
-
-  
 
   const onChangeTitle = (e) => {
     const title = e.target.value;
@@ -44,28 +41,21 @@ const Popup = props => {
   const onChangeFiles = (e) => {
     const files = e.target.files;
     setFiles(files);
-    console.log(files);
   }
 
   const handleNewTicket = (e) => {
     e.preventDefault();
-    console.log(form);
 
     const formData = new FormData();
-    console.log(files);
     files.forEach((file, i) => {
       formData.append(`file-${i}`, file,file.name);
     });
 
     setMessage("");
     setLoading(true);
-    //const formTest = new FormData([form]);
     formData.append(`title`, title);
     formData.append(`description`, description);
-    //formData.append('files', files);
 
-    for(const [k,v] of formData) {console.log(k,v)}
-    //console.log(formData);
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
@@ -102,10 +92,8 @@ const Popup = props => {
     <div className="popup-box">
       <div className="box">
         <span className="close-icon" onClick={props.handleClose}>x</span>
-
         <div className="form-container">
           <h1 className="title">Create new ticket.</h1>
-
           <form encType="multipart/form-data">
             <Form ref={form} >
               {!successful && (
@@ -141,13 +129,10 @@ const Popup = props => {
                       accept="image/png, image/jpg"
                       className="form-control"
                       name="files"
-                      //value={files}
                       onChange={onChangeFiles}
                       multiple
                     />
                   </div>
-
-
                   <div className="form-button-container">
                     <button onClick={handleNewTicket}>
                       {loading && (
@@ -160,7 +145,6 @@ const Popup = props => {
                   </div>
                 </div>
               )}
-
               {message && (
                 <div className="form-group">
                   <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>

@@ -3,9 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
-import { Alert, CircularProgress, Backdrop } from '@mui/material';
-
+import { Alert, CircularProgress } from '@mui/material';
 import AuthService from "../services/authService";
 
 const required = (value) => {
@@ -120,7 +118,6 @@ const Register = () => {
     <div className="form-container">
       <h1 className="title">Create new account.</h1>
       <Form onSubmit={handleRegister} ref={form}>
-
         {!successful && (
           <div>
             <div className="form-group">
@@ -134,7 +131,6 @@ const Register = () => {
                 validations={[required, validFirstName]}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="lastName">Last name</label>
               <Input
@@ -146,7 +142,6 @@ const Register = () => {
                 validations={[required, validLastName]}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <Input
@@ -158,7 +153,6 @@ const Register = () => {
                 validations={[required, validEmail]}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <Input
@@ -170,7 +164,6 @@ const Register = () => {
                 validations={[required, validPassword]}
               />
             </div>
-
             <div className="form-button-container">
               <button>
                 {loading && (
@@ -183,7 +176,6 @@ const Register = () => {
             </div>
           </div>
         )}
-
         {message && (
           <div className="form-group">
             <Alert severity={successful ? "success" : "error"} variant="outlined">{message}</Alert>

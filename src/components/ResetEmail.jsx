@@ -1,13 +1,10 @@
 import React, { useState, useRef } from "react";
-
 import Input from "react-validation/build/input";
 import { useNavigate } from 'react-router-dom';
 import { Alert, CircularProgress } from '@mui/material';
 import Form from "react-validation/build/form";
-//import UserService from "../services/userService";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
 import AuthService from "../services/authService";
 
 const required = (value) => {
@@ -88,7 +85,6 @@ const ResetEmail = () => {
                   validations={[required, validEmail]}
                 />
               </div>
-
               <div className="form-button-container">
                 <button disabled={loading}>
                   {loading && (
@@ -99,7 +95,6 @@ const ResetEmail = () => {
                   )}
                 </button>
               </div>
-              
               {message && (
                 <div className="form-group">
                     <Alert severity="error" variant="outlined">{message}</Alert>

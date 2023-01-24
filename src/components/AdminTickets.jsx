@@ -2,21 +2,13 @@ import React, { useState, useEffect } from "react";
 import TicketService from "../services/ticketService";
 import { useNavigate } from "react-router-dom";
 import { FiTrash2, FiExternalLink } from "react-icons/fi"
-
 import EventBus from "../utils/EventBus";
-
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
 const AdminTickets = () => {
 
   let navigate = useNavigate();
-  /*
-    const refresh = () => {
-      TicketService.getTickets();
-      navigate("/tickets");
-  
-    }*/
 
   const deleteTicket = React.useCallback(
     (id) => () => {
@@ -85,7 +77,6 @@ const AdminTickets = () => {
     );
   }, []);
 
-
   return (
     <Box>
       <h3 className="tab-title">All Tickets</h3>
@@ -96,7 +87,6 @@ const AdminTickets = () => {
         rowsPerPageOptions={[10]}
         checkboxSelection
         disableSelectionOnClick
-      //getRowId={(row) => generateRandom()}
       />
     </Box>
   );

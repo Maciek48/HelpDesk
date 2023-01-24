@@ -18,43 +18,33 @@ const AddArticle = props => {
 
   const form = useRef();
   const checkBtn = useRef();
-
   const [headline, setHeadline] = useState("");
   const [content, setContent] = useState("");
   const [fileList, setFiles] = useState([]);
-  //const [fileList, setFileList] = useState<FileList | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
-
   const files = fileList ? [...fileList] : [];
-
-  
 
   const onChangeHeadline = (e) => {
     const headline = e.target.value
     setHeadline(headline);
-    //console.log(headline)
   };
 
   const onChangeContent = (e) => {
     const content = e.target.value
     setContent(content);
-    //console.log(content)
   };
 
   const onChangeFiles = (e) => {
     const files = e.target.files;
     setFiles(files);
-    console.log(files);
   };
   
   const handleNewArticle = (e) => {
     e.preventDefault();
-    //console.log(form);
 
     const formData = new FormData();
-    console.log(fileList);
     files.forEach((file, i) => {
       formData.append(`file`, file,file.name);
     });
@@ -64,15 +54,7 @@ const AddArticle = props => {
 
     formData.append(`headline`, headline);
     formData.append(`content`, content);
-    
 
-    
-    //const formTest = new FormData([form]);
-    
-    //formData.append('files', files);
-
-    for(const [k,v] of formData) {console.log(k,v)}
-    //console.log(formData);
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
@@ -141,13 +123,10 @@ const AddArticle = props => {
                   accept="image/png, image/jpg"
                   className="form-control"
                   name="files"
-                  //value={files}
                   onChange={onChangeFiles}
                   required
                 />
               </div>
-
-
               <div className="form-button-container">
                 <button onClick={handleNewArticle}>
                   {loading && (

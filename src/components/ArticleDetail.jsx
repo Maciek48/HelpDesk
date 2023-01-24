@@ -1,65 +1,22 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import authHeader from "../services/authHeader";
 import { useNavigate } from 'react-router-dom';
-
-import { Alert, CircularProgress } from '@mui/material';
-import CheckButton from "react-validation/build/button";
-
 import '../css/components/ticketDetail.css'
-import TicketService from "../services/ticketService";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import Textarea from "react-validation/build/textarea"
-
-const required = (value) => {
-    if (!value) {
-        return (
-            <Alert severity="warning" variant="outlined">This field is required!</Alert>
-        );
-    }
-};
 
 function TicketDetail() {
 
-    let navigate = useNavigate()
-    const checkBtn = useRef()
-    const form = useRef()
-    const [comment, setComment] = useState("")
     const [images, setImages] = useState([])
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-
-    const [loading, setLoading] = useState(false)
-    const [message, setMessage] = useState("")
-    const [successful, setSuccessful] = useState(false)
     const [articleData, setArticleData] = useState([])
     const [error, setError] = useState("")
-    const [formVisible, setFormVisible] = useState(false)
     const {id} = useParams()
 
-    const onChangeHandler = (e) => {
-        setComment(e.target.value)
-    };
-
-    const onChangeTitle = (e) => {
-        const title = e.target.value;
-        setTitle(title)
-    };
-
-    const onChangeDescription = (e) => {
-        const description = e.target.value;
-        setDescription(description)
-    };
-
     const fetchImages = async (data) => {
-        console.log(data);
         const imageBlobs = []
         const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${id}/image`, { headers: authHeader() })
             .then(response => response.blob())
         var objectURL = URL.createObjectURL(blob);
         setImages([objectURL])
-        console.log(blob)
     }
 
     //function to get data from database
@@ -78,11 +35,9 @@ function TicketDetail() {
                     fetchImages(data)
                 })
         }
-
         catch (error) {
             setError(error.message)
         }
-
     }
 
     useEffect(() => {
@@ -112,7 +67,6 @@ function TicketDetail() {
                 <h3>Image: </h3>
                 <div className="srodek">
                 {images ? images.map((image, index) => {
-                        //console.log(image)
                         return (
                             <div key={index} className="srodek">
                                 <img src={image} alt="From user account" className="photo" />

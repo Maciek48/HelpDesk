@@ -4,21 +4,13 @@ import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 
 export default function Footer() {
   const links = [
-    {
-      title: "About",
-      data: ["About", "Terms", "Legal"],
+    {title: "About",data: ["About", "Terms", "Legal"],
     },
-    {
-      title: "Help",
-      data: ["Tickets", "Account", "FAQ"],
+    { title: "Help",data: ["Tickets", "Account", "FAQ"],
     },
-    {
-      title: "Contact",
-      data: ["Press", "Support"],
+    {title: "Contact",data: ["Press", "Support"],
     },
-    {
-      title: "Social",
-      data: ["Twiiter", "Instagram"],
+    { title: "Social",data: ["Twiiter", "Instagram"],
     },
   ];
   const socialLink = [

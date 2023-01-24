@@ -1,19 +1,10 @@
 import React, { useState, useRef } from "react";
-
 import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
-
 import { Alert, CircularProgress } from '@mui/material';
 import home from '../assets/home.png'
 import '../css/components/Modal.css';
-
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
 import DeviceService from '../services/deviceService';
 
 const required = (value) => {
@@ -118,9 +109,6 @@ const NewDevicePopup = ({ open, onClose }) => {
                                             validations={[required]}
                                         />
                                     </div>
-
-
-
                                     <div className="form-button-container">
                                         <button>
                                             {loading && (

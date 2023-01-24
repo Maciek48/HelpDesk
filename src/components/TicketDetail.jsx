@@ -2,10 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import authHeader from "../services/authHeader";
 import { useNavigate } from 'react-router-dom';
-
 import { Alert, CircularProgress } from '@mui/material';
 import CheckButton from "react-validation/build/button";
-
 import '../css/components/ticketDetail.css'
 import TicketService from "../services/ticketService";
 import Form from "react-validation/build/form";
@@ -69,7 +67,6 @@ function TicketDetail() {
     //function to get data from database
     const fetchData = async () => {
         setError("")
-
         try {
             await fetch(`https://resolved-api.herokuapp.com/api/tickets/${id}`, { headers: authHeader() })
                 .then(response => {
@@ -82,11 +79,9 @@ function TicketDetail() {
                     fetchImages(data)
                 })
         }
-
         catch (error) {
             setError(error.message)
         }
-
     }
 
     useEffect(() => {
@@ -110,7 +105,6 @@ function TicketDetail() {
                     setTimeout(() => {
                         navigate("/tickets");
                     }, 3000);
-                    //navigate("/tickets");
                 },
                 (error) => {
                     const resMessage =
@@ -143,7 +137,6 @@ function TicketDetail() {
         setMessage("")
         setSuccessful(false)
         setLoading(true)
-
         form.current.validateAll();
 
         if (checkBtn.current.context._errors.length === 0) {

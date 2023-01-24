@@ -3,10 +3,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import {Box, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from '@mui/material';
-
+import { FormLabel, FormControlLabel, RadioGroup, Radio} from '@mui/material';
 import { Alert, CircularProgress } from '@mui/material';
-
 import AuthService from "../services/authService";
 
 const required = (value) => {
@@ -52,7 +50,6 @@ const validPassword = (value) => {
 const AddModerator = () => {
   const form = useRef();
   const checkBtn = useRef();
-  //const roles = ["moderator"];
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -114,7 +111,6 @@ const AddModerator = () => {
           setMessage(resMessage);
           setSuccessful(false);
           setLoading(false);
-
         }
       );
     } else {
@@ -176,7 +172,6 @@ const AddModerator = () => {
                 validations={[required, validPassword]}
               />
             </div>
-
             <div className="form-group">
               
                 <FormLabel id="roles-label">
@@ -193,9 +188,7 @@ const AddModerator = () => {
                   <FormControlLabel control={<Radio />} label='Moderator' value='moderator'/>
                   <FormControlLabel control={<Radio />} label='User' value='user'/>
                 </RadioGroup>
-              
             </div>
-
             <div className="form-button-container">
               <button>
                 {loading && (

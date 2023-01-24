@@ -6,7 +6,6 @@ import Form from "react-validation/build/form";
 import UserService from "../services/userService";
 import CheckButton from "react-validation/build/button";
 
-
 const required = (value) => {
   if (!value) {
     return (
@@ -18,7 +17,6 @@ const required = (value) => {
 const ResetPassword = () => {
 
   let navigate = useNavigate();
-
   const checkBtn = useRef();
 
   const [password, setPassword] = useState("");
@@ -37,7 +35,6 @@ const ResetPassword = () => {
     setLoading(true);
 
     if (checkBtn.current.context._errors.length === 0) {
-
       UserService.resetPassword(password).then(
         () => {
           navigate("/dashboard");
@@ -78,7 +75,6 @@ const ResetPassword = () => {
               validations={[required]}
             />
           </div>
-
           <div className="form-button-container">
             <button disabled={loading}>
               {loading && (
@@ -89,7 +85,6 @@ const ResetPassword = () => {
               )}
             </button>
           </div>
-
           {message && (
             <div className="form-group">
               <Alert severity="error" variant="outlined">{message}</Alert>

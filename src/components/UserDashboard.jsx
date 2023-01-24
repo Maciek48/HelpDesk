@@ -5,13 +5,11 @@ import ArticleService from "../services/articleService";
 import DeviceService from "../services/deviceService";
 import EventBus from "../utils/EventBus";
 import { Grid } from "@mui/material";
-
 import '../css/components/userDashboard.css'
 
 import AddIcon from '@mui/icons-material/Add';
 import Modal from "./Modal";
 import home from '../assets/home.png';
-
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -63,7 +61,6 @@ const UserDashboard = () => {
     ArticleService.get5LatestArticle().then(
       (response) => {
         setArticlesData(response.data);
-        //console.log(articlesData)
       },
       (error) => {
         const _content =
@@ -87,7 +84,6 @@ const UserDashboard = () => {
     DeviceService.getUserDevices().then(
       (response) => {
         setDeviceData(response.data);
-        //console.log(articlesData)
       },
       (error) => {
         const _content =
@@ -120,7 +116,6 @@ const UserDashboard = () => {
           setArticlesData(data)
           return data
         }).then(async data => {
-          console.log(data);
           const articleIds = articlesData.map(article => article.id)
           const imagesBlobs = []
           articleIds.forEach(async articleId => {
@@ -132,7 +127,6 @@ const UserDashboard = () => {
             }
             reader.readAsDataURL(blob)
           })
-          console.log(imagesBlobs)
           return imagesBlobs
         }).then(imageBlobs => {
           setImages(imageBlobs)
@@ -153,24 +147,9 @@ const UserDashboard = () => {
       <Grid item xs={12}>
         <h3 className="tab-title">Dashboard</h3>
       </Grid>
-      {/*}
-      <Grid item xs={12}>
-        <div className="search-container">
-          <h1 className="title">Search if your problem has been resolved.</h1>
-          <form onSubmit="event.preventDefault();" role="search">
-            <label htmlFor="search">Search for stuff</label>
-            <input id="search" type="search" placeholder="Search..." autoFocus required />
-            <button type="submit">Go</button>
-          </form>
-        </div>
-      </Grid>
-      {
-        */
-      }
       <Grid item xs={12}>
         <div className="cards-container">
           <h1>Your devices:</h1>
-
           {deviceData?.devices?.map((device, index) => {
             if (device.type === "iPhone") {
               return (
@@ -338,7 +317,6 @@ const UserDashboard = () => {
                 </div>
               )
             } else if (device.type === "HomePod") {
-              //HomePod
               return (
                 <div className="card" key={index}>
                   <Card sx={{ maxWidth: 345 }}>
@@ -389,7 +367,14 @@ const UserDashboard = () => {
                 </div>
               )
             }) : <p>Loading</p>}
-
+             {articlesData.map((article, index) => {
+              return (
+                <div className="article-container" key={index}>
+                  <h3>Article id: {article.id}</h3>
+                  <h3>{article.headline}</h3>
+                </div>
+              )
+            })}
           </div>
         </div>
       </Grid>

@@ -10,9 +10,6 @@ import AddDeviceToUserAccountPopup from './AddDeviceToUserAccountPopup';
 import home from '../assets/home.png';
 import Modal from "./Modal";
 
-
-
-
 const AdminDashboard = () => {
   const [content, setContent] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
@@ -49,7 +46,6 @@ const AdminDashboard = () => {
     ArticleService.get5LatestArticle().then(
       (response) => {
         setArticlesData(response.data);
-        //console.log(articlesData)
       },
       (error) => {
         const _content =
@@ -66,8 +62,6 @@ const AdminDashboard = () => {
         }
       }
     );
-    //console.log(articlesData)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //function to get 5 latest articles datas from database
@@ -144,7 +138,6 @@ const AdminDashboard = () => {
       <Grid item xs={4}>
         <div className="button-container">
           Your devices:
-
         </div>
       </Grid>
       <Grid item xs={12}>
@@ -155,11 +148,9 @@ const AdminDashboard = () => {
             {images && articlesData ? images.map((image, index) => {
               return (
                 <div className="article-container" key={index}>
-
                   {<img src={image} className="photo1" alt="Article" />}
                   <h3>{articlesData[index].headline}</h3>
                   <h3>{articlesData[index].id}</h3>
-
                 </div>
               )
             }) : <p>Loading</p>}
@@ -171,9 +162,7 @@ const AdminDashboard = () => {
                   <h3>{article.headline}</h3>
                 </div>
               )
-
             })}
-
           </div>
         </div>
       </Grid>
@@ -181,7 +170,6 @@ const AdminDashboard = () => {
         <h3>{ }</h3>
       </Grid>
     </Grid>
-
   );
 };
 

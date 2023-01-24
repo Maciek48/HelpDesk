@@ -1,12 +1,9 @@
 import React from "react";
-import { useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
 import AuthService from "../services/authService";
-
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 
 
 const Profile = () => {

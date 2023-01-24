@@ -2,21 +2,13 @@ import React, { useState, useEffect } from "react";
 import ArticleService from "../services/articleService";
 import { useNavigate } from "react-router-dom";
 import { FiTrash2, FiExternalLink } from "react-icons/fi"
-
 import EventBus from "../utils/EventBus";
-
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 
 const AdminArticles = () => {
 
   let navigate = useNavigate();
-  /*
-    const refresh = () => {
-      TicketService.getTickets();
-      navigate("/tickets");
-  
-    }*/
 
   const deleteArticle = React.useCallback(
     (id) => () => {

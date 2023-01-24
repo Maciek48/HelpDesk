@@ -40,20 +40,6 @@ const createArticle = (data) => {
  
 }
 
-/*const createArticle = (data) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return axios.post(API_URL + "create", 
-    {
-        data
-    },
-    {
-        headers:{
-            'Content-Type': 'multipart/form-date',
-            'x-access-token': user.accessToken
-        }
-        
-    });
-};*/
 
 // Remove article
 const removeArticle = (id) => {

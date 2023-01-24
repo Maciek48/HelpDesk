@@ -19,7 +19,7 @@ export default function Homepage() {
         </div>
         <div className="image-container">
           <div className="image">
-            <img src={home} alt="home image" />
+            <img src={home} alt="home" />
           </div>
           <div className="ellipse-container">
             <div className="ellipse pink"></div>
