@@ -32,7 +32,6 @@ const UserDashboard = () => {
   const [openModal, setOpenModal] = useState(false)
   const [articlesData, setArticlesData] = useState([])
   const [deviceData, setDeviceData] = useState([])
-  const [images, setImages] = useState([])
   const [error, setError] = useState("")
 
   useEffect(() => {
@@ -115,21 +114,6 @@ const UserDashboard = () => {
         .then(data => {
           setArticlesData(data)
           return data
-        }).then(async data => {
-          const articleIds = articlesData.map(article => article.id)
-          const imagesBlobs = []
-          articleIds.forEach(async articleId => {
-            const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${articleId}/image`, { headers: authHeader() })
-              .then(response => response.blob())
-            const reader = new FileReader()
-            reader.onloadend = function () {
-              imagesBlobs.push(reader.result)
-            }
-            reader.readAsDataURL(blob)
-          })
-          return imagesBlobs
-        }).then(imageBlobs => {
-          setImages(imageBlobs)
         })
     }
     catch (error) {
@@ -185,9 +169,6 @@ const UserDashboard = () => {
                         alt="MacBook"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -209,9 +190,6 @@ const UserDashboard = () => {
                         alt="Watch"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -233,9 +211,6 @@ const UserDashboard = () => {
                         alt="AirPods"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -257,9 +232,6 @@ const UserDashboard = () => {
                         alt="Ipad"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -281,9 +253,6 @@ const UserDashboard = () => {
                         alt="Mac"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -305,9 +274,6 @@ const UserDashboard = () => {
                         alt="AppleTV"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Type : {device.type}
-                        </Typography>
                         <Typography variant="body2" color="text.secondary">
                           Name: {device.name}
                         </Typography>
@@ -358,15 +324,6 @@ const UserDashboard = () => {
         <div className="parent2">
           <div className="srodek">
             <h1>5 Latest Articles</h1>
-            {images && articlesData ? images.map((image, index) => {
-              return (
-                <div className="article-container" key={index}>
-                  <img src={image} className="photo1" alt="Article" />
-                  <h3>{articlesData[index].headline}</h3>
-                  <h3>{articlesData[index].id}</h3>
-                </div>
-              )
-            }) : <p>Loading</p>}
              {articlesData.map((article, index) => {
               return (
                 <div className="article-container" key={index}>

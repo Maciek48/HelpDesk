@@ -7,15 +7,30 @@ import EventBus from "../utils/EventBus";
 import { Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import AddDeviceToUserAccountPopup from './AddDeviceToUserAccountPopup';
+import DeviceService from "../services/deviceService";
 import home from '../assets/home.png';
 import Modal from "./Modal";
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
+import Iphone from '../assets/iphone-img.jpg'
+import MacBook from '../assets/macBook-img.jpg'
+import Watch from '../assets/watch.jpg'
+import AirPods from '../assets/airpods.jpg'
+import Ipad from '../assets/ipad.jpg'
+import Mac from '../assets/mac.jpg'
+import AppleTV from '../assets/appletv.jpeg'
+import HomePod from '../assets/homepod.jpg'
 
 const AdminDashboard = () => {
   const [content, setContent] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
-
+  const [deviceData, setDeviceData] = useState([])
   const [articlesData, setArticlesData] = useState([])
-  const [images, setImages] = useState([])
   const [openModal, setOpenModal] = useState(false)
 
   const [error, setError] = useState("")
@@ -40,6 +55,29 @@ const AdminDashboard = () => {
         }
       }
     );
+  }, []);
+
+  useEffect(() => {
+    DeviceService.getUserDevices().then(
+      (response) => {
+        setDeviceData(response.data);
+      },
+      (error) => {
+        const _content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setDeviceData(_content);
+
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
+
   }, []);
 
   useEffect(() => {
@@ -76,23 +114,6 @@ const AdminDashboard = () => {
         .then(data => {
           setArticlesData(data)
           return data
-        }).then(async data => {
-          console.log(data);
-          const articleIds = articlesData.map(article => article.id)
-          const imagesBlobs = []
-          articleIds.forEach(async articleId => {
-            const blob = await fetch(`https://resolved-api.herokuapp.com/api/articles/${articleId}/image`, { headers: authHeader() })
-              .then(response => response.blob())
-            const reader = new FileReader()
-            reader.onloadend = function () {
-              imagesBlobs.push(reader.result)
-            }
-            reader.readAsDataURL(blob)
-          })
-          console.log(imagesBlobs)
-          return imagesBlobs
-        }).then(imageBlobs => {
-          setImages(imageBlobs)
         })
     }
     catch (error) {
@@ -135,9 +156,180 @@ const AdminDashboard = () => {
         </div>
 
       </Grid>
-      <Grid item xs={4}>
-        <div className="button-container">
-          Your devices:
+      <Grid item xs={12}>
+        <div className="cards-container">
+          <h1>Your devices:</h1>
+          {deviceData?.devices?.map((device, index) => {
+            if (device.type === "iPhone") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={Iphone}
+                        alt="Iphone"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "MacBook") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={MacBook}
+                        alt="MacBook"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "Watch") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={Watch}
+                        alt="Watch"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "AirPods") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={AirPods}
+                        alt="AirPods"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "iPad") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={Ipad}
+                        alt="Ipad"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "Mac") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={Mac}
+                        alt="Mac"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "AppleTV") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={AppleTV}
+                        alt="AppleTV"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            } else if (device.type === "HomePod") {
+              return (
+                <div className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        width="400"
+                        image={HomePod}
+                        alt="HomePod"
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          Name: {device.name}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            }
+          })}
         </div>
       </Grid>
       <Grid item xs={12}>
@@ -145,16 +337,6 @@ const AdminDashboard = () => {
 
           <div className="srodek">
             <h1>5 Latest Articles</h1>
-            {images && articlesData ? images.map((image, index) => {
-              return (
-                <div className="article-container" key={index}>
-                  {<img src={image} className="photo1" alt="Article" />}
-                  <h3>{articlesData[index].headline}</h3>
-                  <h3>{articlesData[index].id}</h3>
-                </div>
-              )
-            }) : <p>Loading</p>}
-
             {articlesData.map((article, index) => {
               return (
                 <div className="article-container" key={index}>
