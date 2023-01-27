@@ -58,7 +58,8 @@ const AdminTickets = () => {
   useEffect(() => {
     TicketService.getAllTickets().then(
       (response) => {
-        setRows(response.data);
+        const data = response.data.map((row, index) => ({...row, id: row.id}))
+        setRows(data);
       },
       (error) => {
         const _rows =
